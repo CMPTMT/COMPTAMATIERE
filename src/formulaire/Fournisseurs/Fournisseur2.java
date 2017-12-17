@@ -347,6 +347,7 @@ private void chargement(){
 
     private void btnModifier1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifier1ActionPerformed
         // TODO add your handling code here:
+        try{
         Modification2  Ms = new Modification2(new JFrame(),true);
         Fournisseur.setidFOURNISSEUR(Integer.parseInt(TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),0).toString()));
         Fournisseur.setTYPEFOURNISSEUR(TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),1).toString());
@@ -363,6 +364,9 @@ private void chargement(){
         ///Fournisseur.setACTIVITES(Table.getValueAt(Table.getSelectedRow(),12).toString());
         Ms.Mf=Fournisseur;
         Ms.setVisible(true);
+        } catch(IndexOutOfBoundsException ex){
+          JOptionPane.showMessageDialog(this,"Choisissez le Fournisseur à Modifier,SVP");
+       }
     }//GEN-LAST:event_btnModifier1ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed

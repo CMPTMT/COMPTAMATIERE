@@ -52,9 +52,6 @@ public class GestionPiecesComptable1 extends javax.swing.JInternalFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
@@ -66,8 +63,6 @@ public class GestionPiecesComptable1 extends javax.swing.JInternalFrame {
         jMenuItem10 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
         jMenu7 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
 
@@ -110,28 +105,6 @@ public class GestionPiecesComptable1 extends javax.swing.JInternalFrame {
         jMenuBar1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         jMenuBar1.setMargin(new java.awt.Insets(8, 8, 8, 8));
         jMenuBar1.setName("menuP"); // NOI18N
-
-        jMenu4.setBackground(new java.awt.Color(51, 204, 255));
-        jMenu4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jMenu4.setForeground(new java.awt.Color(51, 0, 153));
-        jMenu4.setText("FICHIER");
-        jMenu4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jMenu4.setMargin(new java.awt.Insets(2, 2, 2, 2));
-
-        jMenuItem1.setText("Quitter");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem1);
-
-        jMenuBar1.add(jMenu4);
-
-        jMenu5.setForeground(new java.awt.Color(51, 0, 153));
-        jMenu5.setText("ETATS");
-        jMenu5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jMenuBar1.add(jMenu5);
 
         jMenu2.setForeground(new java.awt.Color(51, 0, 153));
         jMenu2.setText("CONFIGURATION");
@@ -212,16 +185,6 @@ public class GestionPiecesComptable1 extends javax.swing.JInternalFrame {
 
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setForeground(new java.awt.Color(51, 0, 153));
-        jMenu3.setText("SORTIE");
-        jMenu3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jMenuBar1.add(jMenu3);
-
-        jMenu6.setForeground(new java.awt.Color(51, 0, 153));
-        jMenu6.setText("ENTREE");
-        jMenu6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jMenuBar1.add(jMenu6);
-
         jMenu7.setForeground(new java.awt.Color(51, 0, 153));
         jMenu7.setText("AIDE");
         jMenu7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -249,10 +212,6 @@ public class GestionPiecesComptable1 extends javax.swing.JInternalFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
        
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         CompteP p = new CompteP(new JFrame(),true);
@@ -309,13 +268,8 @@ public class GestionPiecesComptable1 extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem10;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;

@@ -338,6 +338,7 @@ SORTIE sortie = new SORTIE ();
         Modification m= new Modification(new JFrame(),true);
         m.idSortieM=tableSortie.getValueAt(tableSortie.getSelectedRow(), sortie.getColumnByName(tableSortie, "idsortie")).toString();
         //m.*/
+        try {
         int val = 0;
         DetailS.idSORTIE=Integer.parseInt(tableSortie.getValueAt(tableSortie.getSelectedRow(),0).toString());
         
@@ -351,6 +352,10 @@ SORTIE sortie = new SORTIE ();
         m.idSortieM=tableSortie.getValueAt(tableSortie.getSelectedRow(),sortie.getColumnByName(tableSortie, "idsortie")).toString();
         m.setVisible(true);  
         }
+        
+        } catch(IndexOutOfBoundsException ex){
+          JOptionPane.showMessageDialog(this,"Choisissez la l/'ordre de sortie à Modifier,SVP");
+       }
        
     }//GEN-LAST:event_btnModifier1ActionPerformed
 
