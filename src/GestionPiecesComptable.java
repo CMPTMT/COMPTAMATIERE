@@ -70,25 +70,6 @@ public class GestionPiecesComptable extends javax.swing.JInternalFrame {
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
-        jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu4 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu5 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem8 = new javax.swing.JMenuItem();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jSeparator6 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenu6 = new javax.swing.JMenu();
-        jMenu7 = new javax.swing.JMenu();
-        jMenuItem11 = new javax.swing.JMenuItem();
 
         setBackground(new java.awt.Color(51, 51, 51));
         setBorder(null);
@@ -121,7 +102,7 @@ public class GestionPiecesComptable extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(jButton2);
-        jButton2.setBounds(300, 0, 110, 70);
+        jButton2.setBounds(300, 0, 110, 80);
 
         jLabel13.setBackground(new java.awt.Color(0, 102, 204));
         jLabel13.setFont(new java.awt.Font("Times New Roman", 1, 24)); // NOI18N
@@ -283,135 +264,6 @@ public class GestionPiecesComptable extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel20);
         jLabel20.setBounds(10, 280, 240, 22);
 
-        jMenuBar1.setBackground(new java.awt.Color(102, 51, 255));
-        jMenuBar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
-        jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
-        jMenuBar1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
-        jMenuBar1.setMargin(new java.awt.Insets(8, 8, 8, 8));
-        jMenuBar1.setName("menuP"); // NOI18N
-
-        jMenu4.setBackground(new java.awt.Color(51, 204, 255));
-        jMenu4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
-        jMenu4.setForeground(new java.awt.Color(51, 0, 153));
-        jMenu4.setText("FICHIER");
-        jMenu4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jMenu4.setMargin(new java.awt.Insets(2, 2, 2, 2));
-
-        jMenuItem1.setText("Quitter");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu4.add(jMenuItem1);
-
-        jMenuBar1.add(jMenu4);
-
-        jMenu5.setForeground(new java.awt.Color(51, 0, 153));
-        jMenu5.setText("ETATS");
-        jMenu5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jMenuBar1.add(jMenu5);
-
-        jMenu2.setForeground(new java.awt.Color(51, 0, 153));
-        jMenu2.setText("CONFIGURATION");
-        jMenu2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-
-        jMenuItem3.setText("Compte Principal");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem3);
-
-        jMenuItem4.setText("Compte Divisionnaire");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem4);
-
-        jMenuItem5.setText("Catégorie");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem5);
-
-        jMenuItem7.setText("Magasin");
-        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem7ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem7);
-
-        jMenuItem8.setText("Budget");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem8);
-
-        jMenuItem9.setText("Groupe de Stock");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem9);
-        jMenu2.add(jSeparator6);
-
-        jMenuItem10.setText("Type de patrimoine");
-        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem10ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem10);
-
-        jMenuItem2.setText("Compte Utilisateur");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem2);
-
-        jMenuItem6.setText("Institution");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem6);
-
-        jMenuBar1.add(jMenu2);
-
-        jMenu3.setForeground(new java.awt.Color(51, 0, 153));
-        jMenu3.setText("SORTIE");
-        jMenu3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jMenuBar1.add(jMenu3);
-
-        jMenu6.setForeground(new java.awt.Color(51, 0, 153));
-        jMenu6.setText("ENTREE");
-        jMenu6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jMenuBar1.add(jMenu6);
-
-        jMenu7.setForeground(new java.awt.Color(51, 0, 153));
-        jMenu7.setText("AIDE");
-        jMenu7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-
-        jMenuItem11.setText("A propos");
-        jMenu7.add(jMenuItem11);
-
-        jMenuBar1.add(jMenu7);
-
-        setJMenuBar(jMenuBar1);
-
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -522,60 +374,6 @@ public class GestionPiecesComptable extends javax.swing.JInternalFrame {
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));      
     }//GEN-LAST:event_jLabel19MouseExited
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        CompteP p = new CompteP(new JFrame(),true);
-        p.setVisible(true);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        CompteD d = new CompteD(new JFrame(),true);
-        d.setVisible(true);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        Categorie c = new Categorie(new JFrame(),true);
-        c.setVisible(true);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
-    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
-        Magasin m =new Magasin(new JFrame(),true);
-        m.setVisible(true);
-    }//GEN-LAST:event_jMenuItem7ActionPerformed
-
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        Budget b = new Budget(new JFrame(),true);
-        b.setVisible(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
-
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        GroupStock g= new GroupStock(new JFrame(),true);
-        g.setVisible(true);
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
-
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        TypePatrimoine t= new TypePatrimoine(new JFrame(),true);
-        t.setVisible(true);
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-        NouveauCompteUtil n = new NouveauCompteUtil(new JFrame(),true);
-        n.setVisible(true);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
-        Institution in= new Institution(new JFrame(),true);
-        in.setVisible(true);
-
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
-
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
         comptegestion n1 = new comptegestion(new JFrame(),true);
@@ -640,25 +438,6 @@ public class GestionPiecesComptable extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JSeparator jSeparator5;
-    private javax.swing.JPopupMenu.Separator jSeparator6;
     // End of variables declaration//GEN-END:variables
 }
