@@ -1,6 +1,5 @@
 
 import formulaire.Compteutilisateur.NouveauCompteUtil;
-import formulaire.Fournisseurs.Fournisseur2;
 import formulaire.Institution.Institution;
 import formulaire.Magasin.Magasin;
 import formulaire.budget.Budget;
@@ -9,7 +8,6 @@ import formulaire.compteD.CompteD;
 import formulaire.compteP.CompteP;
 import formulaire.groupstock.GroupStock;
 import formulaire.typepatrimoine.TypePatrimoine;
-import java.awt.Cursor;
 import javax.swing.JFrame;
 
 public class GestionConfig extends javax.swing.JInternalFrame {
@@ -33,7 +31,6 @@ public class GestionConfig extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jButton3 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
@@ -69,13 +66,6 @@ public class GestionConfig extends javax.swing.JInternalFrame {
         });
         getContentPane().add(jButton3);
         jButton3.setBounds(290, 170, 110, 90);
-
-        jLabel1.setFont(new java.awt.Font("Tahoma", 3, 12)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("GESTION DES FOURNIESSEURS");
-        getContentPane().add(jLabel1);
-        jLabel1.setBounds(220, 270, 240, 15);
 
         jMenuBar1.setBackground(new java.awt.Color(102, 51, 255));
         jMenuBar1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 1, true));
@@ -234,7 +224,6 @@ public class GestionConfig extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu7;
     private javax.swing.JMenuBar jMenuBar1;

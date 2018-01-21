@@ -3,7 +3,6 @@ import comptamatiere.REPORT;
 import formulaire.Compteutilisateur.NouveauCompteUtil;
 import formulaire.Institution.Institution;
 import formulaire.Magasin.Magasin;
-import formulaire.article.Article;
 import formulaire.budget.Budget;
 import formulaire.categorie.Categorie;
 import formulaire.compteD.CompteD;
@@ -17,6 +16,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import report.formulaire.ArticlePourGrandLivre;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -195,6 +195,12 @@ public class GestionPiecesComptable extends javax.swing.JInternalFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel10MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel10MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel10MouseExited(evt);
+            }
         });
         getContentPane().add(jLabel10);
         jLabel10.setBounds(10, 310, 240, 22);
@@ -260,6 +266,17 @@ public class GestionPiecesComptable extends javax.swing.JInternalFrame {
         jLabel20.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("5.--------> Grand livre");
+        jLabel20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel20MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel20MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel20MouseExited(evt);
+            }
+        });
         getContentPane().add(jLabel20);
         jLabel20.setBounds(10, 280, 240, 22);
 
@@ -459,7 +476,7 @@ public class GestionPiecesComptable extends javax.swing.JInternalFrame {
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
         // TODO add your handling code here:
-        Article a= new Article(new JFrame(),true);
+        ArticlePourGrandLivre a= new ArticlePourGrandLivre(new JFrame(),true);
         a.setVisible(true);
     }//GEN-LAST:event_jLabel9MouseClicked
 
@@ -558,9 +575,49 @@ public class GestionPiecesComptable extends javax.swing.JInternalFrame {
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
-        comptegestion n = new comptegestion(new JFrame(),true);
-        n.setVisible(true);
+        comptegestion n1 = new comptegestion(new JFrame(),true);
+        n1.setVisible(true);
     }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void jLabel20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseClicked
+        // TODO add your handling code here:
+         ArticlePourGrandLivre a1= new ArticlePourGrandLivre(new JFrame(),true);
+        a1.setVisible(true);
+         //essaicomptegestion f = new essaicomptegestion( new JFrame(),true);
+        
+       // a.idARTICLE
+         //a.LIBARTICLE=table.getValueAt(table.getSelectedRow(),a.getColumnByName(table, "article")).toString();
+        // a.idARTICLE=Integer.parseInt(table.getValueAt(table.getSelectedRow(),a.getColumnByName(table, "code")).toString());
+         //  f.a=this.a;
+          // f.setVisible(true);
+    }//GEN-LAST:event_jLabel20MouseClicked
+
+    private void jLabel20MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseEntered
+        // TODO add your handling code here:
+          jLabel20.setFont(new java.awt.Font(Font.SERIF,Font.BOLD,22));
+        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_jLabel20MouseEntered
+
+    private void jLabel20MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseExited
+        // TODO add your handling code here:
+         setCursor(Cursor.getDefaultCursor());
+        jLabel20.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
+        jLabel20.setForeground(new java.awt.Color(255, 255, 255));      
+    }//GEN-LAST:event_jLabel20MouseExited
+
+    private void jLabel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseEntered
+        // TODO add your handling code here:
+         // TODO add your handling code here:
+         jLabel10.setFont(new java.awt.Font(Font.SERIF,Font.BOLD,22));
+        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_jLabel10MouseEntered
+
+    private void jLabel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseExited
+        // TODO add your handling code here:
+          setCursor(Cursor.getDefaultCursor());
+        jLabel10.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));      
+    }//GEN-LAST:event_jLabel10MouseExited
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

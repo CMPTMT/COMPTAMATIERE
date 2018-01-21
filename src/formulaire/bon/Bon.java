@@ -399,7 +399,7 @@ public class Bon extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnModifier1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifier1ActionPerformed
- 
+ try {
         int val;
         val=Integer.parseInt(table.getValueAt(table.getSelectedRow(),b.getColumnByName(table,"valide")).toString());        
         if(val==1){
@@ -409,7 +409,10 @@ public class Bon extends javax.swing.JDialog {
         String bonSelect=table.getValueAt(table.getSelectedRow(),b.getColumnByName(table,"idbon")).toString();
         m.idBon= bonSelect;
         m.setVisible(true); 
-       }       
+       } 
+        } catch(IndexOutOfBoundsException ex){
+          JOptionPane.showMessageDialog(this,"Choisissez le Bon à modifier,SVP");
+       }
     }//GEN-LAST:event_btnModifier1ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
@@ -420,7 +423,7 @@ public class Bon extends javax.swing.JDialog {
             String codeF=b.getOneResult("select idFournisseur from bon where idbon="+bonSelect);    
                 b.printReportBon(bonSelect,codeB,codeF);    
         } catch(IndexOutOfBoundsException ex){
-          JOptionPane.showMessageDialog(this,"Choisissez un bon à imprimer");
+          JOptionPane.showMessageDialog(this,"Choisissez le bon à imprimer");
        }
         catch (SQLException ex) {
             JOptionPane.showMessageDialog(this,"section 1"+ ex.getMessage());

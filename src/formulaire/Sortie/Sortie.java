@@ -102,7 +102,7 @@ SORTIE sortie = new SORTIE ();
         });
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel4.setText("Critère:");
+        jLabel4.setText("CritÃ¨re:");
 
         cmbSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "IDSORTIE", "DATESORTIE", "LIBBUR", "LIBSERVICE ", "MOTIF", "NUMPJ", "IDBON" }));
         cmbSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -338,27 +338,32 @@ SORTIE sortie = new SORTIE ();
         Modification m= new Modification(new JFrame(),true);
         m.idSortieM=tableSortie.getValueAt(tableSortie.getSelectedRow(), sortie.getColumnByName(tableSortie, "idsortie")).toString();
         //m.*/
+        try {
         int val = 0;
         DetailS.idSORTIE=Integer.parseInt(tableSortie.getValueAt(tableSortie.getSelectedRow(),0).toString());
         
              val=Integer.parseInt(tableSortie.getValueAt(tableSortie.getSelectedRow(),6).toString());
         
         if(val==1){
-             JOptionPane.showMessageDialog(this,val+" Ordre de Sortie deja validé,la modification est impossible");
+             JOptionPane.showMessageDialog(this,val+" Ordre de Sortie deja validÃ©,la modification est impossible");
         }else{
          Modification m= new Modification(new JFrame(),true);
-         //JOptionPane.showMessageDialog(this,val+" Ordre de Sortie deja validé,la modification est impossible");
+         //JOptionPane.showMessageDialog(this,val+" Ordre de Sortie deja validÃ©,la modification est impossible");
         m.idSortieM=tableSortie.getValueAt(tableSortie.getSelectedRow(),sortie.getColumnByName(tableSortie, "idsortie")).toString();
         m.setVisible(true);  
         }
-    
+        
+        } catch(IndexOutOfBoundsException ex){
+          JOptionPane.showMessageDialog(this,"Choisissez  l/'ordre de sortie Ã  modifier,SVP");
+       }
+       
     }//GEN-LAST:event_btnModifier1ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         try {
             sortie.printReport(tableSortie.getValueAt(tableSortie.getSelectedRow(),sortie.getColumnByName(tableSortie, "idsortie")).toString());
         }catch(IndexOutOfBoundsException ind){
-            JOptionPane.showMessageDialog(this,"Choisissez le bon à imprimer");
+            JOptionPane.showMessageDialog(this,"Choisissez l/'ordre de sortie Ã  imprimer");
         }
         catch (SQLException ex) {
            JOptionPane.showMessageDialog(this,ex.getMessage());

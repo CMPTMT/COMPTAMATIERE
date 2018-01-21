@@ -8,8 +8,11 @@ import comptamatiere.ARTICLE;
 import comptamatiere.REPORT;
 import formulaire.Sortie.ValidationSorti;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import report.formulaire.essaicomptegestion;
 
 
 public class Article extends javax.swing.JDialog {
@@ -285,34 +288,34 @@ public class Article extends javax.swing.JDialog {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(btnModifier1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(90, 90, 90)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(104, 104, 104)
+                .addGap(37, 37, 37)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(99, 99, 99)
+                .addGap(100, 100, 100)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(70, 70, 70))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(19, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnModifier1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jButton1)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(jButton1))
+                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -335,9 +338,9 @@ public class Article extends javax.swing.JDialog {
                 .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(6, 6, 6))
         );
@@ -426,9 +429,14 @@ public class Article extends javax.swing.JDialog {
         try {
             Modification m=new Modification( new JFrame(),true);
             a.IDCATEGORIE=Integer.parseInt(table.getValueAt(table.getSelectedRow(),0).toString());                            
-            a.LIBCATEGORIE=a.getLibcategorieFromIdC(a.IDCATEGORIE);
-            a.idCOMPTED=Integer.parseInt(a.getIdDFromC(a.IDCATEGORIE));
+            try {
+                a.LIBCATEGORIE=a.getLibcategorieFromIdC(a.IDCATEGORIE);
+                  a.idCOMPTED=Integer.parseInt(a.getIdDFromC(a.IDCATEGORIE));
             a.LIBCOMPTED= a.getLibDFromIdD(a.idCOMPTED);
+            } catch (SQLException ex) {
+                Logger.getLogger(Article.class.getName()).log(Level.SEVERE, null, ex);
+            }
+          
             a.idARTICLE=Integer.parseInt(table.getValueAt(table.getSelectedRow(),a.getColumnByName(table, "code")).toString());
             a.LIBARTICLE=table.getValueAt(table.getSelectedRow(),a.getColumnByName(table, "article")).toString();
             a.SPECIFICATION= table.getValueAt(table.getSelectedRow(),a.getColumnByName(table, "specification")).toString();
@@ -440,8 +448,9 @@ public class Article extends javax.swing.JDialog {
             //JOptionPane.showMessageDialog(this,a.IDCATEGORIE);                    
             m.a=this.a;
             m.setVisible(true);
-        } catch (SQLException ex) {
-           
+        } catch(IndexOutOfBoundsException ex){
+          JOptionPane.showMessageDialog(this,"Choisissez  l\'article à Modifier,SVP");
+       
         }catch (NullPointerException ex) {
            // Logger.getLogger(Article.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -449,29 +458,12 @@ public class Article extends javax.swing.JDialog {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
        //on verra après ensemble où appeler cette methode, elle permet de corriger les vide due au suppressions dans le livrejournal
-       essaifichestock f = new essaifichestock( new JFrame(),true);
-        
-       // a.idARTICLE
+       essaifichestock f1 = new essaifichestock( new JFrame(),true);
          a.LIBARTICLE=table.getValueAt(table.getSelectedRow(),a.getColumnByName(table, "article")).toString();
          a.idARTICLE=Integer.parseInt(table.getValueAt(table.getSelectedRow(),a.getColumnByName(table, "code")).toString());
-           f.a=this.a;
-           f.setVisible(true);
-        // a.idARTICLE=table.getValueAt(table.getSelectedRow(),e.getColumnByName(table, "code")).toString();
-    /* String req="SELECT idoperation, dateoperation,article.libarticle,idbonEntree, qteEntree, natureuniteEntree, idbonsortie, qteSortie, natureuniteSortie,"
-               + " pusortie, observation, puentree, pustock, qtestock , CASE " +
-               "WHEN idbonEntree IS NULL " +
-                   "THEN (SELECT libbur FROM bureau, sortie where idbonsortie=sortie.idsortie and bureau.idbureau=sortie.idbureau )" +
-                   "else (SELECT RAISONSOCIAL FROM fournisseur,bon where idbonentree=bon.idbon and bon.idfournisseur=fournisseur.idfournisseur )" +
-              "End as source " +
-              " FROM livrejournal,article where livrejournal.idarticle=article.idarticle and livrejournal.idarticle="+idart+
-              " UNION (select '0',datestockini,libarticle,'0',stockinit,'','','','','','',Prixunitaire,Prixunitaire,stockinit,'StockInitial' from article where idarticle="+idart+") "+
-               "UNION (SELECT inventaire.idINVENTAIRE,DATEINVENT  ,libarticle,'0',QTEREELLE,'','','','','','',PUM,PUM,QTEREELLE,'Inventaire' from article, detailinventaire,inventaire where inventaire.idinventaire=detailinventaire.idinventaire and article.idarticle=detailinventaire.idarticle and detailinventaire.idarticle="+idart+") order by dateoperation" ;
-
-             try{
-           e.editionReport("fichestock", req, e.getInstitutionMap());
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this,ex.getMessage());
-        }*/
+           f1.a=this.a;
+           f1.setVisible(true);
+     
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
@@ -500,12 +492,14 @@ public class Article extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-         // TODO add your handling code here:
-       // essaifichestock f = new essaifichestock();
-        //f.setVisible(true);
-         
-        
-        
+                 
+          essaicomptegestion f = new essaicomptegestion( new JFrame(),true);
+         a.LIBARTICLE=table.getValueAt(table.getSelectedRow(),a.getColumnByName(table, "article")).toString();
+         a.idARTICLE=Integer.parseInt(table.getValueAt(table.getSelectedRow(),a.getColumnByName(table, "code")).toString());
+           f.a=this.a;
+           f.setVisible(true);
+           
+           
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
