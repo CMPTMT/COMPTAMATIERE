@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author OBAM
  */
 public class comptegestion extends javax.swing.JDialog {
-    String sql="SELECT categorie.numerocompte,article.libarticle,article.unitemesure,comptegestion.qteentree,comptegestion.qtesortie,"+
+    String sqlq="SELECT categorie.numerocompte,article.libarticle,article.unitemesure,comptegestion.qteentree,comptegestion.qtesortie,"+
 		"article.Pum,article.STOCKACTU from article,categorie,comptegestion where article.idcategorie=categorie.IDCATEGORIE "+
 		"and article.idARTICLE=comptegestion.idarticle order by left(categorie.numeroCompte,4)";
 				
@@ -112,11 +112,11 @@ public class comptegestion extends javax.swing.JDialog {
             while(rs.next())
               d.insUpdateDel("update comptegestion set qtesortie="+rs.getInt("qte")+" where idarticle="+rs.getInt("idarticle"));
             rs.close();  
-            r.editionReport("comptegestion",sql, r.getHashMap("institution"));
+            r.editionReport("comptegestion",sqlq, r.getHashMap("institution"));
          } catch (SQLException ex) {
-           JOptionPane.showMessageDialog(this, ex.getMessage());
+           JOptionPane.showMessageDialog(this,"zone 1: "+ ex.getMessage());
         } catch (Exception ex) {
-          JOptionPane.showMessageDialog(this, ex.getMessage());
+          JOptionPane.showMessageDialog(this,"zone 2"+ ex.getMessage());
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
