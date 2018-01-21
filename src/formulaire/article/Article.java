@@ -449,7 +449,7 @@ public class Article extends javax.swing.JDialog {
             m.a=this.a;
             m.setVisible(true);
         } catch(IndexOutOfBoundsException ex){
-          JOptionPane.showMessageDialog(this,"Choisissez la l\'article à Modifier,SVP");
+          JOptionPane.showMessageDialog(this,"Choisissez  l\'article à Modifier,SVP");
        
         }catch (NullPointerException ex) {
            // Logger.getLogger(Article.class.getName()).log(Level.SEVERE, null, ex);
@@ -458,11 +458,11 @@ public class Article extends javax.swing.JDialog {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
        //on verra après ensemble où appeler cette methode, elle permet de corriger les vide due au suppressions dans le livrejournal
-       essaifichestock f = new essaifichestock( new JFrame(),true);
+       essaifichestock f1 = new essaifichestock( new JFrame(),true);
          a.LIBARTICLE=table.getValueAt(table.getSelectedRow(),a.getColumnByName(table, "article")).toString();
          a.idARTICLE=Integer.parseInt(table.getValueAt(table.getSelectedRow(),a.getColumnByName(table, "code")).toString());
-           f.a=this.a;
-           f.setVisible(true);
+           f1.a=this.a;
+           f1.setVisible(true);
      
     }//GEN-LAST:event_jButton8ActionPerformed
 

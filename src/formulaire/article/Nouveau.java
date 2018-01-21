@@ -411,14 +411,14 @@ public class Nouveau extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if(txtArticle.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this,"saisissez le libellé de l\'article");
+            JOptionPane.showMessageDialog(this,"saisissez le libellé d\'article,SVP");
         }
         else if(codeD.getText().isEmpty())
-            JOptionPane.showMessageDialog(this,"Choisissez la catégorie de l\'article");
+            JOptionPane.showMessageDialog(this,"Choisissez la catégorie de l\'article,SVP");
         else if(txtDateStockInit.getDate()==null)
-             JOptionPane.showMessageDialog(this,"choisissez la date stock initiale");
+             JOptionPane.showMessageDialog(this,"choisissez la date stock initiale,SVP");
          else if(txtUniteMesure.getText().isEmpty())
-            JOptionPane.showMessageDialog(this,"saisissez unité de mesure");
+            JOptionPane.showMessageDialog(this,"saisissez unité de mesure,SVP");
          else{
         int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous enregistrez?","confirmation",JOptionPane.YES_NO_OPTION);
         if(reponse==JOptionPane.YES_OPTION){

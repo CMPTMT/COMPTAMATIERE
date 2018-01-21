@@ -354,7 +354,7 @@ SORTIE sortie = new SORTIE ();
         }
         
         } catch(IndexOutOfBoundsException ex){
-          JOptionPane.showMessageDialog(this,"Choisissez la l/'ordre de sortie à Modifier,SVP");
+          JOptionPane.showMessageDialog(this,"Choisissez  l/'ordre de sortie à modifier,SVP");
        }
        
     }//GEN-LAST:event_btnModifier1ActionPerformed
@@ -363,7 +363,7 @@ SORTIE sortie = new SORTIE ();
         try {
             sortie.printReport(tableSortie.getValueAt(tableSortie.getSelectedRow(),sortie.getColumnByName(tableSortie, "idsortie")).toString());
         }catch(IndexOutOfBoundsException ind){
-            JOptionPane.showMessageDialog(this,"Choisissez le bon à imprimer");
+            JOptionPane.showMessageDialog(this,"Choisissez l/'ordre de sortie à imprimer");
         }
         catch (SQLException ex) {
            JOptionPane.showMessageDialog(this,ex.getMessage());

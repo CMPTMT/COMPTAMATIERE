@@ -347,7 +347,25 @@ private void chargement(){
 
     private void btnModifier1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifier1ActionPerformed
         // TODO add your handling code here:
-        try{
+      /*  try{
+        Modification2  Ms = new Modification2(new JFrame(),true);
+        Fournisseur.setidFOURNISSEUR(Integer.parseInt(TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),0).toString()));
+        Fournisseur.setTYPEFOURNISSEUR(TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),1).toString());
+        Fournisseur.setIFU(TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),2).toString());
+        Fournisseur.setRAISONSOCIAL((TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),3).toString()));
+        Fournisseur.setNOMREPRESENTANT(TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),4).toString());
+        Fournisseur.setADRESSE(TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),5).toString());
+        Fournisseur.setTELEPHONE(TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),6).toString());
+        Fournisseur.setFAX(TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),7).toString());
+        Fournisseur.setEMAIL((TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),8).toString()));
+        Fournisseur.setVILLE(TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),9).toString());
+        Fournisseur.setPAYS(TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),10).toString());
+        Fournisseur.setSECTEURACTIVITE(TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),11).toString());
+        ///Fournisseur.setACTIVITES(Table.getValueAt(Table.getSelectedRow(),12).toString());
+        Ms.Mf=Fournisseur;/*
+       
+        */
+          try{
         Modification2  Ms = new Modification2(new JFrame(),true);
         Fournisseur.setidFOURNISSEUR(Integer.parseInt(TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),0).toString()));
         Fournisseur.setTYPEFOURNISSEUR(TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),1).toString());
@@ -365,7 +383,7 @@ private void chargement(){
         Ms.Mf=Fournisseur;
         Ms.setVisible(true);
         } catch(IndexOutOfBoundsException ex){
-          JOptionPane.showMessageDialog(this,"Choisissez le Fournisseur à Modifier,SVP");
+          JOptionPane.showMessageDialog(this,"Choisissez le Fournisseur à modifier,SVP");
        }
     }//GEN-LAST:event_btnModifier1ActionPerformed
 

@@ -107,10 +107,10 @@ public class GestionPiecesComptable1 extends javax.swing.JInternalFrame {
         jMenuBar1.setName("menuP"); // NOI18N
 
         jMenu2.setForeground(new java.awt.Color(51, 0, 153));
-        jMenu2.setText("CONFIGURATION");
+        jMenu2.setText("CONFIGURATION DE BASE");
         jMenu2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
 
-        jMenuItem3.setText("Compte Principal");
+        jMenuItem3.setText("Compte principal");
         jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem3ActionPerformed(evt);

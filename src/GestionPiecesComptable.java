@@ -578,14 +578,14 @@ public class GestionPiecesComptable extends javax.swing.JInternalFrame {
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
-        comptegestion n = new comptegestion(new JFrame(),true);
-        n.setVisible(true);
+        comptegestion n1 = new comptegestion(new JFrame(),true);
+        n1.setVisible(true);
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void jLabel20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseClicked
         // TODO add your handling code here:
-         ArticlePourGrandLivre a= new ArticlePourGrandLivre(new JFrame(),true);
-        a.setVisible(true);
+         ArticlePourGrandLivre a1= new ArticlePourGrandLivre(new JFrame(),true);
+        a1.setVisible(true);
          //essaicomptegestion f = new essaicomptegestion( new JFrame(),true);
         
        // a.idARTICLE

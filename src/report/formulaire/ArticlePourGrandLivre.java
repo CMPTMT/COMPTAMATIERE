@@ -44,7 +44,7 @@ public class ArticlePourGrandLivre extends javax.swing.JDialog {
         jPanel5 = new javax.swing.JPanel();
         jButton8 = new javax.swing.JButton();
         jButton9 = new javax.swing.JButton();
-        txtComptePrincipal = new javax.swing.JTextField();
+        txtComptePrincipal1 = new javax.swing.JTextField();
         lblRechercher = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         table = new javax.swing.JTable();
@@ -94,15 +94,15 @@ public class ArticlePourGrandLivre extends javax.swing.JDialog {
             }
         });
 
-        txtComptePrincipal.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 0, 51), 1, true));
-        txtComptePrincipal.addCaretListener(new javax.swing.event.CaretListener() {
+        txtComptePrincipal1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 0, 51), 1, true));
+        txtComptePrincipal1.addCaretListener(new javax.swing.event.CaretListener() {
             public void caretUpdate(javax.swing.event.CaretEvent evt) {
-                txtComptePrincipalCaretUpdate(evt);
+                txtComptePrincipal1CaretUpdate(evt);
             }
         });
-        txtComptePrincipal.addActionListener(new java.awt.event.ActionListener() {
+        txtComptePrincipal1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtComptePrincipalActionPerformed(evt);
+                txtComptePrincipal1ActionPerformed(evt);
             }
         });
 
@@ -119,7 +119,7 @@ public class ArticlePourGrandLivre extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(lblRechercher)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txtComptePrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtComptePrincipal1, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 191, Short.MAX_VALUE)
                 .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(44, 44, 44)
@@ -134,7 +134,7 @@ public class ArticlePourGrandLivre extends javax.swing.JDialog {
                         .addGap(9, 9, 9)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblRechercher, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtComptePrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(txtComptePrincipal1, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -249,32 +249,32 @@ public class ArticlePourGrandLivre extends javax.swing.JDialog {
        table.getColumn("Article").setMaxWidth(300);
           
     }
-    private void txtComptePrincipalCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtComptePrincipalCaretUpdate
-        String str=lblRechercher.getText();
-        if(!txtComptePrincipal.getText().isEmpty()){
+    private void txtComptePrincipal1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_txtComptePrincipal1CaretUpdate
+        String str1=lblRechercher.getText();
+        if(!txtComptePrincipal1.getText().isEmpty()){
            // if(str.equalsIgnoreCase("article"))
-            str="libarticle";
+            str1="libarticle";
             //  JOptionPane.showMessageDialog(this, Controle.modification);
             try {
-                table.setModel(a.getDefaulTableModel(reqpart+ " and "+str+" like '%"+txtComptePrincipal.getText()+"%'"));
+                table.setModel(a.getDefaulTableModel(reqpart+ " and "+str1+" like '%"+txtComptePrincipal1.getText()+"%'"));
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage());
             }
         }
-    }//GEN-LAST:event_txtComptePrincipalCaretUpdate
+    }//GEN-LAST:event_txtComptePrincipal1CaretUpdate
 
-    private void txtComptePrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtComptePrincipalActionPerformed
+    private void txtComptePrincipal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtComptePrincipal1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtComptePrincipalActionPerformed
+    }//GEN-LAST:event_txtComptePrincipal1ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
          try {
              //on verra après ensemble où appeler cette methode, elle permet de corriger les vide due au suppressions dans le livrejournal
-        essaifichestock f = new essaifichestock( new JFrame(),true);
+        essaifichestock fiche = new essaifichestock( new JFrame(),true);
         a.LIBARTICLE=table.getValueAt(table.getSelectedRow(),a.getColumnByName(table, "article")).toString();
         a.idARTICLE=Integer.parseInt(table.getValueAt(table.getSelectedRow(),a.getColumnByName(table, "code")).toString());
-        f.a=this.a;
-        f.setVisible(true);
+        fiche.a=this.a;
+        fiche.setVisible(true);
                
         } catch(IndexOutOfBoundsException ex){
           JOptionPane.showMessageDialog(this,"Choisissez un article pour consulter sa fiche de stock,SVP");
@@ -285,11 +285,11 @@ public class ArticlePourGrandLivre extends javax.swing.JDialog {
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
          try {
-          essaicomptegestion f = new essaicomptegestion( new JFrame(),true);
+          essaicomptegestion cp = new essaicomptegestion( new JFrame(),true);
         a.LIBARTICLE=table.getValueAt(table.getSelectedRow(),a.getColumnByName(table, "article")).toString();
         a.idARTICLE=Integer.parseInt(table.getValueAt(table.getSelectedRow(),a.getColumnByName(table, "code")).toString());
-        f.a=this.a;
-        f.setVisible(true);
+        cp.a=this.a;
+        cp.setVisible(true);
          } catch(IndexOutOfBoundsException ex){
           JOptionPane.showMessageDialog(this,"Choisissez un article pour consulter le grand livre,SVP");
        }
@@ -358,6 +358,6 @@ public class ArticlePourGrandLivre extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblRechercher;
     public javax.swing.JTable table;
-    private javax.swing.JTextField txtComptePrincipal;
+    private javax.swing.JTextField txtComptePrincipal1;
     // End of variables declaration//GEN-END:variables
 }

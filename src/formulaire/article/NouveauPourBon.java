@@ -408,10 +408,10 @@ public class NouveauPourBon extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if(txtArticle.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this,"saisissez le libellé de l\'article");
+            JOptionPane.showMessageDialog(this,"saisissez le libellé de l\'article,SVP");
         }
         else if(codeD.getText().isEmpty())
-            JOptionPane.showMessageDialog(this,"Choisissez la catégorie de l\'article");
+            JOptionPane.showMessageDialog(this,"Choisissez la catégorie de l\'article,SVP");
         else if(txtDateStockInit.getDate()==null)
              JOptionPane.showMessageDialog(this,"choisissez la date stock initiale");
          else if(txtUniteMesure.getText().isEmpty())

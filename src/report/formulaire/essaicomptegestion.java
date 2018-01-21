@@ -156,23 +156,23 @@ public class essaicomptegestion extends javax.swing.JDialog {
        
         REPORT r=new REPORT();
         if(Tablefichestock.getModel().getRowCount()==0)
-        JOptionPane.showMessageDialog(this,"aucun MOuvement");
+        JOptionPane.showMessageDialog(this,"aucun Mouvement");
         else
         {
             try {
                 //remplissage de hashMap
-                HashMap hm= new HashMap();
+                HashMap hm1= new HashMap();
                 // if(!CodeService.getText().isEmpty())
                 // hm.put("serviceutil", ComboSer.getSelectedItem().toString());
-                   ResultSet rs=S.getResultSet("select  unitemesure,numerocompte from article,categorie where article.idcategorie= categorie.idcategorie and idarticle="+idart);
-                     rs.next();   
-                    String nature= rs.getString("unitemesure");
-                    String numerocompte=rs.getString("numerocompte");
+                   ResultSet rs1=S.getResultSet("select unitemesure,numerocompte from article,categorie where article.idcategorie= categorie.idcategorie and idarticle="+idart);
+                     rs1.next();   
+                    String nature= rs1.getString("unitemesure");
+                    String numerocompte=rs1.getString("numerocompte");
 
-                     hm.put("nature", nature);
-                     hm.put("numerocompte", numerocompte);
-                     hm.putAll(r.getInstitutionMap());
-                r.reportWithJtable(Tablefichestock,hm,"GrandLivre2");
+                     hm1.put("nature", nature);
+                     hm1.put("numerocompte", numerocompte);
+                     hm1.putAll(r.getInstitutionMap());
+                r.reportWithJtable(Tablefichestock,hm1,"GrandLivre2");
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage());
             }
@@ -181,12 +181,12 @@ public class essaicomptegestion extends javax.swing.JDialog {
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
-       idart=(int) a.idARTICLE;
+      /* idart=(int) a.idARTICLE;
         libarticle.setText(a.LIBARTICLE);
         libarticle.setHorizontalAlignment(libarticle.CENTER);
           
              try{
-                 String req="SELECT idoperation,dateoperation,livrejournal.idarticle,article.libarticle,natureuniteSortie,idbonEntree, qteEntree, puentree,(puentree*qteEntree) as Montantentree, natureuniteEntree, idbonsortie, qteSortie, "
+                 String req1="SELECT idoperation,dateoperation,livrejournal.idarticle,article.libarticle,natureuniteSortie,idbonEntree, qteEntree, puentree,(puentree*qteEntree) as Montantentree, natureuniteEntree, idbonsortie, qteSortie, "
                         +" pusortie,(pusortie*qteSortie) as MontantSortie, observation,livrejournal.qtestock, pustock,(livrejournal.qtestock*pustock) as MontantStock, CASE " +
                          "WHEN idbonEntree IS NULL " +
                              "THEN (SELECT libbur FROM bureau, sortie where idbonsortie=sortie.idsortie and bureau.idbureau=sortie.idbureau )" +
@@ -197,7 +197,26 @@ public class essaicomptegestion extends javax.swing.JDialog {
                            " UNION ( SELECT inventaire.idINVENTAIRE,DATEINVENT,'','','','',QTEREELLE,detailinventaire.PUM,(QTEREELLE*detailinventaire.PUM) as MontantInv,0,'','','','','',QTEREELLE,detailinventaire.PUM ,(QTEREELLE*detailinventaire.PUM) as MontantStockInv,'Inventaire' from article, detailinventaire,inventaire where inventaire.idinventaire=detailinventaire.idinventaire and article.idarticle=detailinventaire.idarticle and detailinventaire.idarticle= " + idart+") order by idoperation,dateoperation asc" ;
 
                     
-             Tablefichestock.setModel(S.getDefaulTableModelSpecial(req));
+             Tablefichestock.setModel(S.getDefaulTableModelSpecial(req1));
+             Tablefichestock.setVisible(false);
+             Tablefichestock.getTableHeader().setVisible(false);*/
+         idart=(int) a.idARTICLE;
+        libarticle.setText(a.LIBARTICLE);
+        libarticle.setHorizontalAlignment(libarticle.CENTER);
+          
+             try{
+                 String req1="SELECT idoperation,dateoperation,livrejournal.idarticle,article.libarticle,natureuniteSortie,idbonEntree, qteEntree, puentree,(puentree*qteEntree) as Montantentree, natureuniteEntree, idbonsortie, qteSortie, "
+                        +" pusortie,(pusortie*qteSortie) as MontantSortie, observation,livrejournal.qtestock, pustock,(livrejournal.qtestock*pustock) as MontantStock, CASE " +
+                         "WHEN idbonEntree IS NULL " +
+                             "THEN (SELECT libbur FROM bureau, sortie where idbonsortie=sortie.idsortie and bureau.idbureau=sortie.idbureau )" +
+                              "else (SELECT RAISONSOCIAL FROM fournisseur,bon where idbonentree=bon.idbon and bon.idfournisseur=fournisseur.idfournisseur )" +
+                           "End as source " +
+                          " from livrejournal,article where livrejournal.idarticle=article.idarticle and article.idarticle=" +idart+// " order by dateoperation";
+                          " UNION ( SELECT 0,datestockini,idarticle,libarticle,'','',stockinit,Prixunitaire,(stockinit*Prixunitaire) as MontantIn,0,'','','','','',stockinit,Prixunitaire,(stockinit*Prixunitaire) as MontantStockInit,'Stockinitial' from article where idarticle="+ idart+  ")" + //order by dateoperation ASC";
+                           " UNION ( SELECT inventaire.idINVENTAIRE,DATEINVENT,'','','','',QTEREELLE,detailinventaire.PUM,(QTEREELLE*detailinventaire.PUM) as MontantInv,0,'','','','','',QTEREELLE,detailinventaire.PUM ,(QTEREELLE*detailinventaire.PUM) as MontantStockInv,'Inventaire' from article, detailinventaire,inventaire where inventaire.idinventaire=detailinventaire.idinventaire and article.idarticle=detailinventaire.idarticle and detailinventaire.idarticle= " + idart+") order by idoperation,dateoperation asc" ;
+
+                    
+             Tablefichestock.setModel(S.getDefaulTableModelSpecial(req1));
              Tablefichestock.setVisible(false);
              Tablefichestock.getTableHeader().setVisible(false);
         } catch (SQLException ex) {
