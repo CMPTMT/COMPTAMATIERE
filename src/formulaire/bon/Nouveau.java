@@ -1323,7 +1323,7 @@ public class Nouveau extends javax.swing.JDialog {
         if(txtComptePrincipal.getText()!=""){
             try {
                
-                tableArticle.setModel(b.getDefaulTableModel("select idARTICLE as Code, IDCATEGORIE, LIBARTICLE As Article, STOCKACTU as Stock from article where "+cmbSearch.getSelectedItem().toString() +" like '%"+txtComptePrincipal.getText()+"%'"));
+                tableArticle.setModel(b.getDefaulTableModel("select idARTICLE as Code, IDCATEGORIE, LIBARTICLE As Article, STOCKACTU as Stock from article where "+cmbSearch.getSelectedItem().toString() +" like '%"+txtComptePrincipal.getText()+"%' order by libarticle"));
             } catch (SQLException ex) {
             }
         }
@@ -1591,7 +1591,7 @@ public class Nouveau extends javax.swing.JDialog {
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
   try { 
        txtObjet.setText("Materiel en service ou approvisionnement en Magasin");
-       tableArticle.setModel(b.getDefaulTableModel("select idARTICLE as Code, IDCATEGORIE, LIBARTICLE As Article,STOCKACTU As Stock from article"));
+       tableArticle.setModel(b.getDefaulTableModel("select idARTICLE as Code, IDCATEGORIE, LIBARTICLE As Article,STOCKACTU As Stock from article order by libarticle"));
       // tableArticle.getColumnModel().getColumn(1).setPreferredWidth(0);
         alM=b.getComboELement("select idMagasin,libMagasin from MAGASIN order by libMagasin",cmbMgasin);
         codeMagasin.setText(alM.get(cmbMgasin.getSelectedIndex()).toString());
@@ -1657,7 +1657,7 @@ public class Nouveau extends javax.swing.JDialog {
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         try {
             // TODO add your handling code here:
-              tableArticle.setModel(b.getDefaulTableModel("select idARTICLE as Code, IDCATEGORIE, LIBARTICLE As Article,STOCKACTU As Stock from article"));
+              tableArticle.setModel(b.getDefaulTableModel("select idARTICLE as Code, IDCATEGORIE, LIBARTICLE As Article,STOCKACTU As Stock from article order by libarticle"));
               tableArticle.getColumn("IDCATEGORIE").setMinWidth(0);
        tableArticle.getColumn("IDCATEGORIE").setPreferredWidth(0);
        tableArticle.getColumn("IDCATEGORIE").setMaxWidth(0);

@@ -351,7 +351,7 @@ SORTIE sortie = new SORTIE ();
         m.idSortieM=tableSortie.getValueAt(tableSortie.getSelectedRow(),sortie.getColumnByName(tableSortie, "idsortie")).toString();
         m.setVisible(true);  
         }
-       
+    
     }//GEN-LAST:event_btnModifier1ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed

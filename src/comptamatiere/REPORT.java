@@ -18,7 +18,6 @@ import net.sf.jasperreports.engine.design.JRDesignQuery;
 import net.sf.jasperreports.engine.design.JasperDesign;
 import net.sf.jasperreports.engine.xml.JRXmlLoader;
 import net.sf.jasperreports.view.JasperViewer;
-import net.sf.jasperreports.engine.data.JRMapArrayDataSource;
 
 public class REPORT extends ModelDb {
    
@@ -35,8 +34,8 @@ public class REPORT extends ModelDb {
                         rs.close();
                         return hm;     
     }
-    public static String reportPath=System.getProperty("user.dir")+"\\src\\report\\";//pour programmation
-   //  public static String reportPath=System.getProperty("user.dir")+"\\";//pour deploiement
+    //public static String reportPath=System.getProperty("user.dir")+"\\src\\report\\";//pour programmation
+     public static String reportPath=System.getProperty("user.dir")+"\\";//pour deploiement
     
     public void reportWithJtable(JTable jt,HashMap hm,String reportName) throws JRException{
       /*  JasperReport jas=JasperCompileManager.compileReport(reportPath+"\\"+reportName+".jrxml");

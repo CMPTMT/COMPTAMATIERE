@@ -34,9 +34,10 @@ public class IMMOBILISATIONMATERIELS extends ModelDb{
    public String getCodeImmo(String numMax,String codei,String codebureau,String budget) throws SQLException{
       String codification,anneeService,service;
       service=this.getOneResult("select CODESERVICE from service where idservice=(select idservice from bureau where idbureau="+codebureau+")");
+      String structure=this.getOneResult("select sigle from institution").toUpperCase();
       //a revoir pour programmation automatique date acquisition//anneeService =this.getOneResult("select annee from exercice").substring(0, 4);      
       anneeService="2017";//temporaire
-      codification=codei.toUpperCase()+"/"+anneeService+"/"+formatageNum(numMax)+"/"+service.toUpperCase()+"/"+budget.toUpperCase();
+      codification=codei.toUpperCase()+"/"+anneeService+"/"+formatageNum(numMax)+"/"+structure+"/"+service.toUpperCase()+"/"+budget.toUpperCase();
       return codification;
    }
    public IMMOBILISATIONMATERIELS getObjetImmo(String idimo) throws SQLException{

@@ -56,8 +56,13 @@ public class ModelDb{
     
     public String formatageMontant(Object montant){
          NumberFormat nf=NumberFormat.getInstance(Locale.FRENCH);
-         return nf.format(Integer.parseInt(montant.toString()));
-         
+         if(montant instanceof Integer)
+            return nf.format(Integer.parseInt(montant.toString()));
+         else if(montant instanceof Double|| montant instanceof Float)
+           return nf.format(Double.parseDouble(montant.toString()));
+         else
+             return "";
+            
     }
     public String parseMontantFomatToString(String montantString) throws ParseException{
          NumberFormat nf=NumberFormat.getInstance(Locale.FRENCH);       
