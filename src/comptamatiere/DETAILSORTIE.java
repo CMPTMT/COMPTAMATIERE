@@ -44,30 +44,31 @@ public class DETAILSORTIE extends SORTIE {
           //addition du stock actu et du nouveau chiffre
                
           //valeur[5]=String.valueOf(Integer.parseInt(hma.get("STOCKACTU").toString())-Integer.parseInt(valeur[3].toString()));
-             valeur[5]=   jt.getValueAt(i,getColumnByName(jt,"qte")).toString();
+          valeur[5]=   jt.getValueAt(i,getColumnByName(jt,"qte")).toString();
           valeur[6]=jt.getValueAt(i,getColumnByName(jt,"pu")).toString();  //hma.get("PRIXUNITAIRE").toString();       
           this.Insertion(champ, valeur);
-          insUpdateDel("update article set stockactu="+valeur[5]+" where idarticle="+valeur[1]);
+        //  insUpdateDel("update article set stockactu=stockactu-"+valeur[5]+" where idarticle="+valeur[1]);
           i++;       
        }
     }
     
-    public void miseJourDesStock(String ligne,String qte,String type) throws SQLException{
+    public void miseJourDesStock(String code,String ligne,String qte,String type) throws SQLException{
         if(type.equalsIgnoreCase("inv"))       
             this.insUpdateDel("update detailinventaire set qte_res_stockinv=qte_res_stockinv-("+qte+") where iddetailinventaire="+ligne);      
         else if(type.equalsIgnoreCase("bc"))
             this.insUpdateDel("update detailbon set qtestock=qtestock-("+qte+") where iddetailbon="+ligne);
         else if(type.equalsIgnoreCase("StkIni"))
             this.insUpdateDel("update article set Qte_Res_StockInit=Qte_Res_StockInit-("+qte+") where idarticle="+ligne);
-     
+        //mise à jour du stock dans la table article
+        insUpdateDel("update article set stockactu=stockactu-"+qte+" where idarticle="+code);
     }
     
     public void remiseDansStock(String idSortie) throws SQLException{
         ResultSet rs=this.getResultSet("select iddetailbon,idarticle,qte_sortie,type from detailsortie where idsortie="+idSortie);
         while(rs.next()){
           //  return "detail bon "+rs.getString("iddetailbon")+"qte:-"+rs.getString("qte_sortie")+"type: "+rs.getString("type");
-           miseJourDesStock(rs.getString("iddetailbon"),"-"+rs.getString("qte_sortie"),rs.getString("type"));
-           this.insUpdateDel("update article set stockactu=stockactu+"+rs.getString("qte_sortie")+" where idarticle="+rs.getString("idarticle"));        
+           miseJourDesStock(rs.getString("idarticle"),rs.getString("iddetailbon"),"-"+rs.getString("qte_sortie"),rs.getString("type"));
+         //  this.insUpdateDel("update article set stockactu=stockactu+"+rs.getString("qte_sortie")+" where idarticle="+rs.getString("idarticle"));        
         }
         rs.close();
      

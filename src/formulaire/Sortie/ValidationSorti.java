@@ -324,22 +324,24 @@ public class ValidationSorti extends javax.swing.JDialog {
         if(JOptionPane.showConfirmDialog(this,"voulez-vous valider la sortie?","attention",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
         {
         try {
-             //permet de remettre les articles dans le stock avant suppression
-            
-           
+             //permet de remettre les articles dans le stock avant suppression                     
             int g=0;
             for(int k=0; k< TableDetail2.getRowCount();k++){
                 String ligne=TableDetail2.getValueAt(k,s.getColumnByName(TableDetail2, "ligne")).toString();
                 String qte=TableDetail2.getValueAt(k,s.getColumnByName(TableDetail2, "qte")).toString();
                 String type=TableDetail2.getValueAt(k,s.getColumnByName(TableDetail2, "type")).toString();
-                d.miseJourDesStock(ligne, qte, type);
+                String code=TableDetail2.getValueAt(k,s.getColumnByName(TableDetail2, "code")).toString();
+                d.miseJourDesStock(code,ligne,qte,type);
                 g++;
             }
             s.insUpdateDel("update sortie set valide=1 where idsortie="+Numero.getText());
+            
+            d.saveJournalSortie(TableDetail2, dates.getText(),Numero.getText());
+            s.viderJtable(TableDetail2);
+             
             JOptionPane.showMessageDialog(this, g + " article(s) validé(s) avec succès");            
             //ecriture du detail de sortie dans livre journal avec maj du stock
-            d.saveJournalSortie(TableDetail2, dates.getText(),Numero.getText());
-             s.viderJtable(TableDetail2);
+          
            
         } catch (SQLException ex) {
             JOptionPane.showConfirmDialog(this,ex.getMessage());
