@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4d36ec75-2f50-432d-9ff2-b3501d1fb453">
 	<property name="ireport.zoom" value="1.210000000000001"/>
-	<property name="ireport.x" value="91"/>
+	<property name="ireport.x" value="124"/>
 	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
@@ -250,16 +250,6 @@ $P{service}]]></textFieldExpression>
 	</columnHeader>
 	<detail>
 		<band height="21" splitType="Stretch">
-			<frame>
-				<reportElement style="Detail" stretchType="RelativeToTallestObject" mode="Opaque" x="0" y="0" width="32" height="20" uuid="3e0bc4ec-9663-4fd8-8f55-d10d97dd4122"/>
-				<box>
-					<pen lineWidth="1.0"/>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
-					<bottomPen lineWidth="0.0"/>
-					<rightPen lineWidth="0.0"/>
-				</box>
-			</frame>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
 				<reportElement style="Detail" positionType="Float" stretchType="RelativeToTallestObject" mode="Opaque" x="0" y="0" width="53" height="20" isPrintWhenDetailOverflows="true" uuid="a4bfa2e2-4dd0-430b-a6ae-6111949ccc32"/>
 				<box>
@@ -294,7 +284,7 @@ $P{service}]]></textFieldExpression>
 				<textFieldExpression><![CDATA[$F{RAISONSOCIAL}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="386" y="0" width="152" height="20" uuid="5cb7805d-bb9c-403a-a639-b0929f200063"/>
+				<reportElement stretchType="RelativeToTallestObject" x="386" y="0" width="152" height="20" uuid="5cb7805d-bb9c-403a-a639-b0929f200063"/>
 				<box>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
@@ -328,7 +318,7 @@ $P{service}]]></textFieldExpression>
 				<textFieldExpression><![CDATA[$F{MONTANT}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="655" y="0" width="147" height="20" uuid="2e05a3f9-66fc-4fe0-ab26-f96fefc6c48c"/>
+				<reportElement stretchType="RelativeToTallestObject" x="655" y="0" width="147" height="20" uuid="2e05a3f9-66fc-4fe0-ab26-f96fefc6c48c"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<bottomPen lineWidth="1.0"/>
@@ -342,14 +332,7 @@ $P{service}]]></textFieldExpression>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="46" splitType="Stretch">
-			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="0422db43-bacd-4e21-87bf-eb6aa143d55b"/>
-				<graphicElement>
-					<pen lineWidth="0.5" lineColor="#999999"/>
-				</graphicElement>
-			</line>
-		</band>
+		<band height="46" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
 		<band height="38" splitType="Stretch">
