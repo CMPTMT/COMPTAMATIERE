@@ -22,12 +22,12 @@ import javax.swing.JFrame;
  *
  * @author OBAM
  */
-public class GestionPiecesComptable1 extends javax.swing.JInternalFrame {
+public class GestionConfig2 extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form GestionStock
      */
-    public GestionPiecesComptable1() {
+    public GestionConfig2() {
         //this.setU setUndecorated(true);
        
         initComponents();

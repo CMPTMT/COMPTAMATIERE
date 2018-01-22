@@ -468,7 +468,7 @@ public class P extends javax.swing.JFrame {
       /* new Fournisseur().setVisible(true); // TODO add your handling code here:*/
        //Gesconfi j= new  Gesconfi(new JFrame(),true);
         //j.setVisible(true);
-         GestionPiecesComptable1 j = new GestionPiecesComptable1();
+         GestionConfig2 j = new GestionConfig2();
         Dp.removeAll();
         Dp.add(j);
         j.setVisible(true);
