@@ -1035,7 +1035,7 @@ public class Nouveau extends javax.swing.JDialog {
         
         
         try { 
-                tableArticle.setModel(article.getDefaulTableModel("select iDARTICLE as Code,libcategorie as Categorie, libarticle as Article,STOCKACTU as Stock,PRIXUNITAIRE as Pu FROM ARTICLE,CATEGORIE WHERE ARTICLE.IDCATEGORIE=CATEGORIE.IDCATEGORIE "));
+                tableArticle.setModel(article.getDefaulTableModel("select iDARTICLE as Code,libcategorie as Categorie, libarticle as Article,article.STOCKACTU as Stock,PRIXUNITAIRE as Pu FROM ARTICLE,CATEGORIE WHERE ARTICLE.IDCATEGORIE=CATEGORIE.IDCATEGORIE "));
                 alBg=b.getComboELement("select idbudget,libbudget from budget order by libbudget",cmbBuget);
                 codeBdg.setText(alBg.get(cmbBuget.getSelectedIndex()).toString());
                 alS=b.getComboELement("select idservice,serv from service order by serv", cmbService);
