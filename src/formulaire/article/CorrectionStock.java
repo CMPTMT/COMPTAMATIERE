@@ -169,14 +169,14 @@ ARTICLE art= new ARTICLE();
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         try {
           
-            String req="select libarticle as Article,QTE as Aquit, SUM(QTE_SORTIE) as QteSortie,(QTE-SUM(QTE_SORTIE)) as QteRelle,(QTESTOCK) as StocktTHEORIQUE,detailbon.iddetailbon as ligne,detailsortie.type "+
+String req="select libarticle as Article,QTE as Aquit, SUM(QTE_SORTIE) as QteSortie,(QTE-SUM(QTE_SORTIE)) as QteRelle,(QTESTOCK) as StocktTHEORIQUE,detailbon.iddetailbon as ligne,detailsortie.type "+
                        
  "from" +
  " article,detailbon,detailsortie,sortie where article.idarticle=detailbon.idarticle and detailbon.iddetailbon=detailsortie.iddetailbon and detailsortie.idsortie=sortie.idsortie" +
 " and valide=1 and type='BC' group by detailsortie.iddetailbon,detailsortie.type" +
 " UNION (select libarticle,STOCKINIT,SUM(QTE_SORTIE),(STOCKINIT-SUM(QTE_SORTIE)),Qte_Res_StockInit,article.idarticle,detailsortie.type "+
                         
-" from article,detailsortie,sortie where article.idarticle=detailsortie.idarticle and detailsortie.idsortie=sortie.idsortie and sortie.valide=1 AND TYPE='INIT'group by detailsortie.iddetailbon,detailsortie.type )order by Article";
+" from article,detailsortie,sortie where article.idarticle=detailsortie.idarticle and detailsortie.idsortie=sortie.idsortie and sortie.valide=1 AND detailsortie.TYPE='StkIni'group by detailsortie.iddetailbon,detailsortie.type )order by Article";
 
            Tablearticle.setModel(art.getDefaulTableModel(req));
                    } catch (SQLException ex) {
