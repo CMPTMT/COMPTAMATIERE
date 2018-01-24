@@ -359,9 +359,9 @@ public class Inventaire extends javax.swing.JDialog {
        if(!idInventaire.isEmpty()) 
            {
             try {
-               String req="select categorie.idcategorie,article.libarticle,detailinventaire.qtetheorique,famille.libfamille from article,detailinventaire,categorie,compted,comptep,famille" +
-                  " where detailinventaire.idinventaire="+idInventaire+" and article.idarticle=detailinventaire.idarticle and article.idcategorie=categorie.idcategorie and categorie.idcompteD=compted.idcompted "
-                       + "and compted.idcompteP=compteP.idcompteP and compteP.idcomptep=famille.idcomptep order by famille.libfamille";
+               String req="select categorie.idcategorie,article.libarticle,detailinventaire.qtetheorique,famille.libfamille from article,detailinventaire,categorie,famille" +
+                  " where detailinventaire.idinventaire="+idInventaire+" and article.idarticle=detailinventaire.idarticle and article.idcategorie=categorie.idcategorie and categorie.idfamille=famille.idfamille"+
+                      " order by famille.libfamille";
                       e.editionReport("ficheInventaire", req, e.getInstitutionMap());
                   } catch (Exception ex) {
                      JOptionPane.showMessageDialog(this,"Choisissez l\'inventaire, "+ ex.getMessage());
@@ -413,10 +413,10 @@ public class Inventaire extends javax.swing.JDialog {
      REPORT e = new REPORT();
      String req="select famille.libfamille,categorie.idcategorie,article.libarticle,detailinventaire.qtetheorique,detailinventaire.qtereelle,"+
               "  detailinventaire.avarie,detailinventaire.perime,detailinventaire.sain"
-             + " from article,detailinventaire,categorie,compted,comptep,famille" +
+             + " from article,detailinventaire,categorie,famille" +
         " where detailinventaire.idinventaire="+idInventaire+" and article.idarticle=detailinventaire.idarticle "
-             + "and article.idcategorie=categorie.idcategorie and categorie.idcompteD=compted.idcompted "
-             + "and compted.idcompteP=compteP.idcompteP and compteP.idcomptep=famille.idcomptep order by famille.libfamille";
+             + "and article.idcategorie=categorie.idcategorie "
+             + " and categorie.idfamille=famille.idfamille order by famille.libfamille";
         try {
             e.editionReport("ficheInventaireecart", req, e.getInstitutionMap());
         } catch (Exception ex) {
