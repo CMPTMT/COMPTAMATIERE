@@ -254,6 +254,16 @@ public class Modification extends javax.swing.JDialog {
     ArrayList alP;
     CATEGORIE r=new CATEGORIE();
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       if(txtCategorie.getText().isEmpty()||txtCategorie.getText().trim()=="0"){
+            JOptionPane.showMessageDialog(this, "Saisissez la Désignation de la catégorie");
+        }
+       else if(codeF.getText().isEmpty()||codeF.getText().trim()=="0")
+            JOptionPane.showMessageDialog(this, "Choisissez la famille de l\'article");
+        else if(numerocompte.getText().isEmpty()||numerocompte.getText().trim()=="0"){
+            JOptionPane.showMessageDialog(this, "Saisissez le Numero de Compte");
+        }
+        else if (codeIcat.getText().isEmpty()){JOptionPane.showMessageDialog(this, "Saisissez l\'etiquettage");}
+        else{
         int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous modifiez?","confirmation",JOptionPane.YES_NO_OPTION);
         if(reponse==JOptionPane.YES_OPTION){
             try {
@@ -265,6 +275,7 @@ public class Modification extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this,ex.getMessage());
             }
 
+        }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

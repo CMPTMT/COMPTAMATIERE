@@ -390,7 +390,7 @@ private void chargement(){
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         REPORT r= new REPORT();
         try{
-            r.editionReport("fournisseur_liste", "select * from fournisseur order by raisonsocial", r.getInstitutionMap());
+            r.editionReport("fournisseur_liste", "select * from fournisseur,secteuractivite where fournisseur.secteuractivite=secteuractivite.idsecteur order by raisonsocial", r.getInstitutionMap());
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this,ex.getMessage());
         }

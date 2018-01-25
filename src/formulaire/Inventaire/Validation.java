@@ -235,7 +235,7 @@ public class Validation extends javax.swing.JDialog {
       int result=JOptionPane.showConfirmDialog(this,"voulez-vous valider l\'inventaire?","confirmation",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
       if(result==JOptionPane.YES_OPTION){
             try {
-                JOptionPane.showMessageDialog(this,d.validationInventaire(txtCodeInventaire.getText(),tableArticle)+" articles stock à jour");
+                JOptionPane.showMessageDialog(this,d.validationInventaire(txtCodeInventaire.getText(),tableArticle)+" articles stock à jour\n Validation réussie");
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this, ex.getMessage());
             }

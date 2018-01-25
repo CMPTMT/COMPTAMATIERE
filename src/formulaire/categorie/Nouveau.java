@@ -255,20 +255,19 @@ ArrayList elP,elD;
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
- if(txtCategorie.getText().isEmpty()){
+    if(txtCategorie.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Saisissez la Désignation de la catégorie");
         }
         else if(codeC.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Saisissez le Numero de Compte");
 
         }
-        else if (codeIcat.getText().isEmpty()){JOptionPane.showMessageDialog(this, "Saisissez l etiquettage");}
+        else if(codeF.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Choisissez la famille de l\'article");
+        }
+        else if (codeIcat.getText().isEmpty()){JOptionPane.showMessageDialog(this, "Saisissez l\'etiquettage");}
         
-
-
-else{
-        
-        
+    else{       
         int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous enregistrez?","confirmation",JOptionPane.YES_NO_OPTION);
         if(reponse==JOptionPane.YES_OPTION){
           

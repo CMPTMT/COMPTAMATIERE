@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="581" leftMargin="7" rightMargin="7" topMargin="13" bottomMargin="12" uuid="e08af352-f85b-4668-9b8e-00df26206762">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="197"/>
+	<property name="ireport.y" value="0"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
@@ -21,7 +21,7 @@
 	<queryString>
 		<![CDATA[select famille.libfamille,categorie.idcategorie,article.libarticle,detailinventaire.qtetheorique,detailinventaire.qtereelle,
 detailinventaire.avarie,detailinventaire.perime,detailinventaire.sain
- from detailinventaire,article,categorie,compted,comptep,famille where article.idarticle=detailinventaire.idarticle and article.idcategorie=categorie.idcategorie and categorie.idcompteD=compted.idcompted and compted.idcompteP=compteP.idcompteP and compteP.idcomptep=famille.idcomptep]]>
+ from detailinventaire,article,categorie,famille where article.idarticle=detailinventaire.idarticle and article.idcategorie=categorie.idcategorie and categorie.idfamille=famille.idfamille]]>
 	</queryString>
 	<field name="libfamille" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
