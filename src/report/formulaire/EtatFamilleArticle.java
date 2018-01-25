@@ -145,8 +145,8 @@ public class EtatFamilleArticle extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
     REPORT e = new REPORT();
-     String req="select famille.libfamille,categorie.libcategorie,article.libarticle,article.stockactu,article.prixunitaire from article,categorie,compted,comptep,famille" +
-" where article.idcategorie=categorie.idcategorie and categorie.idcompteD=compted.idcompted and compted.idcompteP=compteP.idcompteP and compteP.idcomptep=famille.idcomptep";
+     String req="select famille.libfamille,categorie.libcategorie,article.libarticle,article.stockactu,article.prixunitaire from article,categorie,famille" +
+" where article.idcategorie=categorie.idcategorie and categorie.idfamille=famille.idfamille";
         try {
             e.editionReport("etatfamillecategorie", req, null);
         } catch (Exception ex) {
