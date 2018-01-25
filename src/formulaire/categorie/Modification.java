@@ -267,8 +267,8 @@ public class Modification extends javax.swing.JDialog {
         int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous modifiez?","confirmation",JOptionPane.YES_NO_OPTION);
         if(reponse==JOptionPane.YES_OPTION){
             try {
-                String champ[]={"IDCATEGORIE", "LIBCATEGORIE", "DUREEVIE","codeicat","idCOMPTED","idFAMILLE"};
-                String valeur[]={idCategorie.getText(),txtCategorie.getText(),txtDureVie.getText(),codeIcat.getText(),CodeD.getText(),codeF.getText()};
+                String champ[]={"IDCATEGORIE", "LIBCATEGORIE", "DUREEVIE","codeicat","idCOMPTED","idFAMILLE","numeroCompte"};
+                String valeur[]={idCategorie.getText(),txtCategorie.getText(),txtDureVie.getText(),codeIcat.getText(),CodeD.getText(),codeF.getText(),numerocompte.getText()};
                 int i=ca.updateTable("categorie", champ, valeur,"where idcategorie="+idCategorie.getText());
                 JOptionPane.showMessageDialog(this, i+" catégorie modifié");
             } catch (SQLException ex) {
@@ -298,8 +298,8 @@ public class Modification extends javax.swing.JDialog {
             codeF.setText(String.valueOf(ca.idFamille));
             elP=ca.getComboELement("select idFAMILLE,LIBFAMILLE from Famille order by LIBFAMILLE",cmbFamille);
             elD=ca.getComboELement("select idCOMPTED,LIBCOMPTED from compted where idcomptep=21 or idcomptep=24 or idcomptep=33 order by libcompted",cmbCompteD);
-             cmbCompteD.setSelectedItem(ca.getOneResult("select idCOMPTED,LIBCOMPTED from compted where idCOMPTED="+CodeD.getText()));
-             cmbFamille.setSelectedItem(ca.getOneResult("select idFAMILLE,LIBFAMILLE from Famille where idfamille="+codeF.getText()));
+             cmbCompteD.setSelectedItem(ca.getOneResult("select LIBCOMPTED from compted where idCOMPTED="+CodeD.getText()));
+             cmbFamille.setSelectedItem(ca.getOneResult("select LIBFAMILLE from Famille where idfamille="+codeF.getText()));
         
             
            
