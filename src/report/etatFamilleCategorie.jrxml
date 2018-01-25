@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2d469769-dd9e-4922-9d89-000503c60def">
 	<property name="ireport.zoom" value="1.2100000000000009"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="112"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#CCCCCC" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
@@ -36,19 +36,22 @@ where article.idcategorie=categorie.idcategorie]]>
 	<variable name="sommecateg" class="java.lang.Long" resetType="Group" resetGroup="libcategorie" calculation="Sum">
 		<variableExpression><![CDATA[$F{stockactu}*$F{prixunitaire}]]></variableExpression>
 	</variable>
+	<variable name="count_by_categori" class="java.lang.Long" resetType="Group" resetGroup="libcategorie" calculation="Sum">
+		<variableExpression><![CDATA[$F{stockactu}]]></variableExpression>
+	</variable>
 	<group name="libcategorie">
 		<groupExpression><![CDATA[$F{libcategorie}]]></groupExpression>
 		<groupHeader>
-			<band height="27">
+			<band height="38">
 				<textField>
-					<reportElement positionType="Float" mode="Opaque" x="2" y="0" width="553" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="57a73ffc-bf39-4155-8880-12244ccf4176"/>
+					<reportElement positionType="Float" mode="Opaque" x="2" y="12" width="553" height="26" forecolor="#000000" backcolor="#FFFFFF" uuid="57a73ffc-bf39-4155-8880-12244ccf4176"/>
 					<box>
-						<topPen lineWidth="0.0"/>
+						<topPen lineWidth="1.0"/>
 						<leftPen lineWidth="1.0"/>
 						<bottomPen lineWidth="1.0"/>
 						<rightPen lineWidth="1.0"/>
 					</box>
-					<textElement verticalAlignment="Middle">
+					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font fontName="Stencil" size="14" isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{libcategorie}]]></textFieldExpression>
@@ -58,11 +61,11 @@ where article.idcategorie=categorie.idcategorie]]>
 		<groupFooter>
 			<band height="34">
 				<textField pattern="#,##0">
-					<reportElement mode="Opaque" x="221" y="0" width="74" height="34" backcolor="#FFFFFF" uuid="c296e82f-79e9-4f31-befa-a6cf94bdc7ec"/>
+					<reportElement mode="Opaque" x="386" y="4" width="95" height="23" backcolor="#FFFFFF" uuid="c296e82f-79e9-4f31-befa-a6cf94bdc7ec"/>
 					<box>
-						<leftPen lineWidth="1.0"/>
-						<bottomPen lineWidth="1.0"/>
-						<rightPen lineWidth="1.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
+						<rightPen lineWidth="0.0"/>
 					</box>
 					<textElement textAlignment="Center" verticalAlignment="Middle">
 						<font size="12" isBold="true"/>
@@ -70,67 +73,27 @@ where article.idcategorie=categorie.idcategorie]]>
 					<textFieldExpression><![CDATA[$V{sommecateg}]]></textFieldExpression>
 				</textField>
 				<textField>
-					<reportElement x="56" y="0" width="165" height="34" uuid="e1ca7590-6871-44fe-9910-15bbb0ce2369"/>
-					<box>
-						<bottomPen lineWidth="1.0"/>
+					<reportElement x="0" y="0" width="219" height="34" uuid="e1ca7590-6871-44fe-9910-15bbb0ce2369"/>
+					<box rightPadding="3">
+						<bottomPen lineWidth="0.0"/>
 					</box>
-					<textElement verticalAlignment="Middle">
+					<textElement textAlignment="Right" verticalAlignment="Middle">
 						<font isBold="true"/>
 					</textElement>
 					<textFieldExpression><![CDATA["Total   " + $F{libcategorie}]]></textFieldExpression>
 				</textField>
-				<staticText>
-					<reportElement style="Column header" x="2" y="0" width="54" height="34" forecolor="#000000" uuid="edab1db5-c32c-41e0-94fc-cdf5ec3af124"/>
+				<textField pattern="#,##0" isBlankWhenNull="false">
+					<reportElement mode="Opaque" x="222" y="4" width="73" height="23" backcolor="#FFFFFF" uuid="8e6f08c8-0143-4679-bc8c-31d44dcf8386"/>
 					<box>
-						<topPen lineWidth="0.0"/>
-						<leftPen lineWidth="1.0"/>
-						<bottomPen lineWidth="1.0"/>
+						<leftPen lineWidth="0.0"/>
+						<bottomPen lineWidth="0.0"/>
 						<rightPen lineWidth="0.0"/>
 					</box>
-					<textElement verticalAlignment="Middle">
-						<font isBold="false"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="12" isBold="true"/>
 					</textElement>
-					<text><![CDATA[]]></text>
-				</staticText>
-				<staticText>
-					<reportElement style="Column header" x="295" y="0" width="91" height="34" forecolor="#000000" uuid="d142b3d0-3e1c-4a67-a1fa-ed36fdcd1c15"/>
-					<box>
-						<topPen lineWidth="0.0"/>
-						<leftPen lineWidth="0.0"/>
-						<bottomPen lineWidth="1.0"/>
-						<rightPen lineWidth="1.0"/>
-					</box>
-					<textElement verticalAlignment="Middle">
-						<font isBold="false"/>
-					</textElement>
-					<text><![CDATA[]]></text>
-				</staticText>
-				<staticText>
-					<reportElement style="Column header" x="386" y="0" width="95" height="34" forecolor="#000000" uuid="b765106c-2624-4ebc-b492-1fd6f5e6e60d"/>
-					<box>
-						<topPen lineWidth="0.0"/>
-						<leftPen lineWidth="0.0"/>
-						<bottomPen lineWidth="1.0"/>
-						<rightPen lineWidth="1.0"/>
-					</box>
-					<textElement verticalAlignment="Middle">
-						<font isBold="false"/>
-					</textElement>
-					<text><![CDATA[]]></text>
-				</staticText>
-				<staticText>
-					<reportElement style="Column header" x="481" y="0" width="74" height="34" forecolor="#000000" uuid="d6a556bb-2a6b-45f8-b5ff-c710dbd9c69e"/>
-					<box>
-						<topPen lineWidth="0.0"/>
-						<leftPen lineWidth="0.0"/>
-						<bottomPen lineWidth="1.0"/>
-						<rightPen lineWidth="1.0"/>
-					</box>
-					<textElement verticalAlignment="Middle">
-						<font isBold="false"/>
-					</textElement>
-					<text><![CDATA[]]></text>
-				</staticText>
+					<textFieldExpression><![CDATA[$V{count_by_categori}]]></textFieldExpression>
+				</textField>
 			</band>
 		</groupFooter>
 	</group>
@@ -181,64 +144,64 @@ $P{service}]]></textFieldExpression>
 		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="40" splitType="Stretch">
+		<band height="42" splitType="Stretch">
 			<staticText>
 				<reportElement style="Column header" x="221" y="13" width="74" height="27" forecolor="#000000" uuid="ad9e4423-5b63-4307-93d4-2dd41c106782"/>
-				<box>
+				<box topPadding="2">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 				</box>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[stockactu]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="295" y="13" width="91" height="27" forecolor="#000000" uuid="f8ba0f67-52c8-45d1-8029-0f97e24cdacd"/>
-				<box>
+				<box topPadding="2">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 				</box>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[prixunitaire]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="386" y="13" width="95" height="27" forecolor="#000000" uuid="36ea254d-57f1-4ea5-987b-6d50b0a0708e"/>
-				<box>
+				<box topPadding="2">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 				</box>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Montant]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="481" y="13" width="74" height="27" forecolor="#000000" uuid="b1657c3b-a79d-4967-b900-e73c7157857a"/>
-				<box>
+				<box topPadding="2">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="1.0"/>
 				</box>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Obervations]]></text>
 			</staticText>
 			<staticText>
 				<reportElement style="Column header" x="2" y="13" width="219" height="27" forecolor="#000000" uuid="b632a60e-6689-4a19-bbfe-65d734d7cacf"/>
-				<box>
+				<box topPadding="2">
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 				</box>
-				<textElement>
+				<textElement textAlignment="Center">
 					<font isBold="false"/>
 				</textElement>
 				<text><![CDATA[Désignation]]></text>
@@ -248,7 +211,7 @@ $P{service}]]></textFieldExpression>
 	<detail>
 		<band height="30" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" positionType="Float" x="221" y="0" width="74" height="30" uuid="dd0c998b-f7a5-45fb-8c0c-374189b30da5"/>
+				<reportElement style="Detail" positionType="Float" stretchType="RelativeToTallestObject" x="221" y="0" width="74" height="30" uuid="dd0c998b-f7a5-45fb-8c0c-374189b30da5"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -260,8 +223,8 @@ $P{service}]]></textFieldExpression>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{stockactu}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement style="Detail" positionType="Float" x="295" y="0" width="91" height="30" uuid="2945b4dd-d41c-4897-8466-97f484e9beaf"/>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement style="Detail" positionType="Float" stretchType="RelativeToTallestObject" x="295" y="0" width="91" height="30" uuid="2945b4dd-d41c-4897-8466-97f484e9beaf"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -274,7 +237,7 @@ $P{service}]]></textFieldExpression>
 				<textFieldExpression><![CDATA[$F{prixunitaire}]]></textFieldExpression>
 			</textField>
 			<textField pattern="#,##0">
-				<reportElement x="386" y="0" width="95" height="30" uuid="ef27b639-3e7a-4b45-8473-a883dce0f5be"/>
+				<reportElement stretchType="RelativeToTallestObject" x="386" y="0" width="95" height="30" uuid="ef27b639-3e7a-4b45-8473-a883dce0f5be"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -285,10 +248,10 @@ $P{service}]]></textFieldExpression>
 				<textFieldExpression><![CDATA[$F{stockactu}*$F{prixunitaire}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="31" y="0" width="190" height="30" uuid="772f7654-7b8a-4c5d-803e-8af8ab7b69a6"/>
-				<box>
+				<reportElement stretchType="RelativeToTallestObject" x="2" y="0" width="219" height="30" uuid="772f7654-7b8a-4c5d-803e-8af8ab7b69a6"/>
+				<box leftPadding="2">
 					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="0.0"/>
+					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
 					<rightPen lineWidth="0.0"/>
 				</box>
@@ -298,20 +261,7 @@ $P{service}]]></textFieldExpression>
 				<textFieldExpression><![CDATA[$F{libarticle}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement style="Column header" x="2" y="0" width="29" height="30" forecolor="#000000" uuid="5268ef27-1922-4c44-b7f5-18761127d69b"/>
-				<box>
-					<topPen lineWidth="0.0"/>
-					<leftPen lineWidth="1.0"/>
-					<bottomPen lineWidth="1.0"/>
-					<rightPen lineWidth="0.0"/>
-				</box>
-				<textElement>
-					<font isBold="false"/>
-				</textElement>
-				<text><![CDATA[]]></text>
-			</staticText>
-			<staticText>
-				<reportElement style="Column header" x="481" y="0" width="74" height="30" forecolor="#000000" uuid="657e1e13-064c-4b9c-bf58-c51b01413b98"/>
+				<reportElement style="Column header" stretchType="RelativeToTallestObject" x="481" y="0" width="74" height="30" forecolor="#000000" uuid="657e1e13-064c-4b9c-bf58-c51b01413b98"/>
 				<box>
 					<topPen lineWidth="0.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -326,14 +276,7 @@ $P{service}]]></textFieldExpression>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="15" splitType="Stretch">
-			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1" uuid="494789b9-4d8a-478a-911f-62c040d17d71"/>
-				<graphicElement>
-					<pen lineWidth="0.5" lineColor="#999999"/>
-				</graphicElement>
-			</line>
-		</band>
+		<band height="15" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
 		<band height="30" splitType="Stretch">
