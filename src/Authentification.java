@@ -54,6 +54,8 @@ public class Authentification extends javax.swing.JFrame {
             if (rs.getInt(1) == 1) {
                 this.dispose();
                 rs.close();
+                //definition de la variable session
+                Controle.utilisateur=cmbUser.getSelectedItem().toString();
                 new P().setVisible(true);
                //new Fp().setVisible(true);
             } else {
@@ -378,11 +380,10 @@ public class Authentification extends javax.swing.JFrame {
                     try {
                         jp_progress.UpdateProgress(num);
                         jp_progress.repaint();
-                        Thread.sleep(50);
+                        Thread.sleep(40);
                     } catch (InterruptedException ex) {
                         Logger.getLogger(Authentification.class.getName()).log(Level.SEVERE, null, ex);
                     }
-
                 }
                 jp_progress.setVisible(false);
                 

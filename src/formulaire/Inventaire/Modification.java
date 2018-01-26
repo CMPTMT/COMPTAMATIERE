@@ -47,7 +47,9 @@ public class Modification extends javax.swing.JDialog {
             }
         });
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Recherche", javax.swing.border.TitledBorder.LEFT, javax.swing.border.TitledBorder.TOP));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Recherche", 1, 2));
+
+        txtUtilisateur.setEditable(false);
 
         jLabel2.setText("Utilisateur");
 
