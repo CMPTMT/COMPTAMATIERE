@@ -7,7 +7,12 @@ package formulaire.Inventaire;
 import comptamatiere.INVENTAIRE;
 import control.Controle;
 import java.awt.Color;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -52,7 +57,13 @@ public class Nouveau extends javax.swing.JDialog {
 
         jLabel2.setText("Utilisateur");
 
-        txtUtilisateur.setForeground(new java.awt.Color(255, 0, 0));
+        txtUtilisateur.setBackground(new java.awt.Color(255, 204, 204));
+        txtUtilisateur.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        txtUtilisateur.setForeground(new java.awt.Color(255, 51, 51));
+        txtUtilisateur.setCaretColor(new java.awt.Color(255, 255, 255));
+        txtUtilisateur.setDisabledTextColor(new java.awt.Color(255, 0, 102));
+        txtUtilisateur.setEnabled(false);
+        txtUtilisateur.setOpaque(false);
 
         jLabel4.setText("Observation");
 
@@ -87,7 +98,7 @@ public class Nouveau extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
+                .addContainerGap(52, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtDate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -109,25 +120,50 @@ public class Nouveau extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-     if(txtUtilisateur.getText().isEmpty())
-         JOptionPane.showMessageDialog(this,"renseigner le nom utilisateur");
-     else
-     {         
-            try {
-                String valeur[]={inv.getDateChoisie(txtDate),txtUtilisateur.getText(),txtObservation.getText()};  
-                int i=inv.Insertion("inventaire(dateinvent,utilisateur,observation)",valeur);
-                inv.rensDetailInventaire();
-                JOptionPane.showMessageDialog(this, i+" inventaire créé");
-            } catch (SQLException ex) {
-              JOptionPane.showMessageDialog(this,ex.getMessage());
+             ResultSet rsboncommande=null,rsbonsortie=null;
+        try {
+            rsboncommande=inv.getResultSet("select idbon from entree where valide=0");
+            rsbonsortie=inv.getResultSet("select idsortie from sortie where valide=0");
+            if(txtUtilisateur.getText().isEmpty())
+                JOptionPane.showMessageDialog(this,"renseigner le nom utilisateur");
+            else if(rsboncommande.next()){
+                JOptionPane.showMessageDialog(this,"Bon de commande N°"+rsboncommande.getString("idbon")+" non validé\n impossible de faire l\'inventaire");
             }
-     }
+            else if(rsbonsortie.next()){
+                JOptionPane.showMessageDialog(this,"Bon de sortie N°"+rsbonsortie.getString("idsortie")+" non validé\n impossible de créer l\'inventaire");
+            }
+            else
+            {         
+                   try {
+                       String valeur[]={inv.getDateChoisie(txtDate),txtUtilisateur.getText(),txtObservation.getText()};  
+                       int i=inv.Insertion("inventaire(dateinvent,utilisateur,observation)",valeur);
+                       inv.rensDetailInventaire();
+                       JOptionPane.showMessageDialog(this, i+" inventaire créé");
+                   } catch (SQLException ex) {
+                     JOptionPane.showMessageDialog(this,ex.getMessage());
+                   }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Nouveau.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        finally
+        {
+            try {
+                rsboncommande.close();rsbonsortie.close();
+            } catch (SQLException ex) {
+                Logger.getLogger(Nouveau.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
      
      
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-       txtUtilisateur.setText(Controle.utilisateur);
+       
+            txtUtilisateur.setText(Controle.utilisateur);
+            txtDate.setDate(new Date());
+     
     }//GEN-LAST:event_formComponentShown
 
    

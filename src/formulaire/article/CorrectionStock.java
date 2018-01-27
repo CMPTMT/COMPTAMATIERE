@@ -306,13 +306,13 @@ ARTICLE art= new ARTICLE();
 
     private void CorrectionstockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CorrectionstockActionPerformed
         try {
-            // TODO add your handling code here:
+            // TODO add your handling code here:            
             
             tablestock.setModel(art.getDefaulTableModel("select libarticle,SUM(QTESTOCK) As quantite,article.idarticle as idart from detailbon,article where article.idarticle=detailbon.idarticle group by detailbon.idarticle "));
              int nbrow=tablestock.getRowCount();
                 int k=0;
                 for( k=0;k<nbrow;k++){
-                    art.insUpdateDel("update article set STOCKACTU=Qte_Res_StockInit + "+tablestock.getValueAt(k,art.getColumnByName(tablestock, "quantite")).toString() +" where idarticle="+tablestock.getValueAt(k,art.getColumnByName(tablestock, "idart")).toString());//Tablearticle.getValueAt(k,art.getColumnByName(Tablearticle, "QteRelle")).toString()+"where iddetailbon="+Tablearticle.getValueAt(k,art.getColumnByName(Tablearticle, "iddetailbon")).toString());
+                    art.insUpdateDel("update article set STOCKACTU=Qte_Res_StockInit + "+tablestock.getValueAt(k,art.getColumnByName(tablestock, "quantite")).toString() +" where idarticle="+tablestock.getValueAt(k,art.getColumnByName(tablestock, "idart")).toString());//Tablearticle.getValueAt(k,art.getColumnByName(Tablearticle, "QteRelle")).toString()+"where iddetailbon="+Tablearticle.getValueAt(k,art.getColumnByName(Tablearticle, "iddetailbon")).toString());                 
                  
                 }
                 JOptionPane.showMessageDialog(this,k +" Stock mise à jour  avec succes");
