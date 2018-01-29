@@ -8,6 +8,7 @@ import comptamatiere.ARTICLE;
 import java.awt.Color;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -49,7 +50,8 @@ public class CorrectionStock extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         TableBaseArticle = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        Parcour = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
             public void windowGainedFocus(java.awt.event.WindowEvent evt) {
@@ -92,7 +94,7 @@ public class CorrectionStock extends javax.swing.JDialog {
 
         jLabel2.setText("Etape:1");
 
-        jLabel3.setText("Etape:2");
+        jLabel3.setText("Etape:3");
 
         Correctionstock.setText("Correction des Stocks");
         Correctionstock.addActionListener(new java.awt.event.ActionListener() {
@@ -131,12 +133,14 @@ public class CorrectionStock extends javax.swing.JDialog {
         ));
         jScrollPane3.setViewportView(TableBaseArticle);
 
-        jButton1.setText("parcour ");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Parcour.setText("parcour ");
+        Parcour.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                ParcourActionPerformed(evt);
             }
         });
+
+        jLabel5.setText("Etape:2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -146,73 +150,70 @@ public class CorrectionStock extends javax.swing.JDialog {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Parcour, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(117, 117, 117)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(48, 48, 48)
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Correctionlot)
+                        .addGap(29, 29, 29)
+                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(56, 56, 56)
+                        .addComponent(Correctionstock))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(487, 487, 487)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 8, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(18, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jLabel4))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Correctionlot, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(72, 72, 72)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Correctionstock, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 298, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(79, 79, 79)
-                                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jButton1)
-                                        .addGap(80, 80, 80)))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(51, Short.MAX_VALUE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 739, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Correctionlot)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Parcour)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(Correctionstock))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(12, 12, 12)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(Correctionlot)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel3)
-                        .addComponent(Correctionstock)))
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
-                .addGap(23, 23, 23))
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 406, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
-        setBounds((screenSize.width-698)/2, (screenSize.height-544)/2, 698, 544);
+        setBounds((screenSize.width-783)/2, (screenSize.height-605)/2, 783, 605);
     }// </editor-fold>//GEN-END:initComponents
 ARTICLE art= new ARTICLE();
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus
         try {
             TableBaseArticle.setModel(art.getDefaulTableModel("select idARTICLE from article"));//selection de tous les article
-        } catch (SQLException ex) {
+          } catch (SQLException ex) {
             Logger.getLogger(CorrectionStock.class.getName()).log(Level.SEVERE, null, ex);
         }
                    
@@ -290,9 +291,14 @@ ARTICLE art= new ARTICLE();
                 for( k=0;k<nbrow;k++){
                     if(Tablearticle.getValueAt(k,art.getColumnByName(Tablearticle, "type")).toString().equalsIgnoreCase("BC")){
                      art.insUpdateDel("update detailbon set QTESTOCK="+Tablearticle.getValueAt(k,art.getColumnByName(Tablearticle, "QteRelle")).toString() +" where iddetailbon="+Tablearticle.getValueAt(k,art.getColumnByName(Tablearticle, "ligne")).toString());//Tablearticle.getValueAt(k,art.getColumnByName(Tablearticle, "QteRelle")).toString()+"where iddetailbon="+Tablearticle.getValueAt(k,art.getColumnByName(Tablearticle, "iddetailbon")).toString());
-                    }else{
+                    }else if(Tablearticle.getValueAt(k,art.getColumnByName(Tablearticle, "type")).toString().equalsIgnoreCase("StkIni"))
+                            {
                     art.insUpdateDel("update article set Qte_Res_StockInit="+Tablearticle.getValueAt(k,art.getColumnByName(Tablearticle, "QteRelle")).toString() +" where idarticle="+Tablearticle.getValueAt(k,art.getColumnByName(Tablearticle, "ligne")).toString());//Tablearticle.getValueAt(k,art.getColumnByName(Tablearticle, "QteRelle")).toString()+"where iddetailbon="+Tablearticle.getValueAt(k,art.getColumnByName(Tablearticle, "iddetailbon")).toString());
-                 }
+                    }else{
+                    
+                    art.insUpdateDel("update detailinventaire set Qte_Res_StockInv="+Tablearticle.getValueAt(k,art.getColumnByName(Tablearticle, "QteRelle")).toString() +" where iddetailinventaire="+Tablearticle.getValueAt(k,art.getColumnByName(Tablearticle, "ligne")).toString());//Tablearticle.getValueAt(k,art.getColumnByName(Tablearticle, "QteRelle")).toString()+"where iddetailbon="+Tablearticle.getValueAt(k,art.getColumnByName(Tablearticle, "iddetailbon")).toString());
+                
+                    }
                 }
                 JOptionPane.showMessageDialog(this,k +" Article Corrigé avec succes");
                 Correctionlot.setEnabled(false);
@@ -305,44 +311,98 @@ ARTICLE art= new ARTICLE();
     }//GEN-LAST:event_CorrectionlotActionPerformed
 
     private void CorrectionstockActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CorrectionstockActionPerformed
-        try {
-            // TODO add your handling code here:            
-            
-            tablestock.setModel(art.getDefaulTableModel("select libarticle,SUM(QTESTOCK) As quantite,article.idarticle as idart from detailbon,article where article.idarticle=detailbon.idarticle group by detailbon.idarticle "));
-             int nbrow=tablestock.getRowCount();
+
+          int nbrow=TableBaseArticle.getRowCount();
                 int k=0;
-                for( k=0;k<nbrow;k++){
-                    art.insUpdateDel("update article set STOCKACTU=Qte_Res_StockInit + "+tablestock.getValueAt(k,art.getColumnByName(tablestock, "quantite")).toString() +" where idarticle="+tablestock.getValueAt(k,art.getColumnByName(tablestock, "idart")).toString());//Tablearticle.getValueAt(k,art.getColumnByName(Tablearticle, "QteRelle")).toString()+"where iddetailbon="+Tablearticle.getValueAt(k,art.getColumnByName(Tablearticle, "iddetailbon")).toString());                 
+             for( k=0;k<nbrow;k++){
+                       String idarticle=TableBaseArticle.getValueAt(k,art.getColumnByName(TableBaseArticle, "idARTICLE")).toString();
+                        ResultSet rs=null;
+                             ResultSet rs2=null;
+                          try {
+                                    rs = art.getResultSet("SELECT detailinventaire.iddetailinventaire,qtereelle,DATEINVENT FROM detailinventaire,inventaire where inventaire.idinventaire=detailinventaire.idinventaire and iddetailinventaire=( select max(iddetailinventaire) from detailinventaire where detailinventaire.idarticle="+idarticle+")");
+                         } catch (SQLException ex) {
+                           Logger.getLogger(CorrectionStock.class.getName()).log(Level.SEVERE, null, ex);
+                         }
+                try {
+                if(rs.next()) { //l article est dans l inventaire
+                   Date InvDeja=rs.getDate(3);
+                   // recuperation de sa quantite a l inventaire
+                   int qteinventaire=rs.getInt(2);
+                   
+                   // recuperation de la somme des quantite achetes restants apres inventaire
+                        rs.close();
+                        String qt=art.getOneResult("select SUM(QTESTOCK) As quantite,article.idarticle as idart from detailbon,article,bon,entree where article.idarticle= "+ idarticle+ " and article.idarticle=detailbon.idarticle and detailbon.idbon=bon.idbon and bon.idbon=entree.idbon and DATEBORD >"+ InvDeja +" group by detailbon.idarticle ");
+                       int qteachat=Integer.parseInt(qt);
+                        // rs2=art.getResultSet("select SUM(QTESTOCK) As quantite,article.idarticle as idart from detailbon,article,bon,entree where article.idarticle= "+ idarticle+ " and article.idarticle=detailbon.idarticle and detailbon.idbon=bon.idbon and bon.idbon=entree.idbon and DATEBORD >"+ InvDeja +" group by detailbon.idarticle ");
+                       //int qteachat=rs2.getInt(1) ;
+                    art.insUpdateDel("update article set STOCKACTU="+ (qteinventaire+qteachat));                   
+                   
+                    }else{ //article pas dans l inventaire donc somme des qte achtes restant apres son stock intial
+                     //somme des qte achtes restant apres son stock intial
+                   int qteachat=Integer.parseInt(art.getOneResult("select libarticle,SUM(QTESTOCK) As quantite,article.idarticle as idart from detailbon,article where article.idarticle=detailbon.idarticle group by detailbon.idarticle "));
+                   
+                        art.insUpdateDel("update article set STOCKACTU=Qte_Res_StockInit + "+qteachat);                   
+              
+                       }
+               
+            
+      
+      //rs2.close();
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      /* try { code anterieur fonctionnel
+          // TODO add your handling code here:            
+         /* //bon code 
+          tablestock.setModel(art.getDefaulTableModel("select libarticle,SUM(QTESTOCK) As quantite,article.idarticle as idart from detailbon,article where article.idarticle=detailbon.idarticle group by detailbon.idarticle "));
+           int nbrow=tablestock.getRowCount();
+              int k=0;
+              for( k=0;k<nbrow;k++){
                  
+                  art.insUpdateDel("update article set STOCKACTU=Qte_Res_StockInit + "+tablestock.getValueAt(k,art.getColumnByName(tablestock, "quantite")).toString() +" where idarticle="+tablestock.getValueAt(k,art.getColumnByName(tablestock, "idart")).toString());//Tablearticle.getValueAt(k,art.getColumnByName(Tablearticle, "QteRelle")).toString()+"where iddetailbon="+Tablearticle.getValueAt(k,art.getColumnByName(Tablearticle, "iddetailbon")).toString());                   
+                 
+                    }
+              JOptionPane.showMessageDialog(this,k +" Stock mise à jour  avec succes");
+      } catch (SQLException ex) {
+          Logger.getLogger(CorrectionStock.class.getName()).log(Level.SEVERE, null, ex);
+      }*/   
+            } catch (SQLException ex) {
+                Logger.getLogger(CorrectionStock.class.getName()).log(Level.SEVERE, null, ex);
+            }
                 }
-                JOptionPane.showMessageDialog(this,k +" Stock mise à jour  avec succes");
-        } catch (SQLException ex) {
-            Logger.getLogger(CorrectionStock.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }//GEN-LAST:event_CorrectionstockActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
         Correctionstock.setEnabled(false);
         jLabel1.setBackground(Color.white);
+        Correctionlot.setEnabled(false);
+        TableBaseArticle.setVisible(false);
     }//GEN-LAST:event_formComponentShown
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void ParcourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ParcourActionPerformed
         // TODO add your handling code here:
          int nbrow=TableBaseArticle.getRowCount();
                 int k=0;
-                for( k=0;k<nbrow;k++){
-               String idarticle=TableBaseArticle.getValueAt(k,art.getColumnByName(TableBaseArticle, "idARTICLE")).toString();
-                         try {
-                //String idarticle=TableBaseArticle.getValueAt(k,art.getColumnByName(TableBaseArticle, "idARTICLE")).toString();
+         for( k=0;k<nbrow;k++){
+                   String idarticle=TableBaseArticle.getValueAt(k,art.getColumnByName(TableBaseArticle, "idARTICLE")).toString();
+                          try {
                 art.updatestock(Tablearticle, idarticle);
-            } catch (SQLException ex) {
+                 } catch (SQLException ex) {
                 Logger.getLogger(CorrectionStock.class.getName()).log(Level.SEVERE, null, ex);
-            }
+                  }
                  
-                }
-                     
-    }//GEN-LAST:event_jButton1ActionPerformed
+          }
+          Correctionlot.setEnabled(true);           
+    }//GEN-LAST:event_ParcourActionPerformed
 
     /**
      * @param args the command line arguments
@@ -388,13 +448,14 @@ ARTICLE art= new ARTICLE();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Correctionlot;
     private javax.swing.JButton Correctionstock;
+    private javax.swing.JButton Parcour;
     private javax.swing.JTable TableBaseArticle;
     private javax.swing.JTable Tablearticle;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

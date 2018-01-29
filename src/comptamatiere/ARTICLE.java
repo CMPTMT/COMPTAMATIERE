@@ -75,12 +75,12 @@ Statement stm= (Statement) getConnection().createStatement();
            String sql="select libarticle as Articles,QTE as Aquit, SUM(QTE_SORTIE) as QteSortie,(QTE-SUM(QTE_SORTIE)) as QteRelle,(QTESTOCK) as StocktTHEORIQUE,detailbon.iddetailbon as ligne,detailsortie.type "+       
                              "from" +
                                  " article,detailbon,detailsortie,sortie,bon,entree " +
-                                "where article.idarticle=detailbon.idarticle and detailbon.iddetailbon=detailsortie.iddetailbon and detailsortie.idsortie=sortie.idsortie" +
+                                "where   article.idarticle=detailbon.idarticle and detailbon.iddetailbon=detailsortie.iddetailbon and detailsortie.idsortie=sortie.idsortie" +
                                  " and sortie.valide=1 and type='BC' and detailbon.idbon=bon.idbon and bon.idbon=entree.idbon and DATEBORD >"+InvDeja+
-                                " and DATESORTIE> "+InvDeja+" group by detailsortie.iddetailbon,detailsortie.type " +
-                             " UNION (select libarticle,QTEREELLE,SUM(QTE_SORTIE),(QTEREELLE-SUM(QTE_SORTIE)),Qte_Res_StockInv,detailinventaire.iddetailinventaire,detailsortie.type "+
-                                 " from article,detailsortie,sortie,detailinventaire,inventaire where article.idarticle=detailsortie.idarticle and detailsortie.idsortie=sortie.idsortie and sortie.valide=1 AND detailsortie.TYPE='Inv' and detailinventaire.idinventaire=inventaire.idinventaire"+
-                                " group by detailsortie.iddetailbon,detailsortie.type )"+
+                                " and DATESORTIE> "+ InvDeja+ " group by detailsortie.iddetailbon,detailsortie.type " +
+                             " UNION (select libarticle,QTEREELLE,SUM(QTE_SORTIE),(QTEREELLE-SUM(QTE_SORTIE)),Qte_Res_StockInv,iddetailinventaire,detailsortie.type "+
+                                 " from article,detailsortie,sortie,detailinventaire,inventaire where  article.idarticle=detailsortie.idarticle and detailsortie.idsortie=sortie.idsortie and sortie.valide=1 AND detailsortie.TYPE='Inv' and detailinventaire.idinventaire=inventaire.idinventaire and detailinventaire.idarticle=article.idarticle"+
+                                " and DATESORTIE> "+InvDeja+" group by detailsortie.iddetailbon,detailsortie.type )"+
                                 " order by Articles" ;      
             this.setRemplirJtable(Jt, sql); 
           }
@@ -90,10 +90,10 @@ Statement stm= (Statement) getConnection().createStatement();
                  String sql="select libarticle as Articles,QTE as Aquit, SUM(QTE_SORTIE) as QteSortie,(QTE-SUM(QTE_SORTIE)) as QteRelle,(QTESTOCK) as StocktTHEORIQUE,detailbon.iddetailbon as ligne,detailsortie.type "+
                        
                              "from" +
-                                 " article,detailbon,detailsortie,sortie where article.idarticle=detailbon.idarticle and detailbon.iddetailbon=detailsortie.iddetailbon and detailsortie.idsortie=sortie.idsortie" +
+                                 " article,detailbon,detailsortie,sortie where article.idarticle="+idArticle+" and  article.idarticle=detailbon.idarticle and detailbon.iddetailbon=detailsortie.iddetailbon and detailsortie.idsortie=sortie.idsortie" +
                                  " and valide=1 and type='BC' group by detailsortie.iddetailbon,detailsortie.type" +
                              " UNION (select libarticle,STOCKINIT,SUM(QTE_SORTIE),(STOCKINIT-SUM(QTE_SORTIE)),Qte_Res_StockInit,article.idarticle,detailsortie.type "+
-                                 " from article,detailsortie,sortie where article.idarticle=detailsortie.idarticle and detailsortie.idsortie=sortie.idsortie and sortie.valide=1 AND detailsortie.TYPE='StkIni'group by detailsortie.iddetailbon,detailsortie.type )"+
+                                 " from article,detailsortie,sortie where article.idarticle="+idArticle+" and article.idarticle=detailsortie.idarticle and detailsortie.idsortie=sortie.idsortie and sortie.valide=1 AND detailsortie.TYPE='StkIni'group by detailsortie.iddetailbon,detailsortie.type )"+
                                    " order by Articles" ;  
                  this.setRemplirJtable(Jt, sql); 
                } 
