@@ -63,5 +63,6 @@ public class BON extends BUDGET{
         String req="select * from bon,detailbon,article,categorie where bon.idbon=detailbon.idbon and detailbon.idarticle=article.idarticle and categorie.idcategorie= article.idcategorie and bon.idbon="+idBon;
         r.editionReport("Bonentree",req,r.getBonHashMap(idBon,idbudget,idfournisseur));                                   
      }
-
+     
+     
 }

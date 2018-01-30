@@ -6,6 +6,7 @@ package formulaire.bon;
 
 import comptamatiere.DETAILBON;
 import comptamatiere.ENTREE;
+import comptamatiere.INVENTAIRE;
 import java.sql.SQLException;
 import java.text.ParseException;
 import javax.swing.JOptionPane;
@@ -349,31 +350,36 @@ public class Validation extends javax.swing.JFrame {
     }//GEN-LAST:event_txtComptePrincipalCaretUpdate
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        int reponse=JOptionPane.showConfirmDialog(this,"voulez-vous valider?","confirmation",JOptionPane.YES_NO_OPTION);
-        if(reponse==JOptionPane.YES_OPTION){
-            try {
-                String champ[]={"VALIDE"};
-                String valeur[]={"1"};      
-                int i=e.updateTable("entree", champ, valeur,"where idbon="+idBon);
-                int nligne=tableReception.getRowCount(),numligne=0,nq=e.getColumnByName(tableReception,"qte"),nc=e.getColumnByName(tableReception,"code article");
-               // int ns=e.getColumnByName(tableReception, "iddetailbon");
-                while(numligne<nligne){
-                    e.insUpdateDel("update article set stockactu=stockactu+"+tableReception.getValueAt(numligne,nq) +",pum="+d.getPUmArticle(tableReception.getValueAt(numligne,nc).toString())+" where idarticle="+tableReception.getValueAt(numligne,nc));
-                 //   e.insUpdateDel("update detailbon set qtestock=qtestock+"+tableReception.getValueAt(numligne,nq)+" where iddetailbon="+tableReception.getValueAt(numligne,ns));
-                    numligne++;
-                };
-               
-                JOptionPane.showMessageDialog(this, i+" bon validé");
-                //ecriture dans le livre journal
-                d.saveJournal(tableReception, d.getDateChoisie(txtDateBordereau), idBon);
-                e.viderJtable(tableReception);
-                //rechargement des bons non validés
-                tableArticle.setModel(e.getDefaulTableModel("select IDBON, REFFACTURE, DATEFACTURE, REFBORDEREAU, DATEBORD from entree where VALIDE=false"));
+        try {
+       if((new INVENTAIRE().isInventaireNonValide())){
+            JOptionPane.showMessageDialog(this, "Validation bon impossible\n Vous avez un inventaire non validé");
+        }else{
+            int reponse=JOptionPane.showConfirmDialog(this,"voulez-vous valider?","confirmation",JOptionPane.YES_NO_OPTION);
+            if(reponse==JOptionPane.YES_OPTION){
 
-            } catch (SQLException ex) {
+                    String champ[]={"VALIDE"};
+                    String valeur[]={"1"};      
+                    int i=e.updateTable("entree", champ, valeur,"where idbon="+idBon);
+                    int nligne=tableReception.getRowCount(),numligne=0,nq=e.getColumnByName(tableReception,"qte"),nc=e.getColumnByName(tableReception,"code article");
+                   // int ns=e.getColumnByName(tableReception, "iddetailbon");
+                    while(numligne<nligne){
+                        e.insUpdateDel("update article set stockactu=stockactu+"+tableReception.getValueAt(numligne,nq) +",pum="+d.getPUmArticle(tableReception.getValueAt(numligne,nc).toString())+" where idarticle="+tableReception.getValueAt(numligne,nc));
+                     //   e.insUpdateDel("update detailbon set qtestock=qtestock+"+tableReception.getValueAt(numligne,nq)+" where iddetailbon="+tableReception.getValueAt(numligne,ns));
+                        numligne++;
+                    };
+
+                    JOptionPane.showMessageDialog(this, i+" bon validé");
+                    //ecriture dans le livre journal
+                    d.saveJournal(tableReception, d.getDateChoisie(txtDateBordereau), idBon);
+                    e.viderJtable(tableReception);
+                    //rechargement des bons non validés
+                    tableArticle.setModel(e.getDefaulTableModel("select IDBON, REFFACTURE, DATEFACTURE, REFBORDEREAU, DATEBORD from entree where VALIDE=false"));
+
+                    }
+       }
+        } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this,ex.getMessage());
             }
-        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown

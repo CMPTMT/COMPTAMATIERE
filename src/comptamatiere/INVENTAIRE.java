@@ -3,7 +3,6 @@ package comptamatiere;
 import bdd.ModelDb;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
 
 public class INVENTAIRE  extends ModelDb{
    public int idINVENTAIRE;
@@ -48,6 +47,12 @@ public class INVENTAIRE  extends ModelDb{
        this.UTILISATEUR=rs.getString("utilisateur");
        rs.close();
        return new INVENTAIRE(idInventaire,DATEINVENT,OBSERVATION,UTILISATEUR);      
+   }
+   
+   public boolean isInventaireNonValide() throws SQLException{
+      String nbnonvalid=this.getOneResult("select count(*) from inventaire where valide=0");
+      return nbnonvalid!="0"?true:false;
+      
    }
    
   
