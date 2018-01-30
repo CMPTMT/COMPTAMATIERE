@@ -4,11 +4,13 @@ package comptamatiere;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import javax.swing.JTable;
 
-public class ARTICLE extends CATEGORIE {
+public class ARTICLE extends CATEGORIE{
    public long idARTICLE;
    public String LIBARTICLE;
    public String SPECIFICATION;
@@ -65,7 +67,7 @@ public class ARTICLE extends CATEGORIE {
  
  //methode correction du stock
   public void updatestock( JTable Jt, String idArticle) throws SQLException{
-Statement stm= (Statement) getConnection().createStatement();
+    Statement stm= (Statement) getConnection().createStatement();
       //  ResultSet rs=stm.executeQuery("SELECT MAX(detailinventaire.idinventaire),DATEINVENT FROM detailinventaire,inventaire where inventaire.idinventaire=detailinventaire.idinventaire and idarticle="+idArticle);
       ResultSet rs=stm.executeQuery("SELECT detailinventaire.iddetailinventaire,DATEINVENT FROM detailinventaire,inventaire where inventaire.idinventaire=detailinventaire.idinventaire and iddetailinventaire=( select max(iddetailinventaire) from detailinventaire where detailinventaire.idarticle="+idArticle+")");
       //ResultSet rs=stm.executeQuery("SELECT detailinventaire.idinventaire,DATEINVENT FROM detailinventaire,inventaire where detailinventaire.idinventaire=(select max(idinventaire) from detailinventaire) and inventaire.idinventaire=detailinventaire.idinventaire and idarticle="+idArticle);
@@ -100,4 +102,46 @@ Statement stm= (Statement) getConnection().createStatement();
      
          rs.close();  
 }
+  
+  public void correctionStockArticle(String idArticle) throws SQLException, ParseException{
+       //verification si deja inventaire
+      int stock=0;
+      ResultSet resinventaire= this.getResultSet("select inventaire.dateinvent,detailinventaire.qtereelle from detailinventaire,inventaire where inventaire.idinventaire=detailinventaire.idinventaire and idarticle="+idArticle+" and detailinventaire.idinventaire=(select max(idinventaire) from inventaire)");
+      //en cas de présence dans le dernier inventaire
+      if(resinventaire.next()){
+          int qte_inventaire=resinventaire.getInt("qtereelle");
+          Date dateinventaire=resinventaire.getDate("dateinvent");
+          resinventaire.close();
+         //total des entrees après inventaire - sortie après inventaire          
+         stock=qte_inventaire+getTotalEntreApresDate(idArticle,dateinventaire)- getTotalSortieApresDate(idArticle,dateinventaire);         
+         this.insUpdateDel("update article set stockactu="+stock+" where idarticle="+idArticle);
+      }
+      //cas ou pas inventaire
+      else
+      {
+        stock=getTotalEntreApresDate(idArticle,null)- getTotalSortieApresDate(idArticle,null);
+         this.insUpdateDel("update article set stockactu=stockinit+"+stock+" where idarticle="+idArticle);
+      }
+      //update du stock
+     
+      
+  }
+  
+  public int getTotalEntreApresDate(String idarticle,Date dateentree) throws SQLException, ParseException{
+      dateentree=dateentree==null?(new SimpleDateFormat("yyyy-MM-dd").parse("0000-00-00")):dateentree;
+      String str=this.getOneResult("select sum(qte) from detailbon where idarticle="+idarticle+
+             "  and detailbon.idbon in (select entree.idbon from entree,bon where bon.idbon=detailbon.idbon and bon.datebon>'"+dateentree+
+             "' and valide=true)");
+      return str==null?0:Integer.parseInt(str);
+  }
+  
+   public int getTotalSortieApresDate(String idarticle,Date datesortie) throws SQLException, ParseException{
+     datesortie=datesortie==null?(new SimpleDateFormat("yyyy-MM-dd").parse("0000-00-00")):datesortie;
+     String str=this.getOneResult("select sum(qte_sortie) from detailsortie where idarticle="+idarticle
+             +" and detailsortie.idsortie in (select sortie.idsortie from sortie where valide=true and sortie.datesortie>'"+datesortie+
+             "' and valide=true)");
+     return str==null?0:Integer.parseInt(str);
+  }
+
+   
 }

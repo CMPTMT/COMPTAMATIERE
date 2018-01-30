@@ -8,6 +8,7 @@ import comptamatiere.ARTICLE;
 import comptamatiere.REPORT;
 import formulaire.Sortie.ValidationSorti;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -53,7 +54,7 @@ public class Article extends javax.swing.JDialog {
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        btncorrection = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowFocusListener(new java.awt.event.WindowFocusListener() {
@@ -274,10 +275,10 @@ public class Article extends javax.swing.JDialog {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("FICHE DE STOCK ----->>");
 
-        jButton1.setText("Mise A jour");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btncorrection.setText("Correction stock");
+        btncorrection.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btncorrectionActionPerformed(evt);
             }
         });
 
@@ -288,7 +289,7 @@ public class Article extends javax.swing.JDialog {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnModifier1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(90, 90, 90)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -296,9 +297,9 @@ public class Article extends javax.swing.JDialog {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(100, 100, 100)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
+                .addGap(18, 18, 18)
+                .addComponent(btncorrection, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -312,10 +313,10 @@ public class Article extends javax.swing.JDialog {
                         .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jButton1))
-                    .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(19, 19, 19)
+                        .addComponent(btncorrection)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -502,11 +503,28 @@ public class Article extends javax.swing.JDialog {
            
     }//GEN-LAST:event_jButton7ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btncorrectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncorrectionActionPerformed
+        btncorrection.setText("Correction en cour.....");
+        btncorrection.setEnabled(false);
+        for(int i=0;i<table.getRowCount();i++){
+            try {
+                a.correctionStockArticle(table.getValueAt(i,a.getColumnByName(table,"code")).toString());
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(this,"correction impossible pour l\'article "+
+                        table.getValueAt(i,a.getColumnByName(table,"code"))+ ex.getMessage());
+            } catch (ParseException ex) {
+                JOptionPane.showMessageDialog(this,"correction impossible pour l\'article "+
+                        table.getValueAt(i,a.getColumnByName(table,"code"))+ ex.getMessage());
+            }
+        }
+        btncorrection.setEnabled(true);
+        btncorrection.setText("Correction stock");
+        JOptionPane.showMessageDialog(this, "Stocks corrigés avec succès");
+        
         // TODO add your handling code here:
-        CorrectionStock n = new CorrectionStock(new JFrame(),true);
-        n.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+       /* CorrectionStock n = new CorrectionStock(new JFrame(),true);
+        n.setVisible(true);*/
+    }//GEN-LAST:event_btncorrectionActionPerformed
 
     /**
      * @param args the command line arguments
@@ -551,8 +569,8 @@ public class Article extends javax.swing.JDialog {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnModifier1;
+    private javax.swing.JButton btncorrection;
     private javax.swing.JComboBox cmbSearch;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
