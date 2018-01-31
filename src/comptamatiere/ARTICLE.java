@@ -5,7 +5,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashMap;
 import javax.swing.JTable;
@@ -20,6 +19,7 @@ public class ARTICLE extends CATEGORIE{
    public int PRIXUNITAIRE;
    public String UNITEMESURE;
     public String numcompte;
+   JTable tableArticle;
    
    public int getStockArticle(int codeArticle) throws SQLException{
       return Integer.parseInt(this.getOneResult("select stockactu from article where idarticle="+codeArticle));
@@ -110,7 +110,7 @@ public class ARTICLE extends CATEGORIE{
       //en cas de présence dans le dernier inventaire
       if(resinventaire.next()){
           int qte_inventaire=resinventaire.getInt("qtereelle");
-          Date dateinventaire=resinventaire.getDate("dateinvent");
+          String dateinventaire=resinventaire.getString("dateinvent");
           resinventaire.close();
          //total des entrees après inventaire - sortie après inventaire          
          stock=qte_inventaire+getTotalEntreApresDate(idArticle,dateinventaire)- getTotalSortieApresDate(idArticle,dateinventaire);         
@@ -119,29 +119,24 @@ public class ARTICLE extends CATEGORIE{
       //cas ou pas inventaire
       else
       {
-        stock=getTotalEntreApresDate(idArticle,null)- getTotalSortieApresDate(idArticle,null);
+        stock=getTotalEntreApresDate(idArticle,"0000-00-00")- getTotalSortieApresDate(idArticle,"0000-00-00");
          this.insUpdateDel("update article set stockactu=stockinit+"+stock+" where idarticle="+idArticle);
-      }
-      //update du stock
-     
-      
+      }               
   }
   
-  public int getTotalEntreApresDate(String idarticle,Date dateentree) throws SQLException, ParseException{
-      dateentree=dateentree==null?(new SimpleDateFormat("yyyy-MM-dd").parse("0000-00-00")):dateentree;
+  public int getTotalEntreApresDate(String idarticle,String dateentree) throws SQLException, ParseException{
       String str=this.getOneResult("select sum(qte) from detailbon where idarticle="+idarticle+
              "  and detailbon.idbon in (select entree.idbon from entree,bon where bon.idbon=detailbon.idbon and bon.datebon>'"+dateentree+
              "' and valide=true)");
       return str==null?0:Integer.parseInt(str);
   }
   
-   public int getTotalSortieApresDate(String idarticle,Date datesortie) throws SQLException, ParseException{
-     datesortie=datesortie==null?(new SimpleDateFormat("yyyy-MM-dd").parse("0000-00-00")):datesortie;
-     String str=this.getOneResult("select sum(qte_sortie) from detailsortie where idarticle="+idarticle
-             +" and detailsortie.idsortie in (select sortie.idsortie from sortie where valide=true and sortie.datesortie>'"+datesortie+
-             "' and valide=true)");
-     return str==null?0:Integer.parseInt(str);
+   public int getTotalSortieApresDate(String idarticle,String datesortie) throws SQLException, ParseException{
+        String qte=this.getOneResult("select sum(qte_sortie) from detailsortie where idarticle="+idarticle
+                +" and detailsortie.idsortie in (select sortie.idsortie from sortie where valide=true and sortie.datesortie>'"+datesortie+"')"); 
+       return qte==null?0:Integer.parseInt(qte);  
   }
+
 
    
 }

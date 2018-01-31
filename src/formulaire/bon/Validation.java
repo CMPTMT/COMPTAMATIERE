@@ -345,12 +345,12 @@ public class Validation extends javax.swing.JFrame {
                 tableArticle.setModel(e.getDefaulTableModel("select IDBON, REFFACTURE, DATEFACTURE, REFBORDEREAU, DATEBORD from entree where VALIDE=false and "+cmbSearch.getSelectedItem().toString() +" like '%"+txtComptePrincipal.getText()+"%'"));
 
             } catch (SQLException ex) {
-            }
+           }
         }
     }//GEN-LAST:event_txtComptePrincipalCaretUpdate
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
+     try {
        if((new INVENTAIRE().isInventaireNonValide())){
             JOptionPane.showMessageDialog(this, "Validation bon impossible\n Vous avez un inventaire non validé");
         }else{

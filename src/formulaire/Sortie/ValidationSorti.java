@@ -329,7 +329,6 @@ public class ValidationSorti extends javax.swing.JDialog {
          }else{
                 if(JOptionPane.showConfirmDialog(this,"voulez-vous valider la sortie?","attention",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION)
                 {
-
                      //permet de remettre les articles dans le stock avant suppression                     
                     int g=0;
                     for(int k=0; k< TableDetail2.getRowCount();k++){

@@ -49,9 +49,10 @@ public class INVENTAIRE  extends ModelDb{
        return new INVENTAIRE(idInventaire,DATEINVENT,OBSERVATION,UTILISATEUR);      
    }
    
-   public boolean isInventaireNonValide() throws SQLException{
+   public Boolean isInventaireNonValide() throws SQLException{
       String nbnonvalid=this.getOneResult("select count(*) from inventaire where valide=0");
-      return nbnonvalid!="0"?true:false;
+       return nbnonvalid.equalsIgnoreCase("0")?false:true;
+     //  return nbnonvalid=="0"?false:true;
       
    }
    

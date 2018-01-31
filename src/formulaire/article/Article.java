@@ -5,10 +5,12 @@
 package formulaire.article;
 
 import comptamatiere.ARTICLE;
+import comptamatiere.INVENTAIRE;
 import comptamatiere.REPORT;
 import formulaire.Sortie.ValidationSorti;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -16,7 +18,7 @@ import javax.swing.JOptionPane;
 import report.formulaire.essaicomptegestion;
 
 
-public class Article extends javax.swing.JDialog {
+public class Article extends javax.swing.JDialog{
 
     /**
      * Creates new form Article
@@ -289,7 +291,7 @@ public class Article extends javax.swing.JDialog {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(btnModifier1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(90, 90, 90)
                 .addComponent(jButton7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -297,9 +299,9 @@ public class Article extends javax.swing.JDialog {
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(36, 36, 36)
                 .addComponent(btncorrection, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(84, 84, 84))
+                .addGap(54, 54, 54))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,7 +317,7 @@ public class Article extends javax.swing.JDialog {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
+                        .addGap(35, 35, 35)
                         .addComponent(btncorrection)))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -381,6 +383,7 @@ public class Article extends javax.swing.JDialog {
         table.getColumn("Article").setMinWidth(200);
          table.getColumn("Article").setPreferredWidth(200);
        table.getColumn("Article").setMaxWidth(300);
+       
         } catch (SQLException ex) {
             
         } 
@@ -504,26 +507,35 @@ public class Article extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void btncorrectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btncorrectionActionPerformed
-        btncorrection.setText("Correction en cour.....");
-        btncorrection.setEnabled(false);
-        for(int i=0;i<table.getRowCount();i++){
-            try {
-                a.correctionStockArticle(table.getValueAt(i,a.getColumnByName(table,"code")).toString());
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this,"correction impossible pour l\'article "+
-                        table.getValueAt(i,a.getColumnByName(table,"code"))+ ex.getMessage());
-            } catch (ParseException ex) {
-                JOptionPane.showMessageDialog(this,"correction impossible pour l\'article "+
-                        table.getValueAt(i,a.getColumnByName(table,"code"))+ ex.getMessage());
+        try {
+            if(new INVENTAIRE().isInventaireNonValide()){
+                JOptionPane.showMessageDialog(this,"Correction impossible\n Vous avez des inventaires non validés");
             }
+            else
+            {
+               this.setEnabled(false);
+                    btncorrection.setEnabled(false);
+                    for(int i=0;i<table.getRowCount();i++){
+                        try {
+                            a.correctionStockArticle(table.getValueAt(i,a.getColumnByName(table,"code")).toString());
+                        } catch (SQLException ex) {
+                        JOptionPane.showMessageDialog(this,"correction impossible pour l\'article "+
+                                table.getValueAt(i,a.getColumnByName(table,"code"))+ ex.getMessage());
+                    } catch (ParseException ex) {
+                        JOptionPane.showMessageDialog(this,"correction impossible pour l\'article "+
+                                table.getValueAt(i,a.getColumnByName(table,"code"))+ ex.getMessage());
+                    }
+                }
+                btncorrection.setEnabled(true);
+                btncorrection.setText("Correction stock");
+                JOptionPane.showMessageDialog(this, "Stocks corrigés avec succès");
+
+                this.setEnabled(true);
+                }
+           } catch (SQLException ex) {
+            Logger.getLogger(Article.class.getName()).log(Level.SEVERE, null, ex);
         }
-        btncorrection.setEnabled(true);
-        btncorrection.setText("Correction stock");
-        JOptionPane.showMessageDialog(this, "Stocks corrigés avec succès");
-        
-        // TODO add your handling code here:
-       /* CorrectionStock n = new CorrectionStock(new JFrame(),true);
-        n.setVisible(true);*/
+      
     }//GEN-LAST:event_btncorrectionActionPerformed
 
     /**
@@ -587,6 +599,8 @@ public class Article extends javax.swing.JDialog {
     public javax.swing.JTable table;
     private javax.swing.JTextField txtComptePrincipal;
     // End of variables declaration//GEN-END:variables
+
+ 
 
    
 }

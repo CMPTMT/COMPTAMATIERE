@@ -123,12 +123,19 @@ public class SaisieInventaire extends javax.swing.JDialog {
 
         jLabel22.setText("Utilisateur");
 
+        txtUtilisateur.setEditable(false);
+        txtUtilisateur.setBackground(new java.awt.Color(255, 255, 255));
+
         jLabel23.setText("N°");
 
+        txtCodeInventaire.setEditable(false);
+        txtCodeInventaire.setBackground(new java.awt.Color(255, 255, 255));
         txtCodeInventaire.setText("2");
 
         jLabel24.setText("Date Inventaire");
 
+        txtDate.setEditable(false);
+        txtDate.setBackground(new java.awt.Color(255, 255, 255));
         txtDate.setText("2");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
