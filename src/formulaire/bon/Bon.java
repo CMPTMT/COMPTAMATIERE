@@ -399,10 +399,10 @@ public class Bon extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void btnModifier1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifier1ActionPerformed
- try {
-        int val;
-        val=Integer.parseInt(table.getValueAt(table.getSelectedRow(),b.getColumnByName(table,"valide")).toString());        
-        if(val==1){
+ try {         
+      String val=b.getOneResult("select valide from entree where idbon="+table.getValueAt(table.getSelectedRow(),b.getColumnByName(table,"idbon")).toString());        
+        if(val.equalsIgnoreCase("1"))
+         {
              JOptionPane.showMessageDialog(this,val+" Ordre d\'entree deja validé,la modification est impossible");
         }else{
         Modification m= new Modification(new JFrame(),true);            
@@ -410,6 +410,8 @@ public class Bon extends javax.swing.JDialog {
         m.idBon= bonSelect;
         m.setVisible(true); 
        } 
+        } catch (SQLException ex) {
+            Logger.getLogger(Bon.class.getName()).log(Level.SEVERE, null, ex);
         } catch(IndexOutOfBoundsException ex){
           JOptionPane.showMessageDialog(this,"Choisissez le Bon à modifier,SVP");
        }
@@ -450,7 +452,7 @@ public class Bon extends javax.swing.JDialog {
             table.getTableHeader().setForeground(Color.BLACK);
             
 
-             table.setModel(b.getDefaulTableModel("select bon.idbon,typebon as Type,nbon as 'Bon de Commande',raisonsocial as Fournisseur,Montant,datebon as 'Date Bon de Cde',numproforma as 'Pro Format',chapitre,valide from bon,fournisseur,entree where bon.idfournisseur=fournisseur.idfournisseur and bon.idbon=entree.idbon"));
+             table.setModel(b.getDefaulTableModel("select bon.idbon,typebon as Type,nbon as 'Bon de Commande',raisonsocial as Fournisseur,Montant,datebon as 'Date Bon de Cde',numproforma as 'Pro Format',chapitre from bon,fournisseur where bon.idfournisseur=fournisseur.idfournisseur"));
              //b.resizeColumnWidth(table);
              table.getTableHeader().setFont(new Font("Times New Roman",Font.CENTER_BASELINE,14));
               table.getColumnModel().getColumn(0).setPreferredWidth(5);
