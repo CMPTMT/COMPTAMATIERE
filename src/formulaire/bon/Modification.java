@@ -104,8 +104,8 @@ public class Modification extends javax.swing.JDialog {
         txtMontantBon = new javax.swing.JTextField();
         jLabel19 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        jButton6 = new javax.swing.JButton();
-        jButton9 = new javax.swing.JButton();
+        btnterminer = new javax.swing.JButton();
+        btnprecedent = new javax.swing.JButton();
         jLabel22 = new javax.swing.JLabel();
         Chapitr = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
@@ -800,17 +800,17 @@ public class Modification extends javax.swing.JDialog {
 
         jPanel7.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton6.setText("Terminer");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        btnterminer.setText("Terminer");
+        btnterminer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                btnterminerActionPerformed(evt);
             }
         });
 
-        jButton9.setText("Précédent");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        btnprecedent.setText("Précédent");
+        btnprecedent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                btnprecedentActionPerformed(evt);
             }
         });
 
@@ -925,9 +925,9 @@ public class Modification extends javax.swing.JDialog {
                         .addGap(179, 179, 179)
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnprecedent, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnterminer, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 594, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(150, Short.MAX_VALUE))
         );
@@ -972,8 +972,8 @@ public class Modification extends javax.swing.JDialog {
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnterminer, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
+                    .addComponent(btnprecedent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(80, 80, 80))
         );
 
@@ -1051,6 +1051,10 @@ public class Modification extends javax.swing.JDialog {
     }//GEN-LAST:event_codeBActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(txtDate.getDate()==null){
+            JOptionPane.showMessageDialog(this, "Saisissez date bon");
+        }
+        else
         tabControl.setSelectedIndex(tabControl.getSelectedIndex()+1);
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -1088,7 +1092,7 @@ public class Modification extends javax.swing.JDialog {
         MontantFac.setText(txtMontantBon.getText());
     }//GEN-LAST:event_jButton8ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void btnterminerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnterminerActionPerformed
 
         int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous enregistrez?","confirmation",JOptionPane.YES_NO_OPTION);
         if(reponse==JOptionPane.YES_OPTION){
@@ -1099,6 +1103,8 @@ public class Modification extends javax.swing.JDialog {
                     numProformat.getText(), txtChapitre.getText(),txtAtitre.getText(),txtObjet.getText(),txtMotif.getText(),b.parseMontantFomatToString(txtMontantBon.getText())};
                 int i=b.updateTable("bon",champ,valeur," where idbon="+idBon);
                 JOptionPane.showMessageDialog(this, i+" bon modifié");
+                btnprecedent.setEnabled(false);
+                btnterminer.setEnabled(false);
                 //
                 //exception pour gerer les cas ou bn pas dans livrej ou detailb ou entree execution continue
                 //
@@ -1142,18 +1148,18 @@ public class Modification extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(this,"section 8"+ex.getMessage());
             }
         }
-    }//GEN-LAST:event_jButton6ActionPerformed
+    }//GEN-LAST:event_btnterminerActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void btnprecedentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnprecedentActionPerformed
         tabControl.setSelectedIndex(tabControl.getSelectedIndex()-1);
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_btnprecedentActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
      tabControl.setEnabledAt(1,false);
            tabControl.setEnabledAt(2,false);
         try {
            b.getObjectBonFromId(idBon);
-           tableArticle.setModel(b.getDefaulTableModel("select idARTICLE, IDCATEGORIE, LIBARTICLE, SPECIFICATION,STOCKACTU,PRIXUNITAIRE,UNITEMESURE from article"));
+           tableArticle.setModel(b.getDefaulTableModel("select idARTICLE as Code, IDCATEGORIE, LIBARTICLE As Article, STOCKACTU as Stock from article"));
            //txtBudget.setText(b.LIBBUDGET);
            codeB.setText(String.valueOf(b.IDBUDGET));
            codeB.setVisible(false);
@@ -1174,7 +1180,10 @@ public class Modification extends javax.swing.JDialog {
            txtTypeBon.setText(b.TYPEBON);
            txtChapitre.setText(b.CHAPITRE);
            txtNbon.setText(b.NBON);
+           
+           if(b.DATEBON!=null)
            b.setAfficherDate(txtDate,b.DATEBON.toString());
+           
            txtMontant.setText(b.formatageMontant(b.MONTANT));
            txtMontantBon.setText(txtMontant.getText());
            numProformat.setText(b.NUMPROFORMA);
@@ -1184,6 +1193,7 @@ public class Modification extends javax.swing.JDialog {
            bdeta.afficherDetailBonM(tableDetail, b.IDBON);
            model=(DefaultTableModel)tableDetail.getModel();          
            alM=bdeta.getComboELement("select idMagasin,libMagasin from MAGASIN order by libMagasin",cmbMgasinM);
+           codeMagasin.setText(alM.get(cmbMgasinM.getSelectedIndex()).toString());
            
            tableArticle.getColumn("IDCATEGORIE").setMinWidth(0);
        tableArticle.getColumn("IDCATEGORIE").setPreferredWidth(0);
@@ -1206,8 +1216,8 @@ public class Modification extends javax.swing.JDialog {
            JOptionPane.showMessageDialog(this, ex.getMessage());
         }
         catch (Exception ex) {
-            Logger.getLogger(Modification.class.getName()).log(Level.SEVERE, null, ex);
-            //JOptionPane.showMessageDialog(this,"section 9:"+ ex.getMessage());
+            //Logger.getLogger(Modification.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this,"section 9:"+ ex.getMessage());
         }
         
     }//GEN-LAST:event_formComponentShown
@@ -1386,7 +1396,7 @@ public class Modification extends javax.swing.JDialog {
             Logger.getLogger(Modification.class.getName()).log(Level.SEVERE, null, ex);
         }
            
-         tableArticle.getColumn("IDCATEGORIE").setMinWidth(0);
+       tableArticle.getColumn("IDCATEGORIE").setMinWidth(0);
        tableArticle.getColumn("IDCATEGORIE").setPreferredWidth(0);
        tableArticle.getColumn("IDCATEGORIE").setMaxWidth(0);
        
@@ -1461,6 +1471,8 @@ public class Modification extends javax.swing.JDialog {
     private javax.swing.JLabel NumB;
     private javax.swing.JLabel NumFactPro;
     private javax.swing.JLabel Objet;
+    private javax.swing.JButton btnprecedent;
+    private javax.swing.JButton btnterminer;
     private javax.swing.JCheckBox ckboxTva;
     private javax.swing.JComboBox cmbBuget;
     private javax.swing.JComboBox cmbFournisseur;
@@ -1476,10 +1488,8 @@ public class Modification extends javax.swing.JDialog {
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

@@ -102,7 +102,7 @@ public class Nouveau extends javax.swing.JDialog {
         jPanel6 = new javax.swing.JPanel();
         btnReception = new javax.swing.JButton();
         btnEnreg = new javax.swing.JButton();
-        jButton8 = new javax.swing.JButton();
+        btnprecedent = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
@@ -123,7 +123,7 @@ public class Nouveau extends javax.swing.JDialog {
         MontantFac = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
-        jButton9 = new javax.swing.JButton();
+        btnreception = new javax.swing.JButton();
         jPanel10 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         txtRefFacture = new javax.swing.JTextField();
@@ -853,10 +853,10 @@ public class Nouveau extends javax.swing.JDialog {
             }
         });
 
-        jButton8.setText("Précédent");
-        jButton8.addActionListener(new java.awt.event.ActionListener() {
+        btnprecedent.setText("Précédent");
+        btnprecedent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton8ActionPerformed(evt);
+                btnprecedentActionPerformed(evt);
             }
         });
 
@@ -934,7 +934,7 @@ public class Nouveau extends javax.swing.JDialog {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addGap(63, 63, 63)
-                .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnprecedent, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnEnreg, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(100, 100, 100)
@@ -1027,7 +1027,7 @@ public class Nouveau extends javax.swing.JDialog {
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton8, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnprecedent, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnEnreg, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnReception, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addGap(102, 102, 102))
@@ -1048,10 +1048,10 @@ public class Nouveau extends javax.swing.JDialog {
             .addGap(0, 245, Short.MAX_VALUE)
         );
 
-        jButton9.setText("Terminer la réception");
-        jButton9.addActionListener(new java.awt.event.ActionListener() {
+        btnreception.setText("Terminer la réception");
+        btnreception.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton9ActionPerformed(evt);
+                btnreceptionActionPerformed(evt);
             }
         });
 
@@ -1182,7 +1182,7 @@ public class Nouveau extends javax.swing.JDialog {
                                 .addGap(179, 179, 179)
                                 .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(52, 52, 52)
-                                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnreception, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel8Layout.createSequentialGroup()
                                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 834, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1217,7 +1217,7 @@ public class Nouveau extends javax.swing.JDialog {
                         .addGap(8, 8, 8)))
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnreception, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(45, Short.MAX_VALUE))
         );
 
@@ -1535,6 +1535,7 @@ public class Nouveau extends javax.swing.JDialog {
                 };
                 JOptionPane.showMessageDialog(this,k +" Article du bon enregistré");
                 btnEnreg.setEnabled(false);
+                btnprecedent.setEnabled(false);
                 
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(this,ex.getMessage());
@@ -1542,11 +1543,11 @@ public class Nouveau extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btnEnregActionPerformed
 
-    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+    private void btnprecedentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnprecedentActionPerformed
         tabControl.setSelectedIndex(tabControl.getSelectedIndex()-1);
-    }//GEN-LAST:event_jButton8ActionPerformed
+    }//GEN-LAST:event_btnprecedentActionPerformed
 
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+    private void btnreceptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnreceptionActionPerformed
         if(txtRefFacture.getText().isEmpty())
         JOptionPane.showMessageDialog(this,"Saisissez les références de la facture");
         else if(txtRefBordereau.getText().isEmpty())
@@ -1565,6 +1566,7 @@ public class Nouveau extends javax.swing.JDialog {
                         String valeur[]={idBon,txtRefFacture.getText(),b.getDateChoisie(txtDateFacture),txtRefBordereau.getText(),b.getDateChoisie(txtDateBordereau)};
                         int i=b.Insertion("ENTREE(IDBON, REFFACTURE, DATEFACTURE, REFBORDEREAU, DATEBORD)",valeur);
                         JOptionPane.showMessageDialog(this, i+" reception effectuée");
+                        btnreception.setEnabled(false);
                         b.viderJtable(tableReception);
                         //edition de ordre entree
                         int reponseO= JOptionPane.showConfirmDialog(this,"Edition de l\'ordre d\'entrée?","confirmation",JOptionPane.YES_NO_OPTION);
@@ -1580,7 +1582,7 @@ public class Nouveau extends javax.swing.JDialog {
                 }
             }
         }
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }//GEN-LAST:event_btnreceptionActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         tabControl.setSelectedIndex(tabControl.getSelectedIndex()-1);
@@ -1632,9 +1634,9 @@ public class Nouveau extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        //if(tableDetail.getRowCount()==0)
-        //JOptionPane.showMessageDialog(this,"la liste des articles est vide");
-        //else
+        if(txtDate.getDate()==null)    
+        JOptionPane.showMessageDialog(this,"Saisissez la date du  bon");
+        else
         tabControl.setSelectedIndex(tabControl.getSelectedIndex()+1);
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -1732,6 +1734,8 @@ public class Nouveau extends javax.swing.JDialog {
     private javax.swing.JLabel Objet;
     private javax.swing.JButton btnEnreg;
     private javax.swing.JButton btnReception;
+    private javax.swing.JButton btnprecedent;
+    private javax.swing.JButton btnreception;
     private javax.swing.JCheckBox ckboxTva;
     private javax.swing.JComboBox cmbBuget;
     private javax.swing.JComboBox cmbFournisseur;
@@ -1751,8 +1755,6 @@ public class Nouveau extends javax.swing.JDialog {
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
-    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

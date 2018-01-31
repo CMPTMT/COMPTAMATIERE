@@ -1189,9 +1189,9 @@
                               <EmptySpace min="-2" pref="179" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                   <Group type="102" attributes="0">
-                                      <Component id="jButton9" min="-2" pref="176" max="-2" attributes="0"/>
+                                      <Component id="btnprecedent" min="-2" pref="176" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="jButton6" min="-2" pref="228" max="-2" attributes="0"/>
+                                      <Component id="btnterminer" min="-2" pref="228" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="jScrollPane5" min="-2" pref="594" max="-2" attributes="0"/>
                               </Group>
@@ -1252,8 +1252,8 @@
                       <Component id="jScrollPane5" min="-2" pref="90" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jButton6" pref="35" max="32767" attributes="0"/>
-                          <Component id="jButton9" max="32767" attributes="0"/>
+                          <Component id="btnterminer" pref="35" max="32767" attributes="0"/>
+                          <Component id="btnprecedent" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="80" max="-2" attributes="0"/>
                   </Group>
@@ -1261,20 +1261,20 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JButton" name="jButton6">
+            <Component class="javax.swing.JButton" name="btnterminer">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Terminer"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton6ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnterminerActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jButton9">
+            <Component class="javax.swing.JButton" name="btnprecedent">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Pr&#xe9;c&#xe9;dent"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton9ActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnprecedentActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel22">

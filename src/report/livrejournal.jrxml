@@ -376,7 +376,7 @@ $P{service}]]></textFieldExpression>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{idbonEntree}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
 					<reportElement style="Detail" positionType="Float" stretchType="RelativeToTallestObject" x="418" y="0" width="48" height="18" uuid="bc198043-9d65-4def-990b-6fab6b71e868"/>
 					<box>
 						<leftPen lineWidth="1.0"/>
@@ -398,7 +398,7 @@ $P{service}]]></textFieldExpression>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{libarticle}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
 					<reportElement style="Detail" positionType="Float" stretchType="RelativeToTallestObject" x="320" y="0" width="43" height="18" uuid="a5354e40-cd37-43dc-8ee2-9be1e63bb164"/>
 					<box>
 						<leftPen lineWidth="1.0"/>
@@ -420,7 +420,7 @@ $P{service}]]></textFieldExpression>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{numeroCompte}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
 					<reportElement style="Detail" positionType="Float" stretchType="RelativeToTallestObject" x="466" y="0" width="50" height="18" uuid="5d797e0e-300f-4d7e-89a4-7477882e7720"/>
 					<box>
 						<leftPen lineWidth="1.0"/>
@@ -453,7 +453,7 @@ $P{service}]]></textFieldExpression>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{UNITEMESURE}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" pattern="###0" isBlankWhenNull="true">
+				<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
 					<reportElement style="Detail" positionType="Float" stretchType="RelativeToTallestObject" x="558" y="0" width="51" height="18" uuid="dafd8bbb-6ca8-402d-be9b-ccc59cc64506"/>
 					<box>
 						<leftPen lineWidth="1.0"/>
@@ -464,18 +464,7 @@ $P{service}]]></textFieldExpression>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{puentree}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-					<reportElement style="Detail" positionType="Float" stretchType="RelativeToTallestObject" x="558" y="0" width="51" height="18" uuid="e41c41bd-3c75-4c23-ac35-c6a7b55b16af"/>
-					<box>
-						<leftPen lineWidth="1.0"/>
-						<bottomPen lineWidth="1.0"/>
-					</box>
-					<textElement textAlignment="Center" verticalAlignment="Middle">
-						<font fontName="Times New Roman" size="8"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{pusortie}]]></textFieldExpression>
-				</textField>
-				<textField isStretchWithOverflow="true" pattern="#,##0;-#,##0" isBlankWhenNull="true">
+				<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
 					<reportElement style="Detail" positionType="Float" stretchType="RelativeToTallestObject" x="609" y="0" width="54" height="18" uuid="02a2771a-05e9-4ab0-be1a-4eb7c691ab6e"/>
 					<box>
 						<leftPen lineWidth="1.0"/>
@@ -486,7 +475,7 @@ $P{service}]]></textFieldExpression>
 					</textElement>
 					<textFieldExpression><![CDATA[$F{qteEntree}*$F{puentree}]]></textFieldExpression>
 				</textField>
-				<textField isStretchWithOverflow="true" pattern="#,##0;-#,##0" isBlankWhenNull="true">
+				<textField isStretchWithOverflow="true" pattern="#,##0" isBlankWhenNull="true">
 					<reportElement style="Detail" positionType="Float" stretchType="RelativeToTallestObject" x="663" y="0" width="55" height="18" uuid="3865ca85-41da-46b0-9194-c373b055d218"/>
 					<box>
 						<leftPen lineWidth="1.0"/>
@@ -527,20 +516,34 @@ $P{service}]]></textFieldExpression>
 	</pageFooter>
 	<lastPageFooter>
 		<band height="50">
-			<textField>
-				<reportElement x="385" y="0" width="194" height="35" uuid="a7cddc74-2967-4b49-ac12-3ae2ad515661"/>
+			<textField pattern="#,##0">
+				<reportElement x="252" y="0" width="132" height="35" uuid="a7cddc74-2967-4b49-ac12-3ae2ad515661"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{totalEntre}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement x="625" y="0" width="177" height="35" uuid="f158e374-db28-4889-816b-a5f31092e73e"/>
+			<textField pattern="#,##0" isBlankWhenNull="true">
+				<reportElement x="496" y="0" width="177" height="35" uuid="f158e374-db28-4889-816b-a5f31092e73e"/>
 				<textElement verticalAlignment="Middle">
 					<font size="12" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$V{totalSortie}]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="173" y="0" width="76" height="35" uuid="5bac3262-86ff-42d6-9b56-3921419a0364"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total entrées]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="393" y="0" width="100" height="35" uuid="3cba2401-dd2e-41e9-98e3-b056824ab6bb"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total sorties:]]></text>
+			</staticText>
 		</band>
 	</lastPageFooter>
 	<summary>

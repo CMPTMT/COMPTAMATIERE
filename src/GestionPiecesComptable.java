@@ -290,8 +290,8 @@ public class GestionPiecesComptable extends javax.swing.JInternalFrame {
 
     private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
         // TODO add your handling code here:
-          String req="SELECT idoperation, dateoperation,article.libarticle,idbonEntree, qteEntree, natureuniteEntree, idbonsortie, qteSortie, natureuniteSortie,"
-               + " pusortie, observation, puentree, pustock, qtestock,numeroCompte,UNITEMESURE FROM livrejournal,article,categorie where livrejournal.idarticle=article.idarticle and article.idcategorie=categorie.idcategorie order by idoperation";
+        String req="SELECT idoperation, dateoperation,article.libarticle,idbonEntree, qteEntree, natureuniteEntree, idbonsortie, qteSortie, natureuniteSortie,"
+               + " pusortie, observation, puentree, pustock, qtestock,numeroCompte,UNITEMESURE FROM livrejournal,article,categorie where livrejournal.idarticle=article.idarticle and article.idcategorie=categorie.idcategorie order by dateoperation";
         try{
            e.editionReport("livrejournal", req, e.getInstitutionMap());
         } catch (Exception ex) {
