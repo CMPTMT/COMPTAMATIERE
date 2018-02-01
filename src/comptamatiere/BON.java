@@ -22,6 +22,7 @@ public class BON extends BUDGET{
    public double MONTANT;
    public FOURNISSEUR f= new FOURNISSEUR();
    REPORT r = new REPORT();
+   
    public BON(int id,String type,String nbon,Date datebon,String numproforma,String chapitre,String atitre,String objet,String motif,double montant){
        this.IDBON=id;this.TYPEBON=type;this.NBON=nbon;this.DATEBON=datebon;this.NUMPROFORMA=numproforma;this.CHAPITRE=chapitre;this.ATITRE=atitre;this.OBJET=objet;
        this.MOTIF=motif;this.MONTANT=montant;
@@ -64,5 +65,8 @@ public class BON extends BUDGET{
         r.editionReport("Bonentree",req,r.getBonHashMap(idBon,idbudget,idfournisseur));                                   
      }
      
+     public boolean bonExist(String numbon) throws SQLException{
+        return this.getOneResult("select count(*) from bon where nbon='"+numbon+"'").equalsIgnoreCase("0")?false:true;
+     }
      
 }

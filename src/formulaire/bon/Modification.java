@@ -1047,16 +1047,24 @@ public class Modification extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void codeBActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codeBActionPerformed
-
+      
     }//GEN-LAST:event_codeBActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     try{
         if(txtDate.getDate()==null){
             JOptionPane.showMessageDialog(this, "Saisissez date bon");
         }
+        else if(txtNbon.getText().isEmpty())
+          JOptionPane.showMessageDialog(this,"Saisissez le numero du bon");  
+        else if(b.checkDoublon("select count(*) from bon where idbon<>"+idBon+" and  nbon='"+txtNbon.getText()+"'"))
+          JOptionPane.showMessageDialog(this,"Attention le numero "+txtNbon.getText()+" est déjà attribué à un autre bon");  
         else
         tabControl.setSelectedIndex(tabControl.getSelectedIndex()+1);
         // TODO add your handling code here:
+     }catch(SQLException ex){
+         JOptionPane.showMessageDialog(this,"erreur section 4"+ex.getMessage());
+     }
     }//GEN-LAST:event_jButton1ActionPerformed
     private int calcMontant(String qte,String pu){
         double result=0.00;

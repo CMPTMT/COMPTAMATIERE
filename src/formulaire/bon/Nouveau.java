@@ -1634,10 +1634,20 @@ public class Nouveau extends javax.swing.JDialog {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+       try{
         if(txtDate.getDate()==null)    
-        JOptionPane.showMessageDialog(this,"Saisissez la date du  bon");
+          JOptionPane.showMessageDialog(this,"Saisissez la date du  bon");
+        else if(txtNbon.getText().isEmpty())
+          JOptionPane.showMessageDialog(this,"Saisissez le numero du bon");  
+        else if(b.bonExist(txtNbon.getText()))
+          JOptionPane.showMessageDialog(this,"Ce numéro de bon existe déjà");
         else
         tabControl.setSelectedIndex(tabControl.getSelectedIndex()+1);
+       }catch(SQLException ex){
+             JOptionPane.showMessageDialog(this,"erreur bloc 1 :"+ex.getMessage());
+       }
+       
+       
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void txtObjetFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtObjetFocusLost

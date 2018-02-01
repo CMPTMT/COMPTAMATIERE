@@ -37,6 +37,10 @@ public class ModelDb{
     public ModelDb(){
       
     }
+     public boolean checkDoublon(String query) throws SQLException{
+        return this.getOneResult(query).equalsIgnoreCase("0")?false:true;
+     }
+    
       public  Double Arrondi(float a) {
         double roundOff = Math.round(a * 100.0) / 100.0;
         return roundOff;
