@@ -10,12 +10,10 @@ import comptamatiere.REPORT;
 import formulaire.Sortie.ValidationSorti;
 import java.sql.SQLException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import report.formulaire.essaicomptegestion;
 
 
 public class Article extends javax.swing.JDialog{
@@ -496,12 +494,32 @@ public class Article extends javax.swing.JDialog{
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-                 
-          essaicomptegestion f = new essaicomptegestion( new JFrame(),true);
+       try{
+        int idart=Integer.parseInt(table.getValueAt(table.getSelectedRow(),a.getColumnByName(table, "code")).toString());        
+        if(a.checkDoublon("select count(*) from detailbon where idarticle="+idart))
+            JOptionPane.showMessageDialog(this,"Article fait partie d\'un bon d'entrée\n suppression impossible");
+        else if(a.checkDoublon("select count(*) from detailsortie where idarticle="+idart))
+              JOptionPane.showMessageDialog(this,"Article fait partie d\'un bon de sortie\n suppression impossible");
+        else if(a.checkDoublon("select count(*) from detailinventaire where idarticle="+idart))
+              JOptionPane.showMessageDialog(this,"Article fait partie d\'un inventaire\n suppression impossible");
+        else {
+             int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous supprimer?","confirmation",JOptionPane.YES_NO_OPTION);
+             if(reponse==JOptionPane.YES_OPTION){
+                JOptionPane.showMessageDialog(this,a.insUpdateDel("delete from article where idarticle="+idart)+" suppression réussie");
+             }
+           }
+        } catch(IndexOutOfBoundsException ex){
+          JOptionPane.showMessageDialog(this,"Choisissez  l\'article à Modifier,SVP");
+        } catch(SQLException ex){
+          JOptionPane.showMessageDialog(this,ex.getMessage());
+        }
+            
+            
+        /*  essaicomptegestion f = new essaicomptegestion( new JFrame(),true);
          a.LIBARTICLE=table.getValueAt(table.getSelectedRow(),a.getColumnByName(table, "article")).toString();
          a.idARTICLE=Integer.parseInt(table.getValueAt(table.getSelectedRow(),a.getColumnByName(table, "code")).toString());
            f.a=this.a;
-           f.setVisible(true);
+           f.setVisible(true);*/
            
            
     }//GEN-LAST:event_jButton7ActionPerformed

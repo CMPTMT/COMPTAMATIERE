@@ -24,6 +24,8 @@ public class ARTICLE extends CATEGORIE{
    public int getStockArticle(int codeArticle) throws SQLException{
       return Integer.parseInt(this.getOneResult("select stockactu from article where idarticle="+codeArticle));
    } 
+ 
+   
    public HashMap getArticleInfo(int idarticle) throws SQLException{
         HashMap hm=new HashMap();
         ResultSet rs= this.getResultSet("select * from article where idarticle="+idarticle);

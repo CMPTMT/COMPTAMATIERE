@@ -126,6 +126,9 @@ public class Nouveau extends javax.swing.JDialog {
             rsbonsortie=inv.getResultSet("select idsortie from sortie where valide=0");
             if(txtUtilisateur.getText().isEmpty())
                 JOptionPane.showMessageDialog(this,"renseigner le nom utilisateur");
+            else if(txtDate.getDate()==null){
+                JOptionPane.showMessageDialog(this,"Préciser la date de l\'inventaire");
+            }
             else if(rsboncommande.next()){
                 JOptionPane.showMessageDialog(this,"Bon de commande N°"+rsboncommande.getString("idbon")+" non validé\n impossible de faire l\'inventaire");
             }

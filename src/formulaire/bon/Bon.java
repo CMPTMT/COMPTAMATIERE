@@ -439,7 +439,24 @@ public class Bon extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-          // TODO add your handling code here:
+         try {   
+           String bonSelect=table.getValueAt(table.getSelectedRow(),b.getColumnByName(table,"idbon")).toString();
+           String val=b.getOneResult("select valide from entree where idbon="+bonSelect);        
+        if(val.equalsIgnoreCase("1"))
+         {
+             JOptionPane.showMessageDialog(this," Ordre d\'entree deja validé,la supression impossible");
+        }else{ 
+            int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous supprimer le bon "+bonSelect+"?","confirmation",JOptionPane.YES_NO_OPTION);
+            if(reponse==JOptionPane.YES_OPTION){
+                JOptionPane.showMessageDialog(this,b.insUpdateDel("delete from bon where idbon="+bonSelect)+" suppression réussie");
+                b.insUpdateDel("delete from detailbon where idbon="+bonSelect);
+            }
+       } 
+        } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(this,ex.getMessage());
+        } catch(IndexOutOfBoundsException ex){
+          JOptionPane.showMessageDialog(this,"Choisissez le Bon à modifier,SVP");
+       }          // TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jPanel3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jPanel3FocusGained

@@ -6,6 +6,8 @@ import comptamatiere.REPORT;
 import control.Controle;
 import java.awt.Color;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;import javax.swing.JOptionPane;
 
 
@@ -178,6 +180,11 @@ public class Inventaire extends javax.swing.JDialog {
         jButton6.setForeground(new java.awt.Color(255, 255, 255));
         jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/supp.png"))); // NOI18N
         jButton6.setToolTipText("Supprimer");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         jButton7.setBackground(new java.awt.Color(0, 51, 204));
         jButton7.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -342,8 +349,9 @@ public class Inventaire extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this,"Choisissez l\'inventaire à modifier");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
-
+   
     private void btnModifier1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifier1ActionPerformed
+         
         Modification m= new Modification(new JFrame(),true);
         try{
             String bonSelect=tableInventaire.getValueAt(tableInventaire.getSelectedRow(),i.getColumnByName(tableInventaire,"idinventaire")).toString();
@@ -423,6 +431,26 @@ public class Inventaire extends javax.swing.JDialog {
            JOptionPane.showMessageDialog(this,"Choisissez l\'inventaire, "+ ex.getMessage());
         }
     }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    
+        try{
+            String bonSelect=tableInventaire.getValueAt(tableInventaire.getSelectedRow(),i.getColumnByName(tableInventaire,"idinventaire")).toString();
+            if(i.checkDoublon("select count(*) from inventaire where idinventaire="+bonSelect+" and valide=1")){
+                 JOptionPane.showMessageDialog(this,"L\'inventaire est validé\n suppression impossible");
+            }else{
+                 int result=JOptionPane.showConfirmDialog(this,"Vous confirmez la suppression inventaire N°"+bonSelect+" ?","confirmation", JOptionPane.YES_NO_OPTION);
+                 if(result==JOptionPane.YES_OPTION){                   
+                     JOptionPane.showMessageDialog(this,i.insUpdateDel("delete from inventaire where idinventaire="+bonSelect)+" inventaire supprimé");
+                     i.insUpdateDel("delete from detailinventaire where idinventaire="+bonSelect); 
+                 }                    
+           }
+           } catch (SQLException ex) {
+             JOptionPane.showMessageDialog(this,ex.getMessage());
+        }catch(IndexOutOfBoundsException ex){
+            JOptionPane.showMessageDialog(this,"Choisissez l\'inventaire à supprimer");
+        }
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments

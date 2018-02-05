@@ -3,6 +3,8 @@ package formulaire.Sortie;
 import comptamatiere.DETAILSORTIE;
 import comptamatiere.SORTIE;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -102,7 +104,7 @@ SORTIE sortie = new SORTIE ();
         });
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
-        jLabel4.setText("CritÃ¨re:");
+        jLabel4.setText("Critère:");
 
         cmbSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "IDSORTIE", "DATESORTIE", "LIBBUR", "LIBSERVICE ", "MOTIF", "NUMPJ", "IDBON" }));
         cmbSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -148,6 +150,11 @@ SORTIE sortie = new SORTIE ();
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
         jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/supp.png"))); // NOI18N
         jButton7.setToolTipText("Supprimer");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setBackground(new java.awt.Color(0, 51, 204));
         jButton8.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
@@ -345,7 +352,7 @@ SORTIE sortie = new SORTIE ();
              val=Integer.parseInt(tableSortie.getValueAt(tableSortie.getSelectedRow(),6).toString());
         
         if(val==1){
-             JOptionPane.showMessageDialog(this,val+" Ordre de Sortie deja validÃ©,la modification est impossible");
+             JOptionPane.showMessageDialog(this,val+" Ordre de Sortie deja validé,la modification est impossible");
         }else{
          Modification m= new Modification(new JFrame(),true);
          //JOptionPane.showMessageDialog(this,val+" Ordre de Sortie deja validÃ©,la modification est impossible");
@@ -354,7 +361,7 @@ SORTIE sortie = new SORTIE ();
         }
         
         } catch(IndexOutOfBoundsException ex){
-          JOptionPane.showMessageDialog(this,"Choisissez  l/'ordre de sortie Ã  modifier,SVP");
+          JOptionPane.showMessageDialog(this,"Choisissez  l/'ordre de sortie à modifier,SVP");
        }
        
     }//GEN-LAST:event_btnModifier1ActionPerformed
@@ -427,6 +434,33 @@ SORTIE sortie = new SORTIE ();
         // TODO add your handling code here:
         
     }//GEN-LAST:event_tableSortieMouseEntered
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    try {
+        int val = 0;
+        DetailS.idSORTIE=Integer.parseInt(tableSortie.getValueAt(tableSortie.getSelectedRow(),sortie.getColumnByName(tableSortie,"idsortie")).toString());
+        
+             val=Integer.parseInt(tableSortie.getValueAt(tableSortie.getSelectedRow(),sortie.getColumnByName(tableSortie,"valide")).toString());
+        
+        if(val==1){
+             JOptionPane.showMessageDialog(this," Ordre de Sortie "+DetailS.idSORTIE+" deja validé,la supression impossible");
+        }else{
+           int res= JOptionPane.showConfirmDialog(this,"confirmer la supression du bon N°"+DetailS.idSORTIE,"confirmation suppression",JOptionPane.YES_NO_OPTION);
+            if(res==JOptionPane.YES_OPTION){
+                try {
+                    JOptionPane.showMessageDialog(this,sortie.insUpdateDel("delete from sortie where idsortie="+DetailS.idSORTIE)+" suppression réussie");
+                    sortie.insUpdateDel("delete from detailsortie where idsortie="+DetailS.idSORTIE);
+                } catch (SQLException ex) {
+                   JOptionPane.showMessageDialog(this,ex.getMessage());
+                }
+            }
+        }
+        
+        } catch(IndexOutOfBoundsException ex){
+          JOptionPane.showMessageDialog(this,"Choisissez  l/'ordre de sortie à modifier,SVP");
+       }
+               // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
 public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
