@@ -349,7 +349,7 @@ public class GestionPiecesComptable extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         
          String req="select categorie.libcategorie,article.libarticle,article.stockactu,article.prixunitaire from article,categorie " +
-               "where article.idcategorie=categorie.idcategorie";
+               "where article.idcategorie=categorie.idcategorie order by categorie.libcategorie,article.libarticle";
         try {
             e.editionReport("etatFamilleCategorie", req, e.getInstitutionMap());
         } catch (Exception ex) {

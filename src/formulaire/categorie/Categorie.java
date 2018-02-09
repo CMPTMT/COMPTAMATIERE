@@ -7,8 +7,11 @@ package formulaire.categorie;
 import comptamatiere.CATEGORIE;
 import java.awt.Color;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -168,6 +171,11 @@ public class Categorie extends javax.swing.JDialog {
         jButton1.setBackground(new java.awt.Color(153, 0, 51));
         jButton1.setText("Supprimer");
         jButton1.setPreferredSize(new java.awt.Dimension(81, 32));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton4.setBackground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Imprimer");
@@ -214,12 +222,9 @@ public class Categorie extends javax.swing.JDialog {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnModifier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnModifier, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -234,19 +239,13 @@ public class Categorie extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModifierActionPerformed
-  if(table.getSelectedRow()==-1){
-           JOptionPane.showMessageDialog(this, "choisissez l\'enregistrement à modifier");
-       }
-       else{
-           Modification m=new Modification(new JFrame(),true);
-                m.IDCAT=table.getValueAt(table.getSelectedRow(),c.getColumnByName(table, "Num")).toString();          
-            m.setVisible(true);
-       }
-        
-        
-       
-        //m.c=this.c;
-       // m.setVisible(true);
+             if(table.getSelectedRow()==-1){
+                 JOptionPane.showMessageDialog(this, "choisissez l\'enregistrement à modifier");
+             }else{
+                 Modification m=new Modification(new JFrame(),true);
+                  m.IDCAT=table.getValueAt(table.getSelectedRow(),c.getColumnByName(table, "Num")).toString();          
+                  m.setVisible(true);
+            }
     }//GEN-LAST:event_btnModifierActionPerformed
        CATEGORIE c= new CATEGORIE();
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
@@ -324,6 +323,29 @@ public class Categorie extends javax.swing.JDialog {
     private void cmbSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSearchActionPerformed
         lblRechercher.setText(cmbSearch.getSelectedItem().toString());
     }//GEN-LAST:event_cmbSearchActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            String cateSelect=null;
+            
+            if(table.getSelectedRow()!=-1)
+             cateSelect=table.getValueAt(table.getSelectedRow(),c.getColumnByName(table, "Num")).toString();    
+            if(table.getSelectedRow()==-1){
+                 JOptionPane.showMessageDialog(this, "choisissez l\'enregistrement à modifier");
+              }
+              else if(c.checkDoublon("select count(*) from article where idcategorie="+cateSelect))
+                  JOptionPane.showMessageDialog(this,"Cette catégorie est utilisée\n suppression impossible");
+              else{
+                if(JOptionPane.showConfirmDialog(this, "vous confirmez la suppression de catégorie N°"+cateSelect+"?","confirmation",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION){
+                    c.insUpdateDel("delete from categorie where idcategorie="+cateSelect);
+                    JOptionPane.showMessageDialog(this, "Suppression réussie");
+                   // ((DefaultTableModel)table.getModel()).removeRow(table.getSelectedRow());
+                }
+            }
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(this,"notification"+ ex.getMessage());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
