@@ -18,9 +18,9 @@ import javax.swing.JOptionPane;
  */
 public class FicheDetenteurMateriel extends javax.swing.JDialog {
 
-      String reqpart="select LIBARTICLE,CODEMATERIEL,utilisateur,DATACQ,DMS,immobilisationmateriel.budget from immobilisationmateriel,article,utilisateur "
+      String reqpart="select LIBARTICLE,CODEMATERIEL,utilisateur,DATACQ,DMS,immobilisationmateriel.budget,etat.libetat from immobilisationmateriel,article,utilisateur,etat "
            + "where immobilisationmateriel.idarticle=article.idarticle "
-           + " and immobilisationmateriel.idutilisateur=utilisateur.idutilisateur";
+           + " and immobilisationmateriel.idutilisateur=utilisateur.idutilisateur and immobilisationmateriel.etat=etat.idetat";
        ARTICLE a= new ARTICLE();
     ArrayList alService=null, alBureau=null ;
     public FicheDetenteurMateriel(java.awt.Frame parent, boolean modal) {

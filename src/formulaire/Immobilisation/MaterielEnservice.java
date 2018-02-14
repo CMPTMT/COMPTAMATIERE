@@ -104,7 +104,7 @@ public class MaterielEnservice extends javax.swing.JDialog {
             }
         });
 
-        jButton1.setText("Fiche D etenteur");
+        jButton1.setText("Fiche Détenteur");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
