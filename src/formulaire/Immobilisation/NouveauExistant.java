@@ -71,6 +71,8 @@ public class NouveauExistant extends javax.swing.JDialog {
         jLabel18 = new javax.swing.JLabel();
         txtDateAquis = new com.toedter.calendar.JDateChooser();
         txtCodeImmo = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        txtObservation = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -333,6 +335,18 @@ public class NouveauExistant extends javax.swing.JDialog {
             }
         });
 
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel20.setText("Observation");
+
+        txtObservation.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        txtObservation.setForeground(new java.awt.Color(0, 51, 255));
+        txtObservation.setAutoscrolls(false);
+        txtObservation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtObservationActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -345,11 +359,6 @@ public class NouveauExistant extends javax.swing.JDialog {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(Sexe, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(libarticle, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(8, 8, 8))
                             .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(codeBdg, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -376,7 +385,18 @@ public class NouveauExistant extends javax.swing.JDialog {
                                     .addGroup(jPanel4Layout.createSequentialGroup()
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(118, 118, 118)))))
+                                        .addGap(118, 118, 118))))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(jLabel20)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtObservation, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel4Layout.createSequentialGroup()
+                                        .addComponent(Sexe, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(libarticle, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(8, 8, 8)))
                         .addGap(55, 55, 55))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -440,11 +460,15 @@ public class NouveauExistant extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbBuget, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(39, 39, 39)
+                .addGap(27, 27, 27)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(libarticle, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Sexe))
-                .addGap(53, 53, 53)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtObservation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Montant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -607,8 +631,8 @@ public class NouveauExistant extends javax.swing.JDialog {
             if(reponse==JOptionPane.YES_OPTION){
                 try {
                     String valeur[]={idarticle.getText(),txtCodeImmo.getText(),imo.getDateChoisie(txtDatEnservice),
-                    Montant.getText(),idEtat.getText(),codeBdg.getText(),codeBureau.getText(),utilisateur.getText(),imo.getDateChoisie(txtDateAquis)};
-                    int j= imo.Insertion("IMMOBILISATIONMATERIEL(IDARTICLE,CODEMATERIEL,DMS,PUACQ,ETAT,budget,IDBUREAU,IDUTILISATEUR,datacq)", valeur);
+                    Montant.getText(),idEtat.getText(),codeBdg.getText(),codeBureau.getText(),utilisateur.getText(),imo.getDateChoisie(txtDateAquis),txtObservation.getText()};
+                    int j= imo.Insertion("IMMOBILISATIONMATERIEL(IDARTICLE,CODEMATERIEL,DMS,PUACQ,ETAT,budget,IDBUREAU,IDUTILISATEUR,datacq,observation)", valeur);
 
                     JOptionPane.showMessageDialog(this, j+" Immobilisation engistrée");
                     if(j==1){
@@ -775,6 +799,10 @@ public class NouveauExistant extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_formWindowGainedFocus
 
+    private void txtObservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtObservationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtObservationActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -841,6 +869,7 @@ public class NouveauExistant extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
@@ -856,6 +885,7 @@ public class NouveauExistant extends javax.swing.JDialog {
     private javax.swing.JTextField txtComptePrincipal;
     private com.toedter.calendar.JDateChooser txtDatEnservice;
     private com.toedter.calendar.JDateChooser txtDateAquis;
+    private javax.swing.JTextField txtObservation;
     private javax.swing.JTextField utilisateur;
     // End of variables declaration//GEN-END:variables
 }

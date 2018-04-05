@@ -24,9 +24,8 @@ public class Modification extends  javax.swing.JDialog {
      SORTIE sortie = new SORTIE();
      ARTICLE article= new ARTICLE();
      DETAILSORTIE d= new DETAILSORTIE();
-     DefaultTableModel model=new DefaultTableModel();
      DETAILSORTIE DetailSortie = new DETAILSORTIE();
-     DefaultTableModel Model = new DefaultTableModel();
+     DefaultTableModel model = new DefaultTableModel();
      public String idSortieM;
      ArrayList alS,alBg,alBu;
      private int stock;
@@ -945,7 +944,7 @@ public class Modification extends  javax.swing.JDialog {
             //recuperation de la quantite théorique sans prendre en compte les sorties non validées 
            int Stocktheorique=Integer.parseInt(tableArticle.getValueAt(tableArticle.getSelectedRow(), d.getColumnByName(tableArticle, "Stock")).toString());
            //reste de la quantité possible de sortir
-           int rest=Stocktheorique-Integer.parseInt(qtenonvalide.getText());
+            int rest=Stocktheorique-Integer.parseInt(qtenonvalide.getText());
             StockA.setText(Integer.toString(rest));
            
        
@@ -1101,16 +1100,16 @@ public class Modification extends  javax.swing.JDialog {
                 rest=rest-qteLigne;//je prend la quantite demande -qte dune signe
                 if(rest>0){//si rest est > 0 donc ce que je demande est plus grand que cette ligne donc je la prend integralement et je vais sur la seconde ligne
                     Object[] Obj = {txtCode.getText(), txtarticle.getText(),qteLigne,puLigne,idDetailBonLigne,type};
-                    Model.addRow(Obj);
-                    TableDetail.setModel(Model);
+                    model.addRow(Obj);
+                    TableDetail.setModel(model);
                     //quantité article dejà sortie
                     sous1=sous1+qteLigne;
                 }else{//si rest <0 alors cette ligne est grand que le quantite voulu
                     //la quatité restante a sortir est -rest
                     int rest2=test-sous1;
                     Object[] Obj = {txtCode.getText(), txtarticle.getText(),rest2,Double.parseDouble(tableLot.getValueAt(i,sortie.getColumnByName(tableLot,"pu")).toString()),idDetailBonLigne,type};
-                    Model.addRow(Obj);
-                    TableDetail.setModel(Model);
+                    model.addRow(Obj);
+                    TableDetail.setModel(model);
                     break;
                 }
             }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="567" leftMargin="14" rightMargin="14" topMargin="14" bottomMargin="14" uuid="68dd803b-3951-4f49-90bd-4f02ebea1dec">
 	<property name="ireport.zoom" value="1.5"/>
-	<property name="ireport.x" value="6"/>
-	<property name="ireport.y" value="96"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<style name="table">
 		<box>
 			<pen lineWidth="1.0" lineColor="#000000"/>
@@ -198,15 +198,15 @@ where budget.idbudget=sortie.budget and sortie.idsortie=detailsortie.idsortie an
 	<title>
 		<band height="122" splitType="Stretch">
 			<textField isBlankWhenNull="true">
-				<reportElement x="384" y="37" width="159" height="20" uuid="39566d8c-ab33-4b3f-a8c0-277bec86d468"/>
-				<textElement>
+				<reportElement x="384" y="31" width="159" height="20" uuid="39566d8c-ab33-4b3f-a8c0-277bec86d468"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="Times New Roman"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{OBJET}]]></textFieldExpression>
 			</textField>
 			<textField isBlankWhenNull="true">
-				<reportElement x="384" y="69" width="159" height="20" uuid="93983b33-87a9-4799-9cd2-57ff065502e1"/>
-				<textElement>
+				<reportElement x="384" y="54" width="159" height="20" uuid="93983b33-87a9-4799-9cd2-57ff065502e1"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="Times New Roman"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{MOTIF}]]></textFieldExpression>
@@ -219,14 +219,14 @@ where budget.idbudget=sortie.budget and sortie.idsortie=detailsortie.idsortie an
 				<text><![CDATA[BUDGET:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="319" y="37" width="59" height="20" uuid="01c506ff-5d71-41b5-9502-0ecac9e39b36"/>
+				<reportElement x="319" y="31" width="59" height="20" uuid="01c506ff-5d71-41b5-9502-0ecac9e39b36"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Times New Roman" isBold="true"/>
 				</textElement>
 				<text><![CDATA[OBJET:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="324" y="69" width="53" height="20" uuid="3dbf5567-4b63-43a3-bc1c-a83ccd7daf10"/>
+				<reportElement x="324" y="54" width="53" height="20" uuid="3dbf5567-4b63-43a3-bc1c-a83ccd7daf10"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Times New Roman" isBold="true"/>
 				</textElement>
@@ -234,6 +234,7 @@ where budget.idbudget=sortie.budget and sortie.idsortie=detailsortie.idsortie an
 			</staticText>
 			<textField isBlankWhenNull="true">
 				<reportElement x="384" y="9" width="100" height="16" uuid="24d62646-3015-4faa-b68b-69d9da555a14"/>
+				<textElement verticalAlignment="Middle"/>
 				<textFieldExpression><![CDATA[$F{SIGLE}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
@@ -251,6 +252,20 @@ $P{direction}
 +
 $P{service}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="315" y="91" width="247" height="27" uuid="3a3ca290-f3e9-42c6-bdaa-f82e639b94bf"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="8" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LIBBUR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="265" y="91" width="46" height="27" uuid="57c6a726-2da5-4509-8fe4-f9d7c91aa6e5"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bureau]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageHeader>
@@ -262,18 +277,6 @@ $P{service}]]></textFieldExpression>
 				</textElement>
 				<text><![CDATA[ORDRE DE SORTIE]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="173" y="87" width="382" height="15" uuid="3a3ca290-f3e9-42c6-bdaa-f82e639b94bf"/>
-				<textElement>
-					<font fontName="Times New Roman" size="10" isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{LIBBUR}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="190" y="40" width="248" height="29" uuid="49dc5454-3f63-4e33-a79e-35ecebb3b8fe"/>
-				<textElement verticalAlignment="Middle"/>
-				<textFieldExpression><![CDATA[$F{ATITRE}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="91" y="40" width="100" height="29" uuid="c18b83d7-815f-42f8-a167-438ce2ead369"/>
 				<textElement verticalAlignment="Middle">
@@ -296,15 +299,15 @@ $P{service}]]></textFieldExpression>
 				<text><![CDATA[N°]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="11" y="69" width="544" height="33" uuid="875f73af-a335-4d80-b19d-ccf4eff1ea43"/>
-				<textElement>
-					<font fontName="Times New Roman" size="14"/>
+				<reportElement x="116" y="69" width="437" height="33" uuid="875f73af-a335-4d80-b19d-ccf4eff1ea43"/>
+				<textElement textAlignment="Center">
+					<font fontName="Times New Roman" size="12"/>
 				</textElement>
 				<text><![CDATA[       Seront portés en sortie dans les écritures du comptable gestionnaire, les matières
  et objets ci-après désignés:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="455" y="11" width="100" height="29" uuid="69ed9b01-0c7b-4118-bb33-049b4a291ee5"/>
+				<reportElement x="452" y="11" width="100" height="29" uuid="69ed9b01-0c7b-4118-bb33-049b4a291ee5"/>
 				<textElement verticalAlignment="Middle">
 					<font size="14" isBold="true"/>
 				</textElement>
@@ -324,6 +327,11 @@ $P{service}]]></textFieldExpression>
 				</textElement>
 				<text><![CDATA[d'ordre au livre journal]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="190" y="40" width="248" height="29" uuid="49dc5454-3f63-4e33-a79e-35ecebb3b8fe"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{ATITRE}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
@@ -628,7 +636,7 @@ $P{service}]]></textFieldExpression>
 "A "+ $P{VilleInst}+" le " + $F{DATESORTIE}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="399" y="41" width="168" height="115" uuid="b6cf13d8-80a3-40e3-95a3-341b70eeba04"/>
+				<reportElement x="399" y="51" width="168" height="105" uuid="b6cf13d8-80a3-40e3-95a3-341b70eeba04"/>
 				<box>
 					<leftPen lineWidth="0.0"/>
 				</box>
@@ -673,7 +681,7 @@ au  présent  ordre.
 				<text><![CDATA[DIMUNITION DES PRISES EN CHARGE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="401" y="30" width="155" height="11" uuid="969f50c2-6478-4ece-84c4-6da3894a1540"/>
+				<reportElement x="401" y="34" width="155" height="11" uuid="969f50c2-6478-4ece-84c4-6da3894a1540"/>
 				<textElement verticalAlignment="Bottom">
 					<font size="8" isBold="true" isUnderline="true"/>
 				</textElement>

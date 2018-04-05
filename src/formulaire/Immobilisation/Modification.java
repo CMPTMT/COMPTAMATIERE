@@ -75,6 +75,8 @@ public class Modification extends javax.swing.JDialog {
         txtDateAquis = new com.toedter.calendar.JDateChooser();
         txtCodeImmo = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jLabel20 = new javax.swing.JLabel();
+        txtObservation = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -345,6 +347,18 @@ public class Modification extends javax.swing.JDialog {
             }
         });
 
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel20.setText("Observation");
+
+        txtObservation.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        txtObservation.setForeground(new java.awt.Color(0, 51, 255));
+        txtObservation.setAutoscrolls(false);
+        txtObservation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtObservationActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -398,10 +412,6 @@ public class Modification extends javax.swing.JDialog {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addComponent(Sexe, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(libarticle, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(codeBdg, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -420,7 +430,15 @@ public class Modification extends javax.swing.JDialog {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cmbEtat, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtDatEnservice, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtDatEnservice, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(Sexe, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel20))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtObservation, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(libarticle, javax.swing.GroupLayout.PREFERRED_SIZE, 426, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addGap(63, 63, 63))))
         );
         jPanel4Layout.setVerticalGroup(
@@ -450,7 +468,11 @@ public class Modification extends javax.swing.JDialog {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(libarticle, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Sexe))
-                .addGap(53, 53, 53)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtObservation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Montant, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -554,8 +576,8 @@ public class Modification extends javax.swing.JDialog {
             if(reponse==JOptionPane.YES_OPTION){
                 try {
                     String valeur[]={idarticle.getText(),txtCodeImmo.getText(),imo.getDateChoisie(txtDatEnservice),
-                    Montant.getText(),idEtat.getText(),codeBdg.getText(),codeBureau.getText(),utilisateur.getText(),imo.getDateChoisie(txtDateAquis)};
-                    String champ[]={"IDARTICLE","CODEMATERIEL","DMS","PUACQ","ETAT","budget","IDBUREAU","IDUTILISATEUR","datacq"};
+                    Montant.getText(),idEtat.getText(),codeBdg.getText(),codeBureau.getText(),utilisateur.getText(),imo.getDateChoisie(txtDateAquis),txtObservation.getText()};
+                    String champ[]={"IDARTICLE","CODEMATERIEL","DMS","PUACQ","ETAT","budget","IDBUREAU","IDUTILISATEUR","datacq","observation"};
                      int j=imo.updateTable("immobilisationmateriel", champ, valeur,"where idimmobilisationmateriel="+idimmobilisation);
                     JOptionPane.showMessageDialog(this, j+" Immobilisation modifiée");
                     if(j==1){
@@ -608,6 +630,7 @@ public class Modification extends javax.swing.JDialog {
             txtCodeImmo.setText(imo.codemate);       
             imo.setAfficherDate(txtDateAquis,imo.dateaqi.toString());
             imo.setAfficherDate(txtDatEnservice,imo.dms.toString());
+            txtObservation.setText(imoP.observation);
            
            //remplissage de jtable de selection
             tableArticle.setModel(imo.getDefaulTableModel(reqpart));          
@@ -750,6 +773,10 @@ public class Modification extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCodeImmoActionPerformed
 
+    private void txtObservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtObservationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtObservationActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -817,6 +844,7 @@ public class Modification extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -830,6 +858,7 @@ public class Modification extends javax.swing.JDialog {
     private javax.swing.JTextField txtComptePrincipal;
     private com.toedter.calendar.JDateChooser txtDatEnservice;
     private com.toedter.calendar.JDateChooser txtDateAquis;
+    private javax.swing.JTextField txtObservation;
     private javax.swing.JTextField utilisateur;
     // End of variables declaration//GEN-END:variables
 }

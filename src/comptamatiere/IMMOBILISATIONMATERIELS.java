@@ -22,6 +22,7 @@ public class IMMOBILISATIONMATERIELS extends ModelDb{
   public String budget;
   public String idService;
   public String idArticle;
+  public String observation;
    
    public IMMOBILISATIONMATERIELS(){};
    public IMMOBILISATIONMATERIELS(String id,String idArticle,String article,String utilisateur,String codemate,String etat,String idService,String bureau,Date dms,Date dateaqi,String pu,String budget){
@@ -41,7 +42,7 @@ public class IMMOBILISATIONMATERIELS extends ModelDb{
       return codification;
    }
    public IMMOBILISATIONMATERIELS getObjetImmo(String idimo) throws SQLException{
-        String sql="select idIMMOBILISATIONMATERIEL,immobilisationmateriel.idarticle,LIBARTICLE,utilisateur,CODEMATERIEL,libetat,libbur,idservice,DMS,DATACQ,immobilisationmateriel.puacq,budget from etat,immobilisationmateriel,article,categorie,bureau,utilisateur "
+        String sql="select idIMMOBILISATIONMATERIEL,immobilisationmateriel.idarticle,immobilisationmateriel.observation,LIBARTICLE,utilisateur,CODEMATERIEL,libetat,libbur,idservice,DMS,DATACQ,immobilisationmateriel.puacq,budget from etat,immobilisationmateriel,article,categorie,bureau,utilisateur "
             + "where BUREAU.idbureau=IMMOBILISATIONMATERIEL.idbureau AND immobilisationmateriel.idarticle=article.idarticle and article.idcategorie=categorie.idcategorie and immobilisationmateriel.etat=etat.idetat"
             + " and immobilisationmateriel.idutilisateur=utilisateur.idutilisateur and immobilisationmateriel.idIMMOBILISATIONMATERIEL="+idimo;
       ResultSet rs= this.getResultSet(sql);
@@ -58,6 +59,7 @@ public class IMMOBILISATIONMATERIELS extends ModelDb{
           this.pu=rs.getString("puacq");
           this.idService=rs.getString("idservice");
           this.idArticle=rs.getString("idarticle");
+          this.observation=rs.getString("observation");
           rs.close();
        return new IMMOBILISATIONMATERIELS(id,idArticle,article, utilisateur, codemate, etat,idService, bureau, dms, dateaqi, pu, budget);      
    }

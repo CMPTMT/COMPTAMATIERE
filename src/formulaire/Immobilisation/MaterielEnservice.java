@@ -758,14 +758,13 @@ IMMOBILISATIONMATERIELS s= new IMMOBILISATIONMATERIELS();
     }//GEN-LAST:event_ckBureauActionPerformed
 
     private void tableMaterielServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMaterielServiceMouseClicked
-        // TODO add your handling code here:
+        immoselect=tableMaterielService.getValueAt(tableMaterielService.getSelectedRow(),s.getColumnByName(tableMaterielService,"idimmobilisationmateriel")).toString();
     }//GEN-LAST:event_tableMaterielServiceMouseClicked
-
+      String immoselect;
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
          Modification m= new Modification(new JFrame(),true);
-        try{
-            String immoselect=tableMaterielService.getValueAt(tableMaterielService.getSelectedRow(),s.getColumnByName(tableMaterielService,"idimmobilisationmateriel")).toString();
+        try{          
             m.idimmobilisation= immoselect;
          // JOptionPane.showMessageDialog(this, immoselect);
             m.setVisible(true);
@@ -781,7 +780,46 @@ IMMOBILISATIONMATERIELS s= new IMMOBILISATIONMATERIELS();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
+       if(JOptionPane.showConfirmDialog(this,"Suppression de l\'enrégistrement sélectionné?","suppression",JOptionPane.YES_NO_OPTION)==JOptionPane.YES_OPTION) {
+            try{
+              JOptionPane.showMessageDialog(this, a.insUpdateDel("delete from immobilisationmateriel where idimmobilisationmateriel="+immoselect)+" immobilisation supprimée");
+              chargement();
+               tableMaterielService.getColumn("idIMMOBILISATIONMATERIEL").setMinWidth(0);
+               tableMaterielService.getColumn("idIMMOBILISATIONMATERIEL").setPreferredWidth(0);
+               tableMaterielService.getColumn("idIMMOBILISATIONMATERIEL").setMaxWidth(0);
+               
+               
+                tableMaterielService.getColumn("budget").setMinWidth(0);
+               tableMaterielService.getColumn("budget").setPreferredWidth(0);
+               tableMaterielService.getColumn("budget").setMaxWidth(0);
+               
+                tableMaterielService.getColumn("dureevie").setMinWidth(0);
+               tableMaterielService.getColumn("dureevie").setPreferredWidth(0);
+               tableMaterielService.getColumn("dureevie").setMaxWidth(0);
+               
+               tableMaterielService.getColumn("LIBARTICLE").setMinWidth(50);
+               tableMaterielService.getColumn("LIBARTICLE").setPreferredWidth(350);
+               tableMaterielService.getColumn("LIBARTICLE").setMaxWidth(350);
+               
+               tableMaterielService.getColumn("CODEMATERIEL").setMinWidth(50);
+               tableMaterielService.getColumn("CODEMATERIEL").setPreferredWidth(300);
+               tableMaterielService.getColumn("CODEMATERIEL").setMaxWidth(400);
+               
+               
+               tableMaterielService.getColumn("utilisateur").setMinWidth(30);
+               tableMaterielService.getColumn("utilisateur").setPreferredWidth(190);
+               tableMaterielService.getColumn("utilisateur").setMaxWidth(190);
+               
+               tableMaterielService.getColumn("libbur").setMinWidth(20);
+               tableMaterielService.getColumn("libbur").setPreferredWidth(200);
+               tableMaterielService.getColumn("libbur").setMaxWidth(400);
+               tableMaterielService.setDefaultEditor(Object.class, null);
+            }catch(IndexOutOfBoundsException ex){
+                   JOptionPane.showMessageDialog(this,"Choisissez une immobilisation à supprimer");
+           }catch(SQLException exe){
+                JOptionPane.showMessageDialog(this,"Suppression impossible");
+           }
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

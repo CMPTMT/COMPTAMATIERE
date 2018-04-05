@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="c16c5841-e86c-4c6e-9d83-eff7a26687c1">
 	<property name="ireport.zoom" value="1.0"/>
-	<property name="ireport.x" value="54"/>
+	<property name="ireport.x" value="65"/>
 	<property name="ireport.y" value="41"/>
 	<parameter name="service" class="java.lang.String"/>
 	<parameter name="bureau" class="java.lang.String"/>
@@ -16,6 +16,7 @@
 	<field name="COLUMN_4" class="java.lang.Object"/>
 	<field name="COLUMN_5" class="java.lang.Object"/>
 	<field name="COLUMN_6" class="java.lang.String"/>
+	<field name="COLUMN_7" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -99,7 +100,7 @@ $P{service}]]></textFieldExpression>
 	<columnHeader>
 		<band height="30" splitType="Stretch">
 			<staticText>
-				<reportElement x="24" y="1" width="224" height="28" uuid="3a7e8e69-1875-4ae8-a8e5-97918fba60f8"/>
+				<reportElement x="24" y="1" width="202" height="28" uuid="3a7e8e69-1875-4ae8-a8e5-97918fba60f8"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -111,7 +112,7 @@ $P{service}]]></textFieldExpression>
 				<text><![CDATA[Désignation]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="248" y="1" width="231" height="28" uuid="38677976-c9b8-4162-8c34-aeb7c9b7856f"/>
+				<reportElement x="226" y="1" width="217" height="28" uuid="38677976-c9b8-4162-8c34-aeb7c9b7856f"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -123,7 +124,7 @@ $P{service}]]></textFieldExpression>
 				<text><![CDATA[Codification]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="478" y="1" width="75" height="28" uuid="11587160-f04c-46c6-af83-d27d1a93313c"/>
+				<reportElement x="442" y="1" width="75" height="28" uuid="11587160-f04c-46c6-af83-d27d1a93313c"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -135,7 +136,7 @@ $P{service}]]></textFieldExpression>
 				<text><![CDATA[Date acquisition]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="627" y="1" width="92" height="28" uuid="9792d953-2c31-4dc2-82d0-36379c5f9af0"/>
+				<reportElement x="591" y="1" width="74" height="28" uuid="9792d953-2c31-4dc2-82d0-36379c5f9af0"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -160,7 +161,7 @@ $P{service}]]></textFieldExpression>
 				<text><![CDATA[N°]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="719" y="1" width="83" height="28" uuid="8b0d22e3-7308-4e2d-8e02-116ea208cedc"/>
+				<reportElement x="665" y="1" width="137" height="28" uuid="8b0d22e3-7308-4e2d-8e02-116ea208cedc"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -173,7 +174,7 @@ $P{service}]]></textFieldExpression>
 				<text><![CDATA[Observation]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="553" y="1" width="74" height="28" uuid="3e968706-ac96-4c28-8108-edd5df79b6b9"/>
+				<reportElement x="517" y="1" width="74" height="28" uuid="3e968706-ac96-4c28-8108-edd5df79b6b9"/>
 				<box>
 					<topPen lineWidth="1.0"/>
 					<leftPen lineWidth="1.0"/>
@@ -188,8 +189,8 @@ $P{service}]]></textFieldExpression>
 	</columnHeader>
 	<detail>
 		<band height="35" splitType="Stretch">
-			<textField>
-				<reportElement stretchType="RelativeToTallestObject" x="24" y="0" width="224" height="35" uuid="72458c84-3bed-4ad1-ba41-04a90f7bef3a"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="24" y="0" width="202" height="35" uuid="72458c84-3bed-4ad1-ba41-04a90f7bef3a"/>
 				<box leftPadding="2">
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
@@ -200,7 +201,7 @@ $P{service}]]></textFieldExpression>
 				<textFieldExpression><![CDATA[$F{COLUMN_0}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToTallestObject" x="248" y="1" width="230" height="34" uuid="ea1f7291-59e2-4da1-ba58-2be439d6a87b"/>
+				<reportElement stretchType="RelativeToTallestObject" x="226" y="1" width="216" height="34" uuid="ea1f7291-59e2-4da1-ba58-2be439d6a87b"/>
 				<box leftPadding="2">
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
@@ -211,7 +212,7 @@ $P{service}]]></textFieldExpression>
 				<textFieldExpression><![CDATA[$F{COLUMN_1}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement stretchType="RelativeToTallestObject" x="478" y="1" width="75" height="34" uuid="277a9f42-cb28-4ba0-ab8a-bc31da51b44a"/>
+				<reportElement stretchType="RelativeToTallestObject" x="442" y="1" width="75" height="34" uuid="277a9f42-cb28-4ba0-ab8a-bc31da51b44a"/>
 				<box leftPadding="2">
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
@@ -222,7 +223,7 @@ $P{service}]]></textFieldExpression>
 				<textFieldExpression><![CDATA[$F{COLUMN_3}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement stretchType="RelativeToTallestObject" x="553" y="0" width="74" height="35" uuid="ec9124ad-3855-4f5f-a5bb-1fbfb7dc0546"/>
+				<reportElement stretchType="RelativeToTallestObject" x="517" y="0" width="74" height="35" uuid="ec9124ad-3855-4f5f-a5bb-1fbfb7dc0546"/>
 				<box leftPadding="2">
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
@@ -233,7 +234,7 @@ $P{service}]]></textFieldExpression>
 				<textFieldExpression><![CDATA[$F{COLUMN_4}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement stretchType="RelativeToTallestObject" x="627" y="1" width="92" height="34" uuid="0d51b9bc-d9cc-4d44-865d-2960fc2988f9"/>
+				<reportElement stretchType="RelativeToTallestObject" x="591" y="1" width="74" height="34" uuid="0d51b9bc-d9cc-4d44-865d-2960fc2988f9"/>
 				<box leftPadding="2">
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
@@ -243,8 +244,8 @@ $P{service}]]></textFieldExpression>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{COLUMN_6}]]></textFieldExpression>
 			</textField>
-			<textField isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToTallestObject" x="719" y="0" width="83" height="35" uuid="14157db7-0fa1-4c7f-bc71-441bdee44bda"/>
+			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
+				<reportElement stretchType="RelativeToTallestObject" x="665" y="0" width="137" height="35" uuid="14157db7-0fa1-4c7f-bc71-441bdee44bda"/>
 				<box leftPadding="2">
 					<leftPen lineWidth="1.0"/>
 					<bottomPen lineWidth="1.0"/>
@@ -253,7 +254,7 @@ $P{service}]]></textFieldExpression>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="SansSerif" size="9"/>
 				</textElement>
-				<textFieldExpression><![CDATA[]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{COLUMN_7}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement stretchType="RelativeToTallestObject" x="0" y="-2" width="24" height="37" uuid="0ef85b06-7805-4a6d-912c-5db57dab31f7"/>
