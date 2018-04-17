@@ -67,6 +67,11 @@ public class Budget extends javax.swing.JDialog{
         jButton4.setText("Imprimer");
 
         jButton1.setText("Supprimer");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         btnModifier.setText("Modifier");
         btnModifier.addActionListener(new java.awt.event.ActionListener() {
@@ -208,6 +213,24 @@ public class Budget extends javax.swing.JDialog{
         // TODO add your handling code here:
         this.setVisible(false);
     }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      try{
+        String idbugString=table.getValueAt(table.getSelectedRow(),b.getColumnByName(table,"idbudget")).toString();        
+        if(b.isExist("bon","idbudget",idbugString))
+            JOptionPane.showMessageDialog(this,"ce budget est utlisé, suppression impossible");
+        else{
+             int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous supprimer?","confirmation",JOptionPane.YES_NO_OPTION);
+             if(reponse==JOptionPane.YES_OPTION){
+                JOptionPane.showMessageDialog(this,b.insUpdateDel("delete from budget where idbudget="+idbugString)+" suppression réussie");
+             }
+           }
+        } catch(IndexOutOfBoundsException ex){
+          JOptionPane.showMessageDialog(this,"Choisissez budget à supprimer,SVP");
+        } catch(SQLException ex){
+          JOptionPane.showMessageDialog(this,ex.getMessage());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

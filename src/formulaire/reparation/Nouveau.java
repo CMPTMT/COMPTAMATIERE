@@ -5,10 +5,11 @@
 package formulaire.reparation;
 
 import comptamatiere.REPARATION;
-import formulaire.Fournisseurs.Nouveau2;
+import formulaire.fournisseurs.Nouveau2;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.regex.Pattern;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
@@ -379,7 +380,11 @@ public class Nouveau extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-         
+        try {
+           alP=r.getComboELement("select idfournisseur,raisonsocial from fournisseur where typefounisseur='prestataire'",cmbPrestatataire);
+        } catch (SQLException ex) {
+            Logger.getLogger(Nouveau.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_formComponentShown
 
     private void tableMaterielServiceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableMaterielServiceMouseClicked
@@ -419,8 +424,9 @@ public class Nouveau extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-         NOUVEAUPRESTATAIRE Nb = new NOUVEAUPRESTATAIRE(new JFrame(),true);
-        Nb.setVisible(true);
+         Nouveau2 n = new Nouveau2(new JFrame(),true);
+         n.typeFournisseur="Prestataire";
+         n.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowGainedFocus(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowGainedFocus

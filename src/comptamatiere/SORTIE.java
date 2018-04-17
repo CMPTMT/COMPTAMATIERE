@@ -37,7 +37,7 @@ public class SORTIE extends ModelDb {
         ResultSet req=getResultSet("SELECT article.idarticle,DETAILSORTIE.idDETAILBON as ligne, DETAILSORTIE.PU_SORTIE, article.LIBARTICLE, DETAILSORTIE.QTE_SORTIE,DETAILSORTIE.type FROM DETAILSORTIE,article WHERE idSORTIE =" + Id + " AND DETAILSORTIE.idARTICLE = article.idARTICLE  ");
         DefaultTableModel model=(DefaultTableModel) Jt.getModel();
         while  (req.next()) {
-           Object[] Obj = {req.getString("idarticle"),req.getString("ligne"),req.getString("LIBARTICLE"),req.getString("QTE_SORTIE"),req.getInt("PU_SORTIE"),req.getInt("QTE_SORTIE")*req.getInt("PU_SORTIE"),req.getString("type")};
+           Object[] Obj = {req.getString("idarticle"),req.getString("ligne"),req.getString("LIBARTICLE"),req.getString("QTE_SORTIE"),req.getDouble("PU_SORTIE"),req.getInt("QTE_SORTIE")*req.getDouble("PU_SORTIE"),req.getString("type")};
            model.addRow(Obj);
            Jt.setModel(model); 
           }    

@@ -487,13 +487,15 @@ public class Reception extends javax.swing.JFrame{
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         if(txtRefFacture.getText().isEmpty())
-        JOptionPane.showMessageDialog(this,"Saisissez les références de la facture");
+            JOptionPane.showMessageDialog(this,"Saisissez les références de la facture");
         else if(txtRefBordereau.getText().isEmpty())
-        JOptionPane.showMessageDialog(this,"saisissez les références du bordereau");
+            JOptionPane.showMessageDialog(this,"saisissez les références du bordereau");
         else if(txtDateFacture.getDate()==null)
-        JOptionPane.showMessageDialog(this,"date facture non saisie");
+            JOptionPane.showMessageDialog(this,"date facture non saisie");
         else if(txtDateBordereau.getDate()==null)
-        JOptionPane.showMessageDialog(this,"date bordereau incorrecte");
+            JOptionPane.showMessageDialog(this,"date bordereau incorrecte");
+         else if(txtDateBordereau.getDate().before(txtDateFacture.getDate()))
+            JOptionPane.showMessageDialog(this,"date bordereau ne peut pas être avant celle de facture");   
         else{
             int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous enregistrez?","confirmation",JOptionPane.YES_NO_OPTION);
             if(reponse==JOptionPane.YES_OPTION){
@@ -504,6 +506,14 @@ public class Reception extends javax.swing.JFrame{
                         String valeur[]={idBon,txtRefFacture.getText(),b.getDateChoisie(txtDateFacture),txtRefBordereau.getText(),b.getDateChoisie(txtDateBordereau)};
                         int i=b.Insertion("ENTREE(IDBON, REFFACTURE, DATEFACTURE, REFBORDEREAU, DATEBORD)",valeur);
                         JOptionPane.showMessageDialog(this, i+" reception effectuée");
+                        //vidage des champs
+                         txtDateBordereau.setDate(null);
+                                txtDateFacture.setDate(null);
+                                txtRefBordereau.setText("");
+                                txtMontantBonReception.setText("");
+                                txtRefFacture.setText("");
+                                b.viderJtable(tableDetailBon);
+                                
                         //edition de ordre entree
                         int reponseO= JOptionPane.showConfirmDialog(this,"Edition de l\'ordre d\'entrée?","confirmation",JOptionPane.YES_NO_OPTION);
                         if(reponseO==JOptionPane.YES_OPTION){
@@ -511,6 +521,7 @@ public class Reception extends javax.swing.JFrame{
                                 String codeB=b.getOneResult("select idbudget from bon where idbon="+idBon);
                                 String codeF=b.getOneResult("select idfournisseur from bon where idbon="+idBon);
                                 b.printReportBon(idBon,codeB,codeF);
+                               
                             } catch (Exception ex) {
                                 JOptionPane.showMessageDialog(this,ex.getMessage());
                             }

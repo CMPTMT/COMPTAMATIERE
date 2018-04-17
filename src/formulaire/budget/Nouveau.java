@@ -155,21 +155,31 @@ public class Nouveau extends javax.swing.JDialog{
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-     
-        int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous enregistrez?","confirmation",JOptionPane.YES_NO_OPTION);
-        if(reponse==JOptionPane.YES_OPTION){
-            try {
-                String valeur[]={txtLibelle.getText(),txtSigle.getText()};
-                int i=b.Insertion("BUDGET(LIBBUDGET,SIGLE)",valeur);
-                JOptionPane.showMessageDialog(this, i+" budget engistré");
-                if(i==1){
-                    txtLibelle.setText(null);
-                    txtSigle.setText(null);
-                }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this,ex.getMessage());
+      try{
+            if(txtLibelle.getText().trim().isEmpty()){
+                JOptionPane.showMessageDialog(this,"saisissez libellé du budget");
             }
+            else if(txtSigle.getText().trim().isEmpty()){
+                JOptionPane.showMessageDialog(this,"saisissez sigle du budget");
+            }
+            else if(b.isExist("budget","sigle",txtSigle.getText())){
+                  JOptionPane.showMessageDialog(this,txtSigle.getText()+" existe déjà");
+            }
+            else{
+                int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous enregistrez?","confirmation",JOptionPane.YES_NO_OPTION);
+                if(reponse==JOptionPane.YES_OPTION){
 
+                        String valeur[]={txtLibelle.getText(),txtSigle.getText()};
+                        int i=b.Insertion("BUDGET(LIBBUDGET,SIGLE)",valeur);
+                        JOptionPane.showMessageDialog(this, i+" budget engistré");
+                        if(i==1){
+                            txtLibelle.setText(null);
+                            txtSigle.setText(null);
+                        }               
+                  }
+            }
+        } catch (SQLException ex) {
+                  JOptionPane.showMessageDialog(this,ex.getMessage());
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

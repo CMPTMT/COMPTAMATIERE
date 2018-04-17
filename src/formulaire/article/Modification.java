@@ -362,6 +362,7 @@ public class Modification extends javax.swing.JDialog {
             txtStockInit.setText(String.valueOf(a.STOCKINIT));
             txtUniteMesure.setText(a.UNITEMESURE);
             txtPu.setText(String.valueOf(a.PRIXUNITAIRE)); 
+            
             //cmbCategorie.addItem(a.LIBCATEGORIE);
             
          
@@ -417,7 +418,18 @@ public class Modification extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-
+        if(txtArticle.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"saisissez le libellé d\'article,SVP");
+        }
+        else if(codeD.getText().isEmpty())
+            JOptionPane.showMessageDialog(this,"Choisissez la catégorie de l\'article,SVP");
+        else if(txtDateStockInit.getDate()==null)
+             JOptionPane.showMessageDialog(this,"choisissez la date stock initiale,SVP");
+         else if(txtUniteMesure.getText().isEmpty())
+            JOptionPane.showMessageDialog(this,"saisissez unité de mesure,SVP");
+         else if(!a.isInteger(txtPu.getText().trim()))
+              JOptionPane.showMessageDialog(this,"valeur incorrecte de prix unitaire");
+         else{
         int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous enregistrez?","confirmation",JOptionPane.YES_NO_OPTION);
         if(reponse==JOptionPane.YES_OPTION){
             try {
@@ -441,7 +453,7 @@ public class Modification extends javax.swing.JDialog {
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this,ex.getMessage());
             }
-
+        }
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 

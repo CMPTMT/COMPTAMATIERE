@@ -8,6 +8,8 @@ import comptamatiere.CATEGORIE;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -247,35 +249,47 @@ public class Modification extends javax.swing.JDialog {
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         setBounds((screenSize.width-601)/2, (screenSize.height-381)/2, 601, 381);
     }// </editor-fold>//GEN-END:initComponents
-  public CATEGORIE c=null;
+ // public CATEGORIE c=null;
   ArrayList elP,elD;
    public CATEGORIE ca=new CATEGORIE();  
     public String IDCAT;
     ArrayList alP;
     CATEGORIE r=new CATEGORIE();
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-       if(txtCategorie.getText().isEmpty()||txtCategorie.getText().trim()=="0"){
+         boolean exist=false;
+        try{         
+            exist= ca.checkDoublon("select count(*) from categorie where libcategorie='"+ca.parseSqlString(txtCategorie.getText())+"' and idcategorie<>"+IDCAT);
+          // JOptionPane.showMessageDialog(this, ex.getMessage());
+        } catch (SQLException ex) {
+            Logger.getLogger(Modification.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+        if(txtCategorie.getText().isEmpty()||txtCategorie.getText().trim()=="0"){
             JOptionPane.showMessageDialog(this, "Saisissez la Désignation de la catégorie");
         }
-       else if(codeF.getText().isEmpty()||codeF.getText().trim()=="0")
+        else if(!ca.isInteger(txtDureVie.getText()))
+                JOptionPane.showMessageDialog(this, "Durée de vie corrrecte");  
+        
+        else if(codeF.getText().isEmpty()||codeF.getText().trim()=="0")
             JOptionPane.showMessageDialog(this, "Choisissez la famille de l\'article");
-        else if(numerocompte.getText().isEmpty()||numerocompte.getText().trim()=="0"){
-            JOptionPane.showMessageDialog(this, "Saisissez le Numero de Compte");
+        else if(numerocompte.getText().isEmpty()||numerocompte.getText().trim()=="0"||!ca.isInteger(numerocompte.getText())){
+            JOptionPane.showMessageDialog(this, "Numero de Compte incorrecte");
         }
+        else if(exist)
+             JOptionPane.showMessageDialog(this, txtCategorie.getText()+" existe déjà");
         else if (codeIcat.getText().isEmpty()){JOptionPane.showMessageDialog(this, "Saisissez l\'etiquettage");}
         else{
-        int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous modifiez?","confirmation",JOptionPane.YES_NO_OPTION);
-        if(reponse==JOptionPane.YES_OPTION){
-            try {
-                String champ[]={"IDCATEGORIE", "LIBCATEGORIE", "DUREEVIE","codeicat","idCOMPTED","idFAMILLE","numeroCompte"};
-                String valeur[]={idCategorie.getText(),txtCategorie.getText(),txtDureVie.getText(),codeIcat.getText(),CodeD.getText(),codeF.getText(),numerocompte.getText()};
-                int i=ca.updateTable("categorie", champ, valeur,"where idcategorie="+idCategorie.getText());
-                JOptionPane.showMessageDialog(this, i+" catégorie modifié");
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this,ex.getMessage());
+            int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous modifiez?","confirmation",JOptionPane.YES_NO_OPTION);
+            if(reponse==JOptionPane.YES_OPTION){
+                try {
+                    String champ[]={"IDCATEGORIE", "LIBCATEGORIE", "DUREEVIE","codeicat","idCOMPTED","idFAMILLE","numeroCompte"};
+                    String valeur[]={idCategorie.getText(),txtCategorie.getText(),txtDureVie.getText(),codeIcat.getText(),CodeD.getText(),codeF.getText(),numerocompte.getText()};
+                    int i=ca.updateTable("categorie", champ, valeur,"where idcategorie="+idCategorie.getText());
+                    JOptionPane.showMessageDialog(this, i+" catégorie modifié");
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(this,ex.getMessage());
+                }
             }
-
-        }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

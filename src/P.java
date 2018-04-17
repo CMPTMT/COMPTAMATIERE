@@ -1,6 +1,6 @@
 
 import comptamatiere.INSTITUTION;
-import formulaire.Fournisseurs.Fournisseur2;
+import formulaire.fournisseurs.Fournisseur2;
 import java.awt.Cursor;
 import java.awt.Toolkit;
 import java.sql.SQLException;

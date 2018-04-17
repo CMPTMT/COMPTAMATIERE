@@ -3,8 +3,6 @@ import bdd.Parametre_Connect;
 import comptamatiere.COMPTEUTILISATEUR;
 import control.Controle;
 import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

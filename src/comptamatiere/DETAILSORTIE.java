@@ -16,7 +16,7 @@ public class DETAILSORTIE extends SORTIE {
             ResultSet req=getResultSet("select idSortie,detailsortie.QTE,detailsortie.pu, detailsortie.idDETAILBON,article.idARTICLE,LIBARTICLE from detailsortie,detailbon,article where idSORTIE= 16 and detailsortie.idDETAILBON=detailbon.idDETAILBON and detailbon.idARTICLE=article.idARTICLE ");
             DefaultTableModel model=(DefaultTableModel) Jt.getModel();
             while  (req.next()) {
-               Object[] Obj = {req.getInt("article.idARTICLE"),req.getString("LIBARTICLE"),req.getInt("detailsortie.QTE"),req.getInt("detailsortie.pu"),req.getInt("detailsortie.idDETAILBON"),req.getInt("detailsortie.idDETAILBON")};
+               Object[] Obj = {req.getInt("article.idARTICLE"),req.getString("LIBARTICLE"),req.getInt("detailsortie.QTE"),req.getDouble("detailsortie.pu"),req.getInt("detailsortie.idDETAILBON"),req.getInt("detailsortie.idDETAILBON")};
                model.addRow(Obj);
                Jt.setModel(model); 
                }

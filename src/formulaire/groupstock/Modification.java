@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 public class Modification extends javax.swing.JDialog {
 
    public String idgroup,libgroup;
-   public GROUPESTOCK gp=null;
+   public GROUPESTOCK g=new GROUPESTOCK();
     public Modification(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -126,25 +126,31 @@ public class Modification extends javax.swing.JDialog {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
-      GROUPESTOCK grps= new GROUPESTOCK();
+     
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       try{
+           if(txtGroupStock.getText().trim().isEmpty()){
+              JOptionPane.showMessageDialog(this,"saisissez libellé du budget");
+           } 
+        else if(g.checkDoublon("select count(*) from groupestock where libgroupestock='"+g.parseSqlString(txtGroupStock.getText())+"' and idgroupestock<>"+g.IDGROUPESTOCK)){
+                      JOptionPane.showMessageDialog(this,txtGroupStock.getText()+" existe déjà");
+        }else{
+            int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous modifiez?","confirmation",JOptionPane.YES_NO_OPTION);
+            if(reponse==JOptionPane.YES_OPTION){
 
-        int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous modifiez?","confirmation",JOptionPane.YES_NO_OPTION);
-        if(reponse==JOptionPane.YES_OPTION){
-            try {
-                String champ[]={"LIBGROUPESTOCK"};
-                String valeur[]={txtGroupStock.getText()};
-                int i=grps.updateTable("groupestock", champ, valeur,"where idgroupestock="+gp.getIDGROUPESTOCK());
-                JOptionPane.showMessageDialog(this, i+" groupe de stock modifié");
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this,ex.getMessage());
+                    String champ[]={"LIBGROUPESTOCK"};
+                    String valeur[]={txtGroupStock.getText()};
+                    int i=g.updateTable("groupestock", champ, valeur,"where idgroupestock="+g.getIDGROUPESTOCK());
+                    JOptionPane.showMessageDialog(this, i+" groupe de stock modifié");
             }
-
+        }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this,ex.getMessage());
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        txtGroupStock.setText(gp.LIBGROUPESTOCK);
+        txtGroupStock.setText(g.LIBGROUPESTOCK);
     }//GEN-LAST:event_formComponentShown
 
     /**

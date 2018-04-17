@@ -758,7 +758,7 @@ public class Modification extends  javax.swing.JDialog {
                 String champ[]={"idBUREAU", "NUMPJ", "DATESORTIE", "budget", "ATITRE", "OBJET", "MOTIF"};
                 String valeur[]={codeBureau.getText(), txtPj.getText(),sortie.getDateChoisie(DateSortie),codeB.getText(), txtAtitre.getText(), txtobjet.getText(), TextMotif.getText()};
                 int i=sortie.updateTable("sortie",champ,valeur,"where idsortie="+idSortieM);
-                JOptionPane.showConfirmDialog(this,i+" bon de sortie modifié");
+                JOptionPane.showMessageDialog(this,i+" ordre de sortie modifié");
                 
                 //remise des articles dans le stock avant suppression
                  d.remiseDansStock(idSortieM);

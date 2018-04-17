@@ -37,19 +37,19 @@ public class NouveauCompteUtil extends javax.swing.JDialog {
         jLabel9 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         txtCompte = new javax.swing.JTextField();
-        txtPasse = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         txtNom = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         txtPrenom = new javax.swing.JTextField();
-        txtPasseR = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         cmbTypeUser = new javax.swing.JComboBox();
         jLabel13 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jButton10 = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
+        txtPasse = new javax.swing.JPasswordField();
+        txtPasseR = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(java.awt.Color.white);
@@ -134,25 +134,14 @@ public class NouveauCompteUtil extends javax.swing.JDialog {
                     .addComponent(jLabel8)
                     .addComponent(jLabel11)
                     .addComponent(jLabel10))
-                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(cmbTypeUser, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(txtPasse, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(21, 21, 21)))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(txtPasseR, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(21, 21, 21)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNom, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPrenom, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtCompte, javax.swing.GroupLayout.PREFERRED_SIZE, 255, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(cmbTypeUser, 0, 255, Short.MAX_VALUE)
+                        .addComponent(txtNom, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                        .addComponent(txtPrenom, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                        .addComponent(txtCompte, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                        .addComponent(txtPasse))
+                    .addComponent(txtPasseR, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
             .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -183,12 +172,12 @@ public class NouveauCompteUtil extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel13)
                     .addComponent(cmbTypeUser, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(txtPasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
-                .addGap(37, 37, 37)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtPasse, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(txtPasseR, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -201,25 +190,35 @@ public class NouveauCompteUtil extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
     COMPTEUTILISATEUR c= new COMPTEUTILISATEUR();
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous enregistrez?","confirmation",JOptionPane.YES_NO_OPTION);
-        if(txtPasse.getText().equals("")){ JOptionPane.showMessageDialog(this, "mot de passe obligatoire"); }      
-        else if(!txtPasse.getText().equals(txtPasseR.getText())){ JOptionPane.showMessageDialog(this,"les mots de passe ne correspondent pas");}      
-        else if(reponse==JOptionPane.YES_OPTION){
-            try {
-                String valeur[]={txtCompte.getText(),txtPasse.getText(),cmbTypeUser.getSelectedItem().toString(),txtNom.getText(),txtPrenom.getText()};
-                int i=c.Insertion("COMPTEUTILISATEUR(LOGIN,MOTPASSE,TYPEUSER,NOM,PRENOMS)",valeur);
-                JOptionPane.showMessageDialog(this, i+" utilisateur ajouté");
-                if(i==1){
-                    txtCompte.setText(null);
-                    txtPasse.setText(null);
-                    txtNom.setText(null);
-                    txtPrenom.setText(null);
-                    txtPasseR.setText(null);
-                }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this,ex.getMessage());
+      try{
+            if(txtNom.getText().trim().isEmpty()||txtPrenom.getText().trim().isEmpty())
+                JOptionPane.showMessageDialog(this,"Saisissez nom et prénoms de l\'utilisateur");
+             else if(txtPasse.getText().trim().isEmpty()){ 
+                JOptionPane.showMessageDialog(this, "mot de passe obligatoire");
             }
-        }
+            else if(!txtPasse.getText().equals(txtPasseR.getText())){
+                  JOptionPane.showMessageDialog(this,"Les mots de passe ne correspondent pas");
+            }           
+            else if(txtCompte.getText().trim().isEmpty()){
+                  JOptionPane.showMessageDialog(this,"précisez le compte");
+            }else{
+              int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous enregistrez?","confirmation",JOptionPane.YES_NO_OPTION);       
+                 if(reponse==JOptionPane.YES_OPTION){        
+                      String valeur[]={txtCompte.getText(),txtPasse.getText(),cmbTypeUser.getSelectedItem().toString(),txtNom.getText(),txtPrenom.getText()};
+                      int i=c.Insertion("COMPTEUTILISATEUR(LOGIN,MOTPASSE,TYPEUSER,NOM,PRENOMS)",valeur);
+                      JOptionPane.showMessageDialog(this, i+" utilisateur ajouté");
+                      if(i==1){
+                          txtCompte.setText(null);
+                          txtPasse.setText(null);
+                          txtNom.setText(null);
+                          txtPrenom.setText(null);
+                          txtPasseR.setText(null);
+                      }         
+                  }
+               }
+        }catch(SQLException ex) {
+                   JOptionPane.showMessageDialog(this,ex.getMessage());
+               }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -282,8 +281,8 @@ public class NouveauCompteUtil extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel10;
     private javax.swing.JTextField txtCompte;
     private javax.swing.JTextField txtNom;
-    private javax.swing.JTextField txtPasse;
-    private javax.swing.JTextField txtPasseR;
+    private javax.swing.JPasswordField txtPasse;
+    private javax.swing.JPasswordField txtPasseR;
     private javax.swing.JTextField txtPrenom;
     // End of variables declaration//GEN-END:variables
 }

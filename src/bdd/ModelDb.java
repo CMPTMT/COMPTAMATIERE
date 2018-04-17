@@ -34,11 +34,29 @@ public class ModelDb{
     //pour pouvoir verifier controler la disponibilite de la connexion
     Connection cnt = null;     
     
-    public ModelDb(){
-      
+    public ModelDb(){      
     }
-     public boolean checkDoublon(String query) throws SQLException{
+    public String parseSqlString(String sql){
+        return sql.replace("'","''");
+    }
+    //cette methode marche pour tout type de checkdoublon mais trop bien pour les injections
+    //à utiliser quand pas besoin de injection
+    public boolean checkDoublon(String query) throws SQLException{
         return this.getOneResult(query).equalsIgnoreCase("0")?false:true;
+     }
+    
+     public boolean isExist(String table,String champ, String valeur) throws SQLException{
+        Connection cn=getConnection();
+        PreparedStatement ps = (PreparedStatement)cn.prepareStatement("select count(*) from "+table+" where "+ champ+"=?");
+        ps.setString(1,valeur);        
+         ResultSet rs=ps.executeQuery();
+         rs.next();
+         if(rs.getInt(1)==0)
+             return false;
+         cn.close();
+         rs.close();
+        return true;
+         
      }
     
       public  Double Arrondi(float a) {
@@ -60,7 +78,7 @@ public class ModelDb{
     
     public String formatageMontant(Object montant){
          NumberFormat nf=NumberFormat.getInstance(Locale.FRENCH);
-         if(montant instanceof Integer)
+         if(montant instanceof Integer||montant instanceof String)
             return nf.format(Integer.parseInt(montant.toString()));
          else if(montant instanceof Double|| montant instanceof Float)
            return nf.format(Double.parseDouble(montant.toString()));
@@ -116,6 +134,7 @@ public class ModelDb{
 }
     
     public void setAfficherDate(JDateChooser jDt,String dt) throws ParseException{
+        if(!dt.isEmpty()&&dt!=null)
         jDt.setDate(new SimpleDateFormat("yyyy-MM-dd").parse(dt));
         
     }
@@ -391,9 +410,9 @@ public class ModelDb{
                     }
                   
              } else if(i==18){
-                 int Mont=0;
-                 Mont= QtePrecedent* rs.getInt("pustock");
-               rowData[i - 1] = Integer.toString(Mont);
+                 Double Mont=0.00;
+                 Mont= QtePrecedent* rs.getDouble("pustock");
+               rowData[i - 1] = Double.toString(Mont);
              } else{
             rowData[i - 1] = rs.getString(i);
             }

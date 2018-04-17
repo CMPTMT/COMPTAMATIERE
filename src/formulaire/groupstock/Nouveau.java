@@ -119,18 +119,23 @@ public class Nouveau extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 GROUPESTOCK grps= new GROUPESTOCK();
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-
-        int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous enregistrez?","confirmation",JOptionPane.YES_NO_OPTION);
-        if(reponse==JOptionPane.YES_OPTION){
-            try {
-                String valeur[]={txtGroupStock.getText()};
-                int i=grps.Insertion("GROUPESTOCK(LIBGROUPESTOCK)",valeur);
-                JOptionPane.showMessageDialog(this, i+" groupe de stock engistré");
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this,ex.getMessage());
+       try{
+            if(txtGroupStock.getText().trim().isEmpty()){
+                    JOptionPane.showMessageDialog(this,"saisissez libellé du groupe");
+                }
+            else if(grps.isExist("groupestock","libgroupestock",txtGroupStock.getText())){
+                      JOptionPane.showMessageDialog(this,txtGroupStock.getText()+" existe déjà");
+            }else{          
+                    int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous enregistrez?","confirmation",JOptionPane.YES_NO_OPTION);
+                    if(reponse==JOptionPane.YES_OPTION){
+                            String valeur[]={txtGroupStock.getText()};
+                            int i=grps.Insertion("GROUPESTOCK(LIBGROUPESTOCK)",valeur);
+                            JOptionPane.showMessageDialog(this, i+" groupe de stock engistré");              
+                    }
             }
-
-        }
+        } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(this,ex.getMessage());
+       }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed

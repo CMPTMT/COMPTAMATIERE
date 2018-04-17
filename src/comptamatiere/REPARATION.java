@@ -12,14 +12,14 @@ import java.util.Date;
 public class REPARATION extends PRESTATAIRE{
    public int idREPARATION;
    public String LIBREPARATION;
-   public int MONTANT;
+   public Double MONTANT;
    public java.util.Date DATEREPARATION;
    public String IDPRESTATAIRE;
    public String IDIMMOBLISATIIONMATERIEL;
    
   // DETAILSORTIE d= new DETAILSORTIE();
    
-   public  REPARATION(int idreparation,String idPrestat,String idimmo,String librepa,int montant,Date daterepa){
+   public  REPARATION(int idreparation,String idPrestat,String idimmo,String librepa,Double montant,Date daterepa){
        this.idREPARATION=idreparation;
        this.LIBREPARATION=librepa;
        this.MONTANT=montant;
@@ -36,7 +36,7 @@ public class REPARATION extends PRESTATAIRE{
         rs.next();
         this.idREPARATION= rs.getInt("idREPARATION");
         this.LIBREPARATION=rs.getString("LIBREPARATION");
-        this.MONTANT=rs.getInt("MONTANT");
+        this.MONTANT=rs.getDouble("MONTANT");
         this.DATEREPARATION=rs.getDate("DATEREPARATION");
         this.IDPRESTATAIRE=rs.getString("idPRESTATAIRE");  
         this.IDIMMOBLISATIIONMATERIEL=rs.getString("idimmobilisationmateriel");

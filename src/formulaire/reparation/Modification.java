@@ -5,6 +5,7 @@
 package formulaire.reparation;
 
 import comptamatiere.REPARATION;
+import formulaire.fournisseurs.Nouveau2;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -410,7 +411,7 @@ public class Modification extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        NOUVEAUPRESTATAIRE Nb = new NOUVEAUPRESTATAIRE(new JFrame(),true);
+        Nouveau2 Nb = new Nouveau2(new JFrame(),true);
         Nb.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

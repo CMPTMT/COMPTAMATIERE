@@ -579,6 +579,7 @@ public class NouveauPropositionReforme extends javax.swing.JDialog {
             idimmo=tableMaterielService.getValueAt(tableMaterielService.getSelectedRow(),s.getColumnByName(tableMaterielService,"idimmobilisationmateriel")).toString();
             txtArticle.setText(tableMaterielService.getValueAt(tableMaterielService.getSelectedRow(),s.getColumnByName(tableMaterielService,"article")).toString());   
             txtBur.setText(tableMaterielService.getValueAt(tableMaterielService.getSelectedRow(),s.getColumnByName(tableMaterielService,"bureau")).toString());
+            JOptionPane.showMessageDialog(this, "montant est "+a.formatageMontant(tableMaterielService.getValueAt(tableMaterielService.getSelectedRow(),s.getColumnByName(tableMaterielService,"puacq"))));
             txtMontantacqui.setText(a.formatageMontant(tableMaterielService.getValueAt(tableMaterielService.getSelectedRow(),s.getColumnByName(tableMaterielService,"puacq")).toString())); 
         try {
             r.setAfficherDate(dateMs, tableMaterielService.getValueAt(tableMaterielService.getSelectedRow(),s.getColumnByName(tableMaterielService,"dms")).toString());

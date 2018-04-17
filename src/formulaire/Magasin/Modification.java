@@ -34,8 +34,8 @@ public class Modification extends javax.swing.JDialog{
     private void initComponents() {
 
         contactmagasin = new javax.swing.JTextField();
-        gerantmagasin = new javax.swing.JTextField();
-        libmagasin = new javax.swing.JTextField();
+        txtgerantmagasin = new javax.swing.JTextField();
+        txtLibmagasin = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -54,17 +54,17 @@ public class Modification extends javax.swing.JDialog{
 
         contactmagasin.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
 
-        gerantmagasin.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        gerantmagasin.addActionListener(new java.awt.event.ActionListener() {
+        txtgerantmagasin.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        txtgerantmagasin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gerantmagasinActionPerformed(evt);
+                txtgerantmagasinActionPerformed(evt);
             }
         });
 
-        libmagasin.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
-        libmagasin.addActionListener(new java.awt.event.ActionListener() {
+        txtLibmagasin.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
+        txtLibmagasin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                libmagasinActionPerformed(evt);
+                txtLibmagasinActionPerformed(evt);
             }
         });
 
@@ -135,9 +135,9 @@ public class Modification extends javax.swing.JDialog{
                             .add(jLabel1))
                         .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.TRAILING, false)
-                            .add(libmagasin)
+                            .add(txtLibmagasin)
                             .add(contactmagasin, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE)
-                            .add(gerantmagasin))))
+                            .add(txtgerantmagasin))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -147,11 +147,11 @@ public class Modification extends javax.swing.JDialog{
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel1)
-                    .add(libmagasin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(txtLibmagasin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel2)
-                    .add(gerantmagasin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(txtgerantmagasin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(18, 18, 18)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel3)
@@ -167,18 +167,18 @@ public class Modification extends javax.swing.JDialog{
         setBounds((screenSize.width-400)/2, (screenSize.height-254)/2, 400, 254);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void gerantmagasinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerantmagasinActionPerformed
+    private void txtgerantmagasinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtgerantmagasinActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_gerantmagasinActionPerformed
+    }//GEN-LAST:event_txtgerantmagasinActionPerformed
 
-    private void libmagasinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_libmagasinActionPerformed
+    private void txtLibmagasinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLibmagasinActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_libmagasinActionPerformed
+    }//GEN-LAST:event_txtLibmagasinActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
         // TODO add your handling code here:
-        this.libmagasin.setText(Magasin.LIBMAGASIN);
-        this.gerantmagasin.setText(Magasin.MAGASINIER);
+        this.txtLibmagasin.setText(Magasin.LIBMAGASIN);
+        this.txtgerantmagasin.setText(Magasin.MAGASINIER);
         this.contactmagasin.setText(Magasin.CONTACT);
         
     }//GEN-LAST:event_formComponentShown
@@ -188,21 +188,28 @@ public class Modification extends javax.swing.JDialog{
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+       try {
+            if(txtLibmagasin.getText().trim().isEmpty())
+                JOptionPane.showMessageDialog(this, "saisissez libellé magasin");
+            else if(txtgerantmagasin.getText().trim().isEmpty())
+                   JOptionPane.showMessageDialog(this, "saisissez nom gérant");
+            else if(Magasin.checkDoublon("select count(*) from magasin where libmagasin='"+
+                     Magasin.parseSqlString(txtLibmagasin.getText())+"' and idmagasin<>"+Magasin.IDMAGASIN))
+                    JOptionPane.showMessageDialog(this, txtLibmagasin.getText()+" existe déjà");
+            else{
+                // TODO add your handling code here:
+                int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous modifiez?","confirmation",JOptionPane.YES_NO_OPTION);
+                   if(reponse==JOptionPane.YES_OPTION){
 
-         // TODO add your handling code here:
-         int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous modifiez?","confirmation",JOptionPane.YES_NO_OPTION);
-        if(reponse==JOptionPane.YES_OPTION){
-            try {
-                
-                String champ[]={"LIBMAGASIN","MAGASINIER","CONTACT"};
-                String valeur[]={libmagasin.getText(),gerantmagasin.getText(),contactmagasin.getText()};
-                int i=Magasin.updateTable("MAGASIN", champ, valeur,"where IDMAGASIN="+Magasin.IDMAGASIN);
-                JOptionPane.showMessageDialog(this, i+"Modification  succes");
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this,ex.getMessage());
-            }
-
-        }
+                           String champ[]={"LIBMAGASIN","MAGASINIER","CONTACT"};
+                           String valeur[]={txtLibmagasin.getText(),txtgerantmagasin.getText(),contactmagasin.getText()};
+                           int i=Magasin.updateTable("MAGASIN", champ, valeur,"where IDMAGASIN="+Magasin.IDMAGASIN);
+                           JOptionPane.showMessageDialog(this, i+"Modification  succes");              
+                   }
+            } 
+       } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(this,ex.getMessage());
+         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
@@ -248,7 +255,6 @@ public class Modification extends javax.swing.JDialog{
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField contactmagasin;
-    private javax.swing.JTextField gerantmagasin;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
@@ -256,6 +262,7 @@ public class Modification extends javax.swing.JDialog{
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel13;
-    private javax.swing.JTextField libmagasin;
+    private javax.swing.JTextField txtLibmagasin;
+    private javax.swing.JTextField txtgerantmagasin;
     // End of variables declaration//GEN-END:variables
 }

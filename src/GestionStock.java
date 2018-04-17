@@ -1,7 +1,7 @@
 
 import formulaire.Batiment.Batiment;
 //import formulaire.Fournisseurs.Fournisseur;
-import formulaire.Fournisseurs.Fournisseur2;
+import formulaire.fournisseurs.Fournisseur2;
 import formulaire.Immobilisation.NouveauAttente;
 import formulaire.Sortie.Sortie;
 import formulaire.Sortie.ValidationSorti;

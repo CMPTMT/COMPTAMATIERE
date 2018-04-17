@@ -8,6 +8,8 @@ import comptamatiere.CATEGORIE;
 import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -41,7 +43,7 @@ ArrayList elP,elD;
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         codeF = new javax.swing.JTextField();
-        codeC = new javax.swing.JTextField();
+        txtNumeroCompte = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         codeD = new javax.swing.JTextField();
@@ -137,7 +139,7 @@ ArrayList elP,elD;
                                         .addGap(30, 30, 30)
                                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
-                                        .addComponent(codeC)))
+                                        .addComponent(txtNumeroCompte)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -164,7 +166,7 @@ ArrayList elP,elD;
                     .addComponent(codeD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel4)
-                    .addComponent(codeC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtNumeroCompte, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtCategorie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -255,29 +257,37 @@ ArrayList elP,elD;
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-    if(txtCategorie.getText().isEmpty()){
+        boolean exist=false;
+          try {
+            //exist = c.checkDoublon("select count(*) from categorie where libcategorie='"+c.parseSqlString(txtCategorie.getText())+"'");
+              exist = c.isExist("categorie", "libcategorie", txtCategorie.getText());
+        } catch (SQLException ex) {
+            Logger.getLogger(Nouveau.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(txtCategorie.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Saisissez la Désignation de la catégorie");
         }
-        else if(codeC.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this, "Saisissez le Numero de Compte");
-
-        }
+        else if(!c.isInteger(txtDureVie.getText()))
+                JOptionPane.showMessageDialog(this, "Durée de vie corrrecte");        
         else if(codeF.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "Choisissez la famille de l\'article");
         }
         else if (codeIcat.getText().isEmpty()){JOptionPane.showMessageDialog(this, "Saisissez l\'etiquettage");}
-        
-    else{       
+        else if(exist)
+            JOptionPane.showMessageDialog(this,txtCategorie.getText()+ " existe déjà");
+        else if(txtNumeroCompte.getText().isEmpty()||!c.isInteger(txtNumeroCompte.getText()))
+            JOptionPane.showMessageDialog(this, "Numero de compte incorrect");
+       else{       
         int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous enregistrez?","confirmation",JOptionPane.YES_NO_OPTION);
         if(reponse==JOptionPane.YES_OPTION){
           
             try {
-                String valeur[]={codeD.getText(),txtCategorie.getText(),txtDureVie.getText(),codeIcat.getText(),codeC.getText(),codeIcat.getText(),codeF.getText()};
+                String valeur[]={codeD.getText(),txtCategorie.getText(),txtDureVie.getText(),codeIcat.getText(),txtNumeroCompte.getText(),codeIcat.getText(),codeF.getText()};
                 int i=c.Insertion("CATEGORIE(idCOMPTED, LIBCATEGORIE, DUREEVIE,CODICAT,numeroCompte,CODEICAT,idFAMILLE)",valeur);
                 JOptionPane.showMessageDialog(this, i+" catégorie engistrée");
                 if(i==1){
                     txtCategorie.setText(null);
-                    codeC.setText(null);
+                    txtNumeroCompte.setText(null);
                     txtDureVie.setText(null);
                 }
             } catch (SQLException ex) {
@@ -361,7 +371,6 @@ ArrayList elP,elD;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox cmbCompteD;
     private javax.swing.JComboBox cmbFamille;
-    private javax.swing.JTextField codeC;
     private javax.swing.JTextField codeD;
     private javax.swing.JTextField codeF;
     private javax.swing.JTextField codeIcat;
@@ -380,5 +389,6 @@ ArrayList elP,elD;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JTextField txtCategorie;
     private javax.swing.JTextField txtDureVie;
+    private javax.swing.JTextField txtNumeroCompte;
     // End of variables declaration//GEN-END:variables
 }

@@ -4,7 +4,6 @@
  * Purpose: Defines the Class FOURNISSEUR
  ***********************************************************************/
 package comptamatiere;
-import java.util.*;
 import bdd.ModelDb;
 
 public class FOURNISSEUR  extends ModelDb {

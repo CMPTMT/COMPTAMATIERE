@@ -1482,7 +1482,11 @@ public class Nouveau extends javax.swing.JDialog {
         try {
             txtMontantBon.setText(b.formatageMontant(Double.parseDouble(b.parseMontantFomatToString(txtMontantBon.getText()))-Double.parseDouble(tableDetail.getValueAt(tableDetail.getSelectedRow(),b.getColumnByName(tableDetail,"MontantTTC")).toString())));
             ((DefaultTableModel) tableDetail.getModel()).removeRow(tableDetail.getSelectedRow());
-        }catch(Exception ex){}
+         } catch (ParseException ex) {
+            Logger.getLogger(Nouveau.class.getName()).log(Level.SEVERE, null, ex);
+        }catch(ArrayIndexOutOfBoundsException ex){
+           JOptionPane.showMessageDialog(this, "Choisissez le bien à retirer");
+       }
       //  model.removeRow(WIDTH);
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -1549,13 +1553,15 @@ public class Nouveau extends javax.swing.JDialog {
 
     private void btnreceptionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnreceptionActionPerformed
         if(txtRefFacture.getText().isEmpty())
-        JOptionPane.showMessageDialog(this,"Saisissez les références de la facture");
+            JOptionPane.showMessageDialog(this,"Saisissez les références de la facture");
         else if(txtRefBordereau.getText().isEmpty())
-        JOptionPane.showMessageDialog(this,"saisissez les références du bordereau");
+            JOptionPane.showMessageDialog(this,"saisissez les références du bordereau");
         else if(txtDateFacture.getDate()==null)
-        JOptionPane.showMessageDialog(this,"date facture non saisie");
+            JOptionPane.showMessageDialog(this,"date facture non saisie");
         else if(txtDateBordereau.getDate()==null)
-        JOptionPane.showMessageDialog(this,"date bordereau incorrecte");
+             JOptionPane.showMessageDialog(this,"date bordereau incorrecte");
+        else if(txtDateBordereau.getDate().before(txtDateFacture.getDate()))
+            JOptionPane.showMessageDialog(this,"date bordereau ne peut pas être avant celle de facture");
         else{
             int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous enregistrez?","confirmation",JOptionPane.YES_NO_OPTION);
             if(reponse==JOptionPane.YES_OPTION){

@@ -7,6 +7,7 @@ import comptamatiere.MAGASIN;
 import java.awt.Color;
 import java.sql.SQLException;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,7 +39,7 @@ public class Magasin extends javax.swing.JDialog {
         jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
-        Table = new javax.swing.JTable();
+        table = new javax.swing.JTable();
         jPanel12 = new javax.swing.JPanel();
         jPanel13 = new javax.swing.JPanel();
         jButton13 = new javax.swing.JButton();
@@ -74,11 +75,16 @@ public class Magasin extends javax.swing.JDialog {
         });
 
         jButton4.setText("Supprimer");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Imprimer");
 
-        Table.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
-        Table.setModel(new javax.swing.table.DefaultTableModel(
+        table.setFont(new java.awt.Font("Times New Roman", 0, 11)); // NOI18N
+        table.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -89,8 +95,8 @@ public class Magasin extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        Table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        jScrollPane2.setViewportView(Table);
+        table.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jScrollPane2.setViewportView(table);
 
         jPanel12.setBackground(new java.awt.Color(72, 207, 173));
         jPanel12.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 1, 1, 2, new java.awt.Color(255, 255, 255)));
@@ -181,7 +187,7 @@ public class Magasin extends javax.swing.JDialog {
         java.awt.Dimension screenSize = java.awt.Toolkit.getDefaultToolkit().getScreenSize();
         setBounds((screenSize.width-710)/2, (screenSize.height-350)/2, 710, 350);
     }// </editor-fold>//GEN-END:initComponents
-MAGASIN  Magasin= new MAGASIN();
+MAGASIN  magasin= new MAGASIN();
     private void NouvoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NouvoActionPerformed
         // TODO add your handling code here:
         Nouveau Nb = new Nouveau(new JFrame(),true);
@@ -191,13 +197,13 @@ MAGASIN  Magasin= new MAGASIN();
     private void ModifierActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ModifierActionPerformed
         // TODO add your handling code here:
         Modification  Mb = new Modification(new JFrame(),true);
-        Magasin.IDMAGASIN=(Integer.parseInt(Table.getValueAt(Table.getSelectedRow(),0).toString()));
-        Magasin.LIBMAGASIN=((Table.getValueAt(Table.getSelectedRow(),1).toString()));
-        Magasin.MAGASINIER=(Table.getValueAt(Table.getSelectedRow(),2).toString());
-        Magasin.CONTACT=(Table.getValueAt(Table.getSelectedRow(),3).toString());
+        magasin.IDMAGASIN=(Integer.parseInt(table.getValueAt(table.getSelectedRow(),0).toString()));
+        magasin.LIBMAGASIN=((table.getValueAt(table.getSelectedRow(),1).toString()));
+        magasin.MAGASINIER=(table.getValueAt(table.getSelectedRow(),2).toString());
+        magasin.CONTACT=(table.getValueAt(table.getSelectedRow(),3).toString());
                 
-        Mb.Magasin=Magasin;
-
+        Mb.Magasin=magasin;
+        
         Mb.setVisible(true);
     }//GEN-LAST:event_ModifierActionPerformed
 
@@ -209,7 +215,7 @@ MAGASIN  Magasin= new MAGASIN();
    
          // TODO add your handling code here:
         try {
-            Table.setModel(Magasin.getDefaulTableModel("select * from MAGASIN"));
+            table.setModel(magasin.getDefaulTableModel("select * from MAGASIN"));
         } catch (SQLException ex) {
             
         }
@@ -219,6 +225,24 @@ MAGASIN  Magasin= new MAGASIN();
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       try{
+        String idMagasin=table.getValueAt(table.getSelectedRow(),magasin.getColumnByName(table,"idmagasin")).toString();        
+        if(magasin.isExist("detailbon","idmagasin",idMagasin))
+            JOptionPane.showMessageDialog(this,"Magasin est utlisé, suppression impossible");
+        else{
+             int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous supprimer?","confirmation",JOptionPane.YES_NO_OPTION);
+             if(reponse==JOptionPane.YES_OPTION){
+                JOptionPane.showMessageDialog(this,magasin.insUpdateDel("delete from magasin where idmagasin="+idMagasin)+" suppression réussie");
+             }
+           }
+        } catch(IndexOutOfBoundsException ex){
+          JOptionPane.showMessageDialog(this,"Choisissez magasin à Modifier,SVP");
+        } catch(SQLException ex){
+          JOptionPane.showMessageDialog(this,ex.getMessage());
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -264,7 +288,6 @@ MAGASIN  Magasin= new MAGASIN();
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Modifier;
     private javax.swing.JButton Nouvo;
-    private javax.swing.JTable Table;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
@@ -272,5 +295,6 @@ MAGASIN  Magasin= new MAGASIN();
     private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable table;
     // End of variables declaration//GEN-END:variables
 }

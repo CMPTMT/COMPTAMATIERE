@@ -30,7 +30,7 @@ public class BUDGET extends ModelDb{
     this.LIBBUDGET=rs.getString("LIBBUDGET");
     this.SIGLE=rs.getString("SIGLE");
     rs.close();
-    return new BUDGET( this.IDBUDGET,this.LIBBUDGET,this.SIGLE);
+    return new BUDGET(this.IDBUDGET,this.LIBBUDGET,this.SIGLE);
     
    }
     

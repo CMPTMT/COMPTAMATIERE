@@ -271,21 +271,29 @@ public class Nouveau extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbFamilleActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-
-        int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous enregistrer?","confirmation",JOptionPane.YES_NO_OPTION);
-        if(reponse==JOptionPane.YES_OPTION){
-            try {
-                String valeur[]={txtCodeF.getText(),txtPatri.getText(),cmbEtat.getSelectedItem().toString()};
-                int i=t.Insertion("TYPEPATRIMOINE(idFAMILLE,LIBTYPEPATRIMOINE, TYPEETAT)",valeur);
-                JOptionPane.showMessageDialog(this, i+" compte divisionnaire engistré");
-                if(i==1){
-                   
-                }
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this,ex.getMessage());
+       try{
+            if(txtPatri.getText().trim().isEmpty()){
+                    JOptionPane.showMessageDialog(this,"saisissez libellé du type");
             }
-
-        }
+            else if(txtCodeF.getText().trim().isEmpty()){
+                   JOptionPane.showMessageDialog(this,"choisissez la famille");
+            }
+            else if(cmbEtat.getSelectedIndex()==-1){
+                   JOptionPane.showMessageDialog(this,"choisissez l\'état");
+            }
+            else if(t.isExist("typepatrimoine","libtypepatrimoine",txtPatri.getText())){
+                      JOptionPane.showMessageDialog(this,txtPatri.getText()+" existe déjà");
+            }else{
+                int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous enregistrer?","confirmation",JOptionPane.YES_NO_OPTION);
+                if(reponse==JOptionPane.YES_OPTION){
+                        String valeur[]={txtCodeF.getText(),txtPatri.getText(),cmbEtat.getSelectedItem().toString()};
+                        int i=t.Insertion("TYPEPATRIMOINE(idFAMILLE,LIBTYPEPATRIMOINE, TYPEETAT)",valeur);
+                        JOptionPane.showMessageDialog(this, i+" type patrimoine engistré");
+                }
+             }
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(this,ex.getMessage());
+       }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed

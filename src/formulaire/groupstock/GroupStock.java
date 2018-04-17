@@ -7,6 +7,7 @@ import comptamatiere.GROUPESTOCK;
 import java.awt.Color;
 import java.sql.SQLException;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 /**
  *
  * @author OBAM
@@ -84,6 +85,11 @@ public class GroupStock extends javax.swing.JDialog {
         );
 
         jButton1.setText("Supprimer");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("Ajouter");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -171,8 +177,8 @@ public class GroupStock extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(btnModifier)
-                    .addComponent(jButton1)
-                    .addComponent(jButton4))
+                    .addComponent(jButton4)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -191,7 +197,7 @@ public class GroupStock extends javax.swing.JDialog {
         Modification m=new Modification(new JFrame(),true);
         gprs.setIDGROUPESTOCK(Integer.parseInt(table.getValueAt(table.getSelectedRow(),0).toString()));
         gprs.LIBGROUPESTOCK=(table.getValueAt(table.getSelectedRow(),1).toString());
-        m.gp=gprs;
+        m.g=gprs;
         m.setVisible(true);
     }//GEN-LAST:event_btnModifierActionPerformed
 
@@ -207,6 +213,25 @@ public class GroupStock extends javax.swing.JDialog {
             
         }
     }//GEN-LAST:event_formWindowGainedFocus
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+      try{
+        String idgroupeSelect=table.getValueAt(table.getSelectedRow(),gprs.getColumnByName(table,"idgroupestock")).toString();        
+        if(gprs.isExist("famille","idgroupestock",idgroupeSelect))
+            JOptionPane.showMessageDialog(this,"Groupe de stock est utlisé, suppression impossible");
+        else{
+             int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous supprimer?","confirmation",JOptionPane.YES_NO_OPTION);
+             if(reponse==JOptionPane.YES_OPTION){
+                JOptionPane.showMessageDialog(this,gprs.insUpdateDel("delete from groupestock where idgroupestock="+idgroupeSelect)+" suppression réussie");
+             }
+           }
+        }catch(IndexOutOfBoundsException ex){
+          JOptionPane.showMessageDialog(this,"Choisissez groupe de stock à supprimer,SVP");
+        }catch(SQLException ex){
+          JOptionPane.showMessageDialog(this,ex.getMessage());
+        }
+            // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

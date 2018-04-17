@@ -36,10 +36,10 @@ public class Nouveau extends javax.swing.JDialog {
         jButton3 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        libmagasin = new javax.swing.JTextField();
+        txtLibmagasin = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        contactmagasin = new javax.swing.JTextField();
-        gerantmagasin = new javax.swing.JTextField();
+        txtContactmagasin = new javax.swing.JTextField();
+        txtgerantmagasin = new javax.swing.JTextField();
         jPanel13 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
 
@@ -66,18 +66,18 @@ public class Nouveau extends javax.swing.JDialog {
         jLabel2.setFont(new java.awt.Font("Vani", 1, 12)); // NOI18N
         jLabel2.setText("Garant");
 
-        libmagasin.addActionListener(new java.awt.event.ActionListener() {
+        txtLibmagasin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                libmagasinActionPerformed(evt);
+                txtLibmagasinActionPerformed(evt);
             }
         });
 
         jLabel1.setFont(new java.awt.Font("Vani", 1, 12)); // NOI18N
         jLabel1.setText("Magasin");
 
-        gerantmagasin.addActionListener(new java.awt.event.ActionListener() {
+        txtgerantmagasin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                gerantmagasinActionPerformed(evt);
+                txtgerantmagasinActionPerformed(evt);
             }
         });
 
@@ -118,8 +118,8 @@ public class Nouveau extends javax.swing.JDialog {
                             .add(jLabel2))
                         .add(33, 33, 33)
                         .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING, false)
-                            .add(gerantmagasin, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-                            .add(libmagasin)))
+                            .add(txtgerantmagasin, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                            .add(txtLibmagasin)))
                     .add(layout.createSequentialGroup()
                         .add(jLabel3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 68, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                         .add(18, 18, 18)
@@ -128,7 +128,7 @@ public class Nouveau extends javax.swing.JDialog {
                                 .add(jButton2, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 131, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                                 .add(28, 28, 28)
                                 .add(jButton3, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 131, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                            .add(contactmagasin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 247, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
+                            .add(txtContactmagasin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, 247, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
             .add(jPanel13, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
@@ -139,15 +139,15 @@ public class Nouveau extends javax.swing.JDialog {
                 .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jLabel1)
-                    .add(libmagasin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .add(txtLibmagasin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(org.jdesktop.layout.LayoutStyle.RELATED, 8, Short.MAX_VALUE)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
-                    .add(gerantmagasin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
+                    .add(txtgerantmagasin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE)
                     .add(jLabel2))
                 .add(18, 18, 18)
-                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
+                .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.LEADING)
                     .add(jLabel3)
-                    .add(contactmagasin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
+                    .add(txtContactmagasin, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE, org.jdesktop.layout.GroupLayout.DEFAULT_SIZE, org.jdesktop.layout.GroupLayout.PREFERRED_SIZE))
                 .add(36, 36, 36)
                 .add(layout.createParallelGroup(org.jdesktop.layout.GroupLayout.BASELINE)
                     .add(jButton2)
@@ -160,31 +160,39 @@ public class Nouveau extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 MAGASIN Magasin= new MAGASIN();
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+     try {
+            if(txtLibmagasin.getText().trim().isEmpty())
+                JOptionPane.showMessageDialog(this, "saisissez libellé magasin");
+            else if(txtgerantmagasin.getText().trim().isEmpty())
+                   JOptionPane.showMessageDialog(this, "saisissez nom gérant");
+            else if(Magasin.checkDoublon("select count(*) from magasin where libmagasin='"+
+                    Magasin.parseSqlString(txtLibmagasin.getText())+"'"))
+                JOptionPane.showMessageDialog(this, txtLibmagasin.getText()+" existe déjà");
+            else{
+                int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous enregistrez?","confirmation",JOptionPane.YES_NO_OPTION);
+                if(reponse==JOptionPane.YES_OPTION){
 
-        int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous enregistrez?","confirmation",JOptionPane.YES_NO_OPTION);
-        if(reponse==JOptionPane.YES_OPTION){
-            try {
-                String valeur[]={libmagasin.getText(),gerantmagasin.getText(),contactmagasin.getText()};
-                int i=Magasin.Insertion("MAGASIN(LIBMAGASIN,MAGASINIER,CONTACT)",valeur);
-                JOptionPane.showMessageDialog(this, i+" groupe de stock engistré");
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this,ex.getMessage());
-            }
-
-        }
+                        String valeur[]={txtLibmagasin.getText(),txtgerantmagasin.getText(),txtContactmagasin.getText()};
+                        int i=Magasin.Insertion("MAGASIN(LIBMAGASIN,MAGASINIER,CONTACT)",valeur);
+                        JOptionPane.showMessageDialog(this, i+" Magasin engistré");            
+                }
+            } 
+        } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(this,ex.getMessage());
+          }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void libmagasinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_libmagasinActionPerformed
+    private void txtLibmagasinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLibmagasinActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_libmagasinActionPerformed
+    }//GEN-LAST:event_txtLibmagasinActionPerformed
 
-    private void gerantmagasinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerantmagasinActionPerformed
+    private void txtgerantmagasinActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtgerantmagasinActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_gerantmagasinActionPerformed
+    }//GEN-LAST:event_txtgerantmagasinActionPerformed
 
     /**
      * @param args the command line arguments
@@ -228,8 +236,6 @@ MAGASIN Magasin= new MAGASIN();
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField contactmagasin;
-    private javax.swing.JTextField gerantmagasin;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
@@ -237,6 +243,8 @@ MAGASIN Magasin= new MAGASIN();
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel13;
-    private javax.swing.JTextField libmagasin;
+    private javax.swing.JTextField txtContactmagasin;
+    private javax.swing.JTextField txtLibmagasin;
+    private javax.swing.JTextField txtgerantmagasin;
     // End of variables declaration//GEN-END:variables
 }

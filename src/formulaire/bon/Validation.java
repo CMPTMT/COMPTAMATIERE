@@ -350,13 +350,17 @@ public class Validation extends javax.swing.JFrame {
     }//GEN-LAST:event_txtComptePrincipalCaretUpdate
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+     
      try {
        if((new INVENTAIRE().isInventaireNonValide())){
-            JOptionPane.showMessageDialog(this, "Validation bon impossible\n Vous avez un inventaire non validé");
-        }else{
+            JOptionPane.showMessageDialog(this, "Validation bon impossible\n Vous avez un inventaire non validé");           
+       }
+       else if(tableReception.getRowCount()==0){
+            JOptionPane.showMessageDialog(this, "Choisissez un bon à valider");
+        }
+        else{
             int reponse=JOptionPane.showConfirmDialog(this,"voulez-vous valider?","confirmation",JOptionPane.YES_NO_OPTION);
             if(reponse==JOptionPane.YES_OPTION){
-
                     String champ[]={"VALIDE"};
                     String valeur[]={"1"};      
                     int i=e.updateTable("entree", champ, valeur,"where idbon="+idBon);
@@ -374,7 +378,6 @@ public class Validation extends javax.swing.JFrame {
                     e.viderJtable(tableReception);
                     //rechargement des bons non validés
                     tableArticle.setModel(e.getDefaulTableModel("select IDBON, REFFACTURE, DATEFACTURE, REFBORDEREAU, DATEBORD from entree where VALIDE=false"));
-
                     }
        }
         } catch (SQLException ex) {

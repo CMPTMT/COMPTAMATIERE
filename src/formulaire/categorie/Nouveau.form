@@ -116,7 +116,7 @@
                                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                                           <Component id="jLabel4" min="-2" pref="84" max="-2" attributes="0"/>
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Component id="codeC" max="32767" attributes="0"/>
+                                          <Component id="txtNumeroCompte" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -155,7 +155,7 @@
                       <Component id="codeD" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="codeC" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtNumeroCompte" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -212,7 +212,7 @@
             </Property>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="codeC">
+        <Component class="javax.swing.JTextField" name="txtNumeroCompte">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>

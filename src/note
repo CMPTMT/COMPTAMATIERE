@@ -1,0 +1,1 @@
+txtNomchamp.isEmpty() not correct, the correct is txtNomchamp.trim().isEmpty() 

@@ -262,9 +262,7 @@ public class NouveauCatPourArt extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(this, "Saisissez le Numero de Compte");
 
         }
-        else if (codeIcat.getText().isEmpty()){JOptionPane.showMessageDialog(this, "Saisissez l etiquettage");}
-        
-
+        else if (codeIcat.getText().isEmpty()){JOptionPane.showMessageDialog(this, "Saisissez l etiquettage");}      
 
 else{
         int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous enregistrez?","confirmation",JOptionPane.YES_NO_OPTION);

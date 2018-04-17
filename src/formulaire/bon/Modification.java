@@ -1231,9 +1231,13 @@ public class Modification extends javax.swing.JDialog {
     }//GEN-LAST:event_formComponentShown
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+       try{
         txtMontantBon.setText(b.formatageMontant(Double.parseDouble(txtMontantBon.getText())-Double.parseDouble(tableDetail.getValueAt(tableDetail.getSelectedRow(),b.getColumnByName(tableDetail,"MontantTTC")).toString())));
         ((DefaultTableModel) tableDetail.getModel()).removeRow(tableDetail.getSelectedRow());
         //  model.removeRow(WIDTH);
+       }catch(ArrayIndexOutOfBoundsException ex){
+           JOptionPane.showMessageDialog(this, "Choisissez le bien à retirer");
+       }
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed

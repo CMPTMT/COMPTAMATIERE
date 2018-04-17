@@ -84,7 +84,7 @@ public class Modification extends javax.swing.JDialog {
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 338, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 177, Short.MAX_VALUE)
                 .addComponent(jButton12)
                 .addContainerGap())
         );
@@ -124,10 +124,10 @@ public class Modification extends javax.swing.JDialog {
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTypePatri, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
+                            .addComponent(txtTypePatri, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
                             .addComponent(txtcodeF, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtFamille))
-                        .addGap(64, 64, 64))
+                        .addGap(67, 67, 67))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -175,18 +175,26 @@ public class Modification extends javax.swing.JDialog {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous modifiez?","confirmation",JOptionPane.YES_NO_OPTION);
-        if(reponse==JOptionPane.YES_OPTION){
-            try {
-                String champ[]={"LIBTYPEPATRIMOINE", "TYPEETAT"};
-                String valeur[]={txtTypePatri.getText(),txtTypeEtat.getText()};
-                int i=t.updateTable("typepatrimoine", champ, valeur,"where idtypepatrimoine="+t.idTYPEPATRIMOINE);
-                JOptionPane.showMessageDialog(this, i+" type patrimoine modifié");
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(this,ex.getMessage());
-            }
+        try{
+            if(txtTypePatri.getText().trim().isEmpty()){
+                 JOptionPane.showMessageDialog(this,"saisissez libellé du type");
+              }  
+           else if(t.checkDoublon("select count(*) from typepatrimoine where libtypepatrimoine='"+t.parseSqlString(txtTypePatri.getText())+"' and idtypepatrimoine<>"+t.idTYPEPATRIMOINE)){
+                         JOptionPane.showMessageDialog(this,txtTypePatri.getText()+" existe déjà");
+           }else{
+               int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous modifiez?","confirmation",JOptionPane.YES_NO_OPTION);
+                if(reponse==JOptionPane.YES_OPTION){
+                        String champ[]={"LIBTYPEPATRIMOINE", "TYPEETAT"};
+                        String valeur[]={txtTypePatri.getText(),txtTypeEtat.getText()};
+                        int i=t.updateTable("typepatrimoine", champ, valeur,"where idtypepatrimoine="+t.idTYPEPATRIMOINE);
+                        JOptionPane.showMessageDialog(this, i+" type patrimoine modifié");
+                
 
-        }
+                  }
+           }   
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(this,ex.getMessage());
+          }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
