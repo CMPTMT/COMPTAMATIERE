@@ -2,8 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package formulaire.Fournisseurs;
-//package formulaire.Fournisseurs;
+package formulaire.fournisseurs;
 import comptamatiere.FOURNISSEUR;
 import comptamatiere.REPORT;
 import java.sql.SQLException;
@@ -340,8 +339,9 @@ private void chargement(){
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        Nouveau2 Nb = new Nouveau2(new JFrame(),true);
-        Nb.setVisible(true);
+        Nouveau2 n = new Nouveau2(new JFrame(),true);
+        n.typeFournisseur="Fournisseur";
+        n.setVisible(true);
        
     }//GEN-LAST:event_jButton7ActionPerformed
 
@@ -367,6 +367,7 @@ private void chargement(){
         */
           try{
         Modification2  Ms = new Modification2(new JFrame(),true);
+         //JOptionPane.showMessageDialog(this, TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),0).toString());
         Fournisseur.setidFOURNISSEUR(Integer.parseInt(TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),0).toString()));
         Fournisseur.setTYPEFOURNISSEUR(TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),1).toString());
         Fournisseur.setIFU(TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),2).toString());
@@ -380,7 +381,9 @@ private void chargement(){
         Fournisseur.setPAYS(TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),10).toString());
         Fournisseur.setSECTEURACTIVITE(TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),11).toString());
         ///Fournisseur.setACTIVITES(Table.getValueAt(Table.getSelectedRow(),12).toString());
-        Ms.Mf=Fournisseur;
+        
+        Ms.f=Fournisseur;
+         
         Ms.setVisible(true);
         } catch(IndexOutOfBoundsException ex){
           JOptionPane.showMessageDialog(this,"Choisissez le Fournisseur à modifier,SVP");
@@ -408,19 +411,22 @@ private void chargement(){
     }//GEN-LAST:event_formWindowGainedFocus
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
-        
-        int reponse=JOptionPane.showConfirmDialog(this,"voulez-vous Supprimer ce fournisseur ?","confirmation",JOptionPane.YES_NO_OPTION);
-        if(reponse==JOptionPane.YES_OPTION){
-           int idfournisseur=(Integer.parseInt(TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),0).toString()));
-        try {
-          int i=  Fournisseur.insUpdateDel("DELETE from FOURNISSEUR WHERE IDFOURNISSEUR="+idfournisseur);
-            JOptionPane.showMessageDialog(this, i+" FOURNISSEUR SUPPRIME");
-        } catch (SQLException ex) {
-            Logger.getLogger(Fournisseur2.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       try{
+            if(Fournisseur.isExist("bon","idfournisseur",TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),0).toString()))
+                    JOptionPane.showMessageDialog(this,"Suppression impossible, fournisseur utilisé déjà");
+            else
+            {
+                    int reponse=JOptionPane.showConfirmDialog(this,"voulez-vous Supprimer ce fournisseur ?","confirmation",JOptionPane.YES_NO_OPTION);
+                if(reponse==JOptionPane.YES_OPTION){
+                   int idfournisseur=(Integer.parseInt(TableFournisseur.getValueAt(TableFournisseur.getSelectedRow(),0).toString()));
+
+                  int i=  Fournisseur.insUpdateDel("DELETE from FOURNISSEUR WHERE IDFOURNISSEUR="+idfournisseur);
+                    JOptionPane.showMessageDialog(this, i+" FOURNISSEUR SUPPRIME");
+
+                    }
+            } } catch (SQLException ex) {
+                    Logger.getLogger(Fournisseur2.class.getName()).log(Level.SEVERE, null, ex);
             }
-        
     }//GEN-LAST:event_jButton8ActionPerformed
 
     /**

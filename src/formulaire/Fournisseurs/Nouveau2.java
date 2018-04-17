@@ -2,14 +2,12 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package formulaire.Fournisseurs;
+package formulaire.fournisseurs;
 import comptamatiere.FOURNISSEUR;
 import comptamatiere.SECTEURACTIVITE;
 import control.Controle;
-import java.awt.Color;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 import javax.swing.JOptionPane;
 
@@ -18,7 +16,10 @@ import javax.swing.JOptionPane;
  * @author PRINCE
  */
 public class Nouveau2 extends javax.swing.JDialog {
-
+    FOURNISSEUR Fournisseur = new FOURNISSEUR();
+    SECTEURACTIVITE secteuractiviteF = new SECTEURACTIVITE();
+    ArrayList tab = new ArrayList();
+    public String typeFournisseur="";
     /**
      * Creates new form Nouveau2
      */
@@ -40,7 +41,6 @@ public class Nouveau2 extends javax.swing.JDialog {
         jLabel10 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        typefournisseur = new javax.swing.JComboBox();
         jLabel1 = new javax.swing.JLabel();
         ifu = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -60,10 +60,11 @@ public class Nouveau2 extends javax.swing.JDialog {
         jLabel9 = new javax.swing.JLabel();
         pays = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        codetypesecteur = new javax.swing.JComboBox();
+        cmbSecteur = new javax.swing.JComboBox();
         codesecteur = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        txtTypeFournisseur = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addComponentListener(new java.awt.event.ComponentAdapter() {
@@ -103,20 +104,6 @@ public class Nouveau2 extends javax.swing.JDialog {
         jLabel12.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jLabel12.setText("Type");
 
-        typefournisseur.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
-        typefournisseur.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "FOURNISSEUR", "PRESTATAIRE", "DONATEUR", " " }));
-        typefournisseur.setPreferredSize(new java.awt.Dimension(28, 23));
-        typefournisseur.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                typefournisseurItemStateChanged(evt);
-            }
-        });
-        typefournisseur.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                typefournisseurActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jLabel1.setText("N° IFU");
 
@@ -147,11 +134,11 @@ public class Nouveau2 extends javax.swing.JDialog {
         jLabel11.setFont(new java.awt.Font("Tempus Sans ITC", 1, 14)); // NOI18N
         jLabel11.setText("Secteur");
 
-        codetypesecteur.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
-        codetypesecteur.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        codetypesecteur.addActionListener(new java.awt.event.ActionListener() {
+        cmbSecteur.setFont(new java.awt.Font("Tahoma", 0, 9)); // NOI18N
+        cmbSecteur.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cmbSecteur.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                codetypesecteurActionPerformed(evt);
+                cmbSecteurActionPerformed(evt);
             }
         });
 
@@ -169,6 +156,10 @@ public class Nouveau2 extends javax.swing.JDialog {
                 jButton3ActionPerformed(evt);
             }
         });
+
+        txtTypeFournisseur.setEditable(false);
+        txtTypeFournisseur.setBackground(new java.awt.Color(255, 255, 255));
+        txtTypeFournisseur.setForeground(new java.awt.Color(255, 0, 51));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -227,10 +218,10 @@ public class Nouveau2 extends javax.swing.JDialog {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                                 .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addComponent(ifu, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(typefournisseur, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(raisonsocial, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(raisonsocial, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(txtTypeFournisseur, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                            .addComponent(codetypesecteur, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(cmbSecteur, javax.swing.GroupLayout.PREFERRED_SIZE, 359, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addGap(10, 10, 10)))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jButton3)
@@ -242,13 +233,10 @@ public class Nouveau2 extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(jLabel12))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(typefournisseur, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(9, 9, 9)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(txtTypeFournisseur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -296,7 +284,7 @@ public class Nouveau2 extends javax.swing.JDialog {
                         .addComponent(jLabel11))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(codetypesecteur, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cmbSecteur, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(codesecteur, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(8, 8, 8)
@@ -334,56 +322,53 @@ public class Nouveau2 extends javax.swing.JDialog {
     }//GEN-LAST:event_jPanel1ComponentShown
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous enregistrez?","confirmation",JOptionPane.YES_NO_OPTION);
-        if(reponse==JOptionPane.YES_OPTION){
-            try {
-                String valeur[]={typefournisseur.getSelectedItem().toString(),ifu.getText(),raisonsocial.getText(),nomrepresentant.getText(),adresse.getText(),telephone.getText(),fax.getText(),email.getText(),ville.getText(),pays.getText(),codesecteur.getText()};
-                int i=Fournisseur.Insertion("FOURNISSEUR(TYPEFOURNISSEUR,IFU,RAISONSOCIAL,NOMREPRESENTANT,ADRESSE,TELEPHONE,FAX,EMAIL,VILLE,PAYS,SECTEURACTIVITE)",valeur);
-                JOptionPane.showMessageDialog(this, i+" FOURNISSEUR engistré");
-                if(i==1){
-                    Controle.modification=true;
-                    ifu.setText("");
-                    raisonsocial.setText("");
-                    nomrepresentant.setText("");
-                    adresse.setText("");
-                    telephone.setText("");
-                    fax.setText("");
-                    email.setText("");
-                    ville.setText("");
-                    pays.setText("");
-                    codesecteur.setText("");
-                }
-            } catch (SQLException ex) {
+      try{
+         if(ifu.getText().trim().isEmpty())
+                JOptionPane.showMessageDialog(this, "Saisissez l\'IFU");
+          else if(raisonsocial.getText().trim().isEmpty())
+                JOptionPane.showMessageDialog(this, "saisissez raison sociale");
+         else if(Fournisseur.isExist("fournisseur","raisonsocial", raisonsocial.getText()))
+                JOptionPane.showMessageDialog(this,raisonsocial.getText()+" existe déjà");
+         else{
+            int reponse= JOptionPane.showConfirmDialog(this,"voulez-vous enregistrez?","confirmation",JOptionPane.YES_NO_OPTION);
+            if(reponse==JOptionPane.YES_OPTION){
+                    String valeur[]={txtTypeFournisseur.getText(),ifu.getText(),raisonsocial.getText(),nomrepresentant.getText(),adresse.getText(),telephone.getText(),fax.getText(),email.getText(),ville.getText(),pays.getText(),codesecteur.getText()};
+                    int i=Fournisseur.Insertion("FOURNISSEUR(TYPEFOURNISSEUR,IFU,RAISONSOCIAL,NOMREPRESENTANT,ADRESSE,TELEPHONE,FAX,EMAIL,VILLE,PAYS,SECTEURACTIVITE)",valeur);
+                    JOptionPane.showMessageDialog(this, i+" FOURNISSEUR engistré");
+                    if(i==1){
+                        Controle.modification=true;
+                        ifu.setText("");
+                        raisonsocial.setText("");
+                        nomrepresentant.setText("");
+                        adresse.setText("");
+                        telephone.setText("");
+                        fax.setText("");
+                        email.setText("");
+                        ville.setText("");
+                        pays.setText("");
+                        codesecteur.setText("");
+                    }
+                  }
+              }
+        } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(this,ex.getMessage());
-            }
-
-        }
+          }
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void codetypesecteurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_codetypesecteurActionPerformed
+    private void cmbSecteurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSecteurActionPerformed
         // TODO add your handling code here:
         codesecteur.setText("");
-        codesecteur.setText(tab.get(codetypesecteur.getSelectedIndex()).toString());
-    }//GEN-LAST:event_codetypesecteurActionPerformed
-
-    private void typefournisseurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typefournisseurActionPerformed
-
-    }//GEN-LAST:event_typefournisseurActionPerformed
-
-    private void typefournisseurItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_typefournisseurItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_typefournisseurItemStateChanged
+        codesecteur.setText(tab.get(cmbSecteur.getSelectedIndex()).toString());
+    }//GEN-LAST:event_cmbSecteurActionPerformed
 
     private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
-        // TODO add your handling code here:
-         // TODO add your handling code here:
-        
+
         try {
-            tab=secteuractiviteF.getComboELement("select IDSECTEUR,LIBSECTEUR from SECTEURACTIVITE order by LIBSECTEUR",codetypesecteur); 
-            codesecteur.setText(tab.get(codetypesecteur.getSelectedIndex()).toString());
+            tab=secteuractiviteF.getComboELement("select IDSECTEUR,LIBSECTEUR from SECTEURACTIVITE order by LIBSECTEUR",cmbSecteur); 
+            codesecteur.setText(tab.get(cmbSecteur.getSelectedIndex()).toString());
             codesecteur.setVisible(false);
-            
+            txtTypeFournisseur.setText(typeFournisseur);
+            cmbSecteur.setSelectedIndex(-1);
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(this,ex.getMessage());
         }
@@ -391,9 +376,7 @@ public class Nouveau2 extends javax.swing.JDialog {
      
         
     }//GEN-LAST:event_formComponentShown
-FOURNISSEUR Fournisseur = new FOURNISSEUR();
-SECTEURACTIVITE secteuractiviteF = new SECTEURACTIVITE();
-  ArrayList tab = new ArrayList();
+
     /**
      * @param args the command line arguments
      */
@@ -437,8 +420,8 @@ SECTEURACTIVITE secteuractiviteF = new SECTEURACTIVITE();
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField adresse;
+    private javax.swing.JComboBox cmbSecteur;
     private javax.swing.JTextField codesecteur;
-    private javax.swing.JComboBox codetypesecteur;
     private javax.swing.JTextField email;
     private javax.swing.JTextField fax;
     private javax.swing.JTextField ifu;
@@ -462,7 +445,7 @@ SECTEURACTIVITE secteuractiviteF = new SECTEURACTIVITE();
     private javax.swing.JTextField pays;
     private javax.swing.JTextField raisonsocial;
     private javax.swing.JTextField telephone;
-    private javax.swing.JComboBox typefournisseur;
+    private javax.swing.JTextField txtTypeFournisseur;
     private javax.swing.JTextField ville;
     // End of variables declaration//GEN-END:variables
 }
